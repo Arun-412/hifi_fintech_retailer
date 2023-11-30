@@ -1,7 +1,7 @@
 
 <form action="logout" method="post">
     @csrf
-    <h2>Welcome to HIFI FINTECH</h2>
+    <h2>Welcome to HIFI FINTECH !</h2>
 
 <p>{{Auth::user()}}</p>
 
