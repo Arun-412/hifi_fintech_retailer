@@ -1,4 +1,5 @@
-
+@extends('layouts.master')
+@section('content')
 <form action="logout" method="post">
     @csrf
     <h2>Welcome to HIFI FINTECH</h2>
@@ -7,3 +8,4 @@
 
 <button type="submit" value="Logout">Logout</button>
 </form>
+@endsection

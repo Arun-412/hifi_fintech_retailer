@@ -1,0 +1,40 @@
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,500;1,600;1,700;1,800;1,900&display=swap');
+  body{
+    font-size: 14px;
+    overflow-x: hidden;
+    font-family: 'Rubik', sans-serif !important;
+    color: #2F2F3B;
+    background-color: #f7f8f9 !important;
+}
+.logo{
+    width: 130px;
+}
+.navbar {
+    padding:0 !important;
+}
+.header nav.navbar {
+    box-shadow: 0px 9px 24px rgba(89, 102, 122, 0.05);
+    background-color: #fff !important;
+}
+.box{
+    height: 76vh;
+    border-radius: 15px;
+    box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
+    background-color: #fff;
+    background: linear-gradient(45deg, #002a48, #d3eaff);
+}
+.profile-icon{
+    width: 35px;
+    height: 35px;
+    margin: auto;
+    border-radius: 37px;
+}
+.notify-icon{
+    width: 25px;
+    height: 25px;
+    margin: auto;
+}
+.profile .dropdown-menu[data-bs-popper] {
+    left: unset;
+    right: 0;
+}

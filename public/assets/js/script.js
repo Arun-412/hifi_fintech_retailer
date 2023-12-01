@@ -21,4 +21,82 @@ $(document).ready(function(){
        $('#c_show_password').hide();
        $('#c_hide_password').show();
    });
+
+    $('#retailers_list').DataTable({
+        
+        // searchPanes: {
+        //     layout: 'columns-6',
+        //     initCollapsed: true,
+             
+        // },
+        // columnDefs: [{
+        //     searchPanes: {
+        //         show: true,
+                
+        //     viewCount: false,
+        //     orderable: false,
+        //     },
+        //     targets: [5]
+        // }], need end for filter
+        // dom:"lBfrtip", cmd dom no need
+        // dom: 'PBfrtip',
+        // dom:'Plfrtip',
+        // dom: 'Bfrtip',
+        // dom: 'PBlfrtip',
+        dom:'Blfrtip',
+        
+        colReorder: true,
+        fixedHeader: {
+            header: true
+        }, 
+        buttons: [
+           
+            // 'pageLength',
+          
+            {
+                extend: 'copy',
+                title: 'HIFI FINTECH Retailer Details',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                extend: 'csv',
+                title: 'HIFI FINTECH Retailer Details',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                },
+                autoFilter: true,
+                sheetName: 'HIFI FINTECH Retailer Details'
+            },
+            {
+                extend: 'excel',
+                title: 'HIFI FINTECH Retailer Details',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                },
+                autoFilter: true,
+                sheetName: 'HIFI FINTECH Retailer Details'
+            },
+            {
+                extend: 'pdf',
+                title: 'HIFI FINTECH Retailer Details',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                },
+                orientation: 'portrait',
+                pageSize: 'A4'
+            },
+            {
+                extend: 'print',
+                title: 'HIFI FINTECH Retailer Details',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                },
+                orientation: 'portrait',
+                pageSize: 'A4'
+            },
+        ]
+    });
+
 });
