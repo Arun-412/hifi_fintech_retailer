@@ -14,7 +14,11 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () { return view('dashboard'); });
+    Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::post('/logout', [UserController::class, 'Logout'])->name('logout');
+
+    Route::group(['prefix' => 'payout'], function () {
+        Route::get('/ekopayout', function () { return view('payout.eko_payout'); })->name('eko_payout');
+    });
 });
 
