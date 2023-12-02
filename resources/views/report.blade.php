@@ -35,7 +35,7 @@
                 <td>2003020001020</td>
                 <td>₹12500</td>
                 <td>Success</td>
-                <td><button type="button">Print</button><button type="button">Reload Status</button></td>
+                <td><button type="button"><i class="bi bi-printer-fill"></i></button><button type="button"><i class="bi bi-arrow-clockwise"></i></button></td>
             </tr>
         </tbody>
     </table>
