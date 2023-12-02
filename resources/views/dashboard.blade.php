@@ -6,6 +6,6 @@
 
 <p>{{Auth::user()}}</p>
 
-<button type="submit" value="Logout">Logout</button>
+<button type="submit" value="Logout">Logout </button>
 </form>
 @endsection
