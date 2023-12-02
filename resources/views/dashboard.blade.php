@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<form action="logout" method="post">
+<form action="{{route('logout')}}" method="post">
     @csrf
     <h2>Welcome to HIFI FINTECH </h2>
 
