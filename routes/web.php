@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'payout'], function () {
         Route::get('/ekopayout', function () { return view('payout.eko_payout'); })->name('eko_payout');
+        Route::get('/ekofunctional', function () { return view('payout.eko_functional'); })->name('ekofunctional');
     });
 
     Route::get('/report', function () { return view('report'); })->name('report');
