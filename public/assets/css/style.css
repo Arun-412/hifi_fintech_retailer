@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
 
-body{
+/* body{
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 28px;
-}
+} */
+
 
 section.login {
     background: #002A48;
@@ -160,3 +161,84 @@ span.signup-link {
   #show_password,#c_show_password,#hide_password,#c_hide_password {
     cursor: pointer;
   }
+
+  /* header */
+  .navbar-nav li.nav-item{
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 5;
+  }
+  .navbar-nav li.nav-item a{
+    display: block;
+    color: #2F2F3B;
+    line-height: 23px;
+    text-decoration: none;
+    text-transform: capitalize;
+    padding: 5px 10px;
+    letter-spacing: 0.04em;
+    position: relative;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+  .navbar-nav li.nav-item a:hover,.navbar-nav li.nav-item a:active{
+    color: #002a48;
+    text-decoration: underline;
+  }
+  .navbar-nav li .submenu{
+    position: fixed;
+    z-index: 4;
+    box-shadow: 0 0 1px 0 #898989;
+    padding: 15px 0px 15px 0px;
+    background: #002A48;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+  }
+  .navbar-nav li:hover .submenu{
+    opacity: 1;
+    visibility: visible;
+    margin-top: 12px;
+    transition: all 0.5s ease;
+  }
+  .navbar-nav li .submenu li{
+    border: 0;
+    float: none;
+    position: relative;
+    display: block;
+  }
+  .navbar-nav li .submenu li a:hover {
+    color: #002a48;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    background-color: #7bc7c5;
+    text-decoration: none;
+}
+.navbar-nav li .submenu li a{
+    background: transparent;
+    padding: 4px 30px;
+    display: block;
+    transition: all 0.5s ease;
+    line-height: 1.9;
+    color: #fff;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.navbar-nav li .submenu li a:after {
+    position: absolute;
+    content: "";
+    top: 49%;
+    width: 5px;
+    height: 1px;
+    border-radius: 100%;
+    background-color: #fff;
+    left: 20px;
+}
+.navbar-nav li .submenu li a:hover:after{
+    background-color: #002a48;
+}
