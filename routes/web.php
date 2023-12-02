@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/verify', function () { return view('auth.OTP'); });
 
@@ -20,5 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'payout'], function () {
         Route::get('/ekopayout', function () { return view('payout.eko_payout'); })->name('eko_payout');
     });
+
+    Route::get('/report', function () { return view('report'); })->name('report');
+    Route::post('/search_report', [ReportController::class, 'search_report'])->name('search_report');
 });
 
