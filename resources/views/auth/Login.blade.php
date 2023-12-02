@@ -13,7 +13,7 @@
                     @if(session('failed'))
                         <div class="alert alert-danger"> {{ session('failed') }}</div>
 					@endif
-                        <form action="loggedin" method="post"> @csrf
+                        <form action="{{route('loggedin')}}"  method="post"> @csrf
                         <div class="mb-3 form-inputs">
                             <label for="exampleFormControlInput1" class="form-label">Mobile Number</label>
                             <input type="text" name="mobile_number" pattern=".{0}|.{10,10}" value="{{ old('mobile_number') }}" autofocus title="Mobile number must be 10 digit" required minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Mobile Number" class="form-control @error('mobile_number') is-invalid @enderror" id="exampleFormControlInput1" autocomplete="off">

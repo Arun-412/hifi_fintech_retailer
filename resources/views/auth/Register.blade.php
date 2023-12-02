@@ -1,21 +1,3 @@
-<!-- <form >
-    
-    <input type="text"  id="shop_name" placeholder="Enter Shop Name">
-   
-    <input type="tel"  id="mobile_number" placeholder="Enter mobile number">
-
-    <input type="email" id="email" placeholder="enter email">
-
-    <input type="password"  id="password" placeholder="enter password">
-
-    <input type="password" id="password_confirmation" placeholder="enter confirm password">
-
-    <input type="checkbox" name="agree" id="agree">
-
-    <input type="submit" value="Login">
-    <a href="/">Already have account?</a>
-</form> -->
-
 @extends('layouts.master')
 @section('content')
 <section style="height: unset;" class="login">
@@ -32,7 +14,7 @@
 							{{ session('failed') }}
 						</div>
 					@endif
-                        <form action="register" method="post">@csrf 
+                        <form action="{{route('Register')}}" method="post">@csrf 
                             <div class="mb-3 form-inputs">
                                 <label for="exampleFormControlInput1" class="form-label">Shop Name                                </label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Shop Name

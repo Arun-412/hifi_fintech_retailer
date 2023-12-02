@@ -30,6 +30,7 @@ class User extends Authenticatable
         'door_mode',
         'door_opened_by',
         'door_status',
+        'door_price',
         'door_key'
     ];
 

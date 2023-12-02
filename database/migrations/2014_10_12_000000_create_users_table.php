@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('door_mode');
             $table->string('door_opened_by');
             $table->string('door_status');
+            $table->string('door_price')->nullable();
             $table->string('door_key')->nullable();
             $table->timestamps();
         });

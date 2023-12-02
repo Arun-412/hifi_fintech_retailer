@@ -95,6 +95,7 @@ class UserController extends Controller
                     'door_mode' => "HF00",
                     'door_opened_by' => "HFS",
                     'door_status' => "HFY",
+                    'door_price' => "HFN",
                     'door_key' => 0
                 ]);
                 if($door_access){
