@@ -5,6 +5,13 @@
         <div class="row">
             <div style="height: 74vh;display: flex;" class="col-sm-12 col-md-12 col-xs-12">
                 <div class="payout-box">
+                    <div class="export-buttons">
+                        <button class="btn"><i class="bi bi-printer-fill"></i> Print </button>
+                        <button class="btn"><i class="bi bi-file-earmark-pdf-fill"></i> PDF </button>
+                        <button class="btn"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Excel </button>
+                        <button class="btn"><i class="bi bi-filetype-csv"></i> CSV </button>
+                        <button class="btn"><i class="bi bi-clipboard-check-fill"></i> Copy </button>
+                    </div>
                     <h4 style="margin-bottom: 20px;">EKO Payout</h4>
                     <form action="" method="post">
                         @csrf
