@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&display=swap");
 
 /* body{
     font-family: 'Poppins', sans-serif;
@@ -7,9 +7,8 @@
     line-height: 28px;
 } */
 
-
 section.login {
-    background: #002A48;
+    background: #002a48;
     height: 100vh;
     padding: 50px;
     display: flex;
@@ -23,7 +22,7 @@ section.login {
     margin: auto !important;
     box-shadow: 4px 0px 12px 4px #ffffff26;
 }
-.login-image{
+.login-image {
     background-image: url("../images/loginbg.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -31,9 +30,9 @@ section.login {
     background-color: #7bc7c5;
     border-radius: 12px;
 }
-.login-banner{
-   width: 100%;
-   border-radius: 12px;
+.login-banner {
+    width: 100%;
+    border-radius: 12px;
 }
 .logo {
     border-radius: 10px;
@@ -51,7 +50,7 @@ section.login {
     text-align: left;
     position: relative;
 }
-.form-inputs .form-control{
+.form-inputs .form-control {
     padding-left: 30px;
 }
 .form-inputs i.bi {
@@ -68,7 +67,7 @@ label.form-label {
 }
 .form-inputs .form-control {
     padding-left: 35px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
@@ -76,7 +75,7 @@ label.form-label {
     box-shadow: 1px 1px 6px 0px #7bc7c538;
 }
 select.form-select {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
@@ -87,10 +86,10 @@ select.form-select {
     background-color: #002a48;
     border-color: #002a48;
 }
-.form-check{
+.form-check {
     text-align: left;
 }
-.reset{
+.reset {
     display: flex;
     justify-content: space-between;
 }
@@ -103,12 +102,13 @@ button.btn {
     border-radius: 37px;
     padding: 7px 30px;
     width: 100%;
-    font-weight: 600;
+    font-weight: 500;
 }
-.login-btn{
+.login-btn {
     margin-top: 20px;
 }
-.btn:hover, .btn:active {
+.btn:hover,
+.btn:active {
     color: #000 !important;
     background-color: #d3eaff !important;
     border-color: #d3eaff !important;
@@ -125,14 +125,14 @@ span.signup-link {
 /* Otp screen */
 
 .otp-screen {
-    background: #002A48;
+    background: #002a48;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-  }
-  .otp-box{
+}
+.otp-box {
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
@@ -143,15 +143,15 @@ span.signup-link {
     background-color: #fff;
     box-shadow: 4px 0px 12px 4px #ffffff26;
     margin: auto !important;
-  }
- .otp-image {
+}
+.otp-image {
     width: 127px !important;
     margin-bottom: 25px;
- }
-  .otp-inputs{
+}
+.otp-inputs {
     margin-bottom: 30px;
-  }
-  .otp-inputs input {
+}
+.otp-inputs input {
     width: 32px;
     height: 32px;
     text-align: center;
@@ -159,29 +159,32 @@ span.signup-link {
     margin: 0 10px;
     border: 1px solid #7bc7c5;
     box-shadow: 1px 1px 6px 0px #7bc7c538;
-  }
-  
- .otp-inputs input:focus {
-    border: 1px solid #002A48;
+}
+
+.otp-inputs input:focus {
+    border: 1px solid #002a48;
     outline: none;
-  }
+}
 
-  #show_password,#c_show_password,#hide_password,#c_hide_password {
+#show_password,
+#c_show_password,
+#hide_password,
+#c_hide_password {
     cursor: pointer;
-  }
+}
 
-  /* header */
-  .navbar-nav li.nav-item{
+/* header */
+.navbar-nav li.nav-item {
     position: relative;
     padding-top: 10px;
     padding-bottom: 10px;
     display: inline-block;
     cursor: pointer;
     z-index: 5;
-  }
-  .navbar-nav li.nav-item a{
+}
+.navbar-nav li.nav-item a {
     display: block;
-    color: #2F2F3B;
+    color: #2f2f3b;
     line-height: 23px;
     text-decoration: none;
     text-transform: capitalize;
@@ -190,43 +193,44 @@ span.signup-link {
     position: relative;
     border-radius: 5px;
     font-weight: 500;
-  }
-  .navbar-nav li.nav-item a:hover,.navbar-nav li.nav-item a:active{
+}
+.navbar-nav li.nav-item a:hover,
+.navbar-nav li.nav-item a:active {
     color: #002a48;
     text-decoration: underline;
-  }
-  .navbar-nav li .submenu{
+}
+.navbar-nav li .submenu {
     position: fixed;
     z-index: 4;
     box-shadow: 0 0 1px 0 #898989;
     padding: 15px 0px 15px 0px;
-    background: #002A48;
+    background: #002a48;
     width: 200px;
     opacity: 0;
     visibility: hidden;
     border-radius: 5px;
     transition: all 0.5s ease;
-  }
-  .navbar-nav li:hover .submenu{
+}
+.navbar-nav li:hover .submenu {
     opacity: 1;
     visibility: visible;
     margin-top: 12px;
     transition: all 0.5s ease;
-  }
-  .navbar-nav li .submenu li{
+}
+.navbar-nav li .submenu li {
     border: 0;
     float: none;
     position: relative;
     display: block;
-  }
-  .navbar-nav li .submenu li a:hover {
+}
+.navbar-nav li .submenu li a:hover {
     color: #002a48;
     letter-spacing: 1.5px;
     transition: all 0.3s ease;
     background-color: #7bc7c5;
     text-decoration: none;
 }
-.navbar-nav li .submenu li a{
+.navbar-nav li .submenu li a {
     background: transparent;
     padding: 4px 30px;
     display: block;
@@ -247,22 +251,22 @@ span.signup-link {
     background-color: #fff;
     left: 20px;
 }
-.navbar-nav li .submenu li a:hover:after{
+.navbar-nav li .submenu li a:hover:after {
     background-color: #002a48;
 }
 
 /* payout model */
 
-.payout-model .modal-header{
+.payout-model .modal-header {
     border-bottom: none;
     padding: 30px 30px 0px;
 }
-.payout-model .modal-footer{
+.payout-model .modal-footer {
     border: none;
     padding: 0px 30px 30px;
     justify-content: left;
 }
-.payout-model .modal-body{
+.payout-model .modal-body {
     padding: 5px 25px;
 }
 .payout-model .form-check-label {
@@ -280,27 +284,77 @@ span.signup-link {
     display: flex;
 }
 input[type="checkbox"] {
-    /* ...existing styles */
     display: grid;
     place-content: center;
     border: 2px solid #002a48;
+}
+.payout-model input[type="checkbox"] {
     width: 20px;
     height: 20px;
-  }
-  
-  input[type="checkbox"]::before {
+}
+input[type="checkbox"]::before {
     content: "";
     width: 0.65em;
     height: 0.65em;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
     box-shadow: inset 1em 1em var(--form-control-color);
-  }
-  
-  input[type="checkbox"]:checked::before {
+}
+
+input[type="checkbox"]:checked::before {
     transform: scale(1);
-  }
-  button.btn-close {
+}
+button.btn-close {
     border: 1px solid #000;
     border-radius: 37px;
+}
+.payout-model button.btn {
+    width: fit-content;
+    margin-right: 7px;
+    margin-left: 7px;
+}
+
+/* payout page */
+.payout-box {
+    border-radius: 15px;
+    box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
+    background: #fff;
+    padding: 35px 35px;
+    margin: auto;
+}
+.table tr td {
+    padding: 11px 10px;
+    font-size: 15px;
+}
+.table tr th {
+    padding: 11px 10px;
+}
+.verify-icon{
+    font-size: 20px;
+    color: #002a48;
+    margin-right: 8px;
+}
+.btn-reject {
+    color: #f00;
+    border-radius: 37px;
+    padding: 4px 10px;
+    font-weight: 400;
+    border: 1px solid;
+    font-size: 14px;
+    background: #fff;
+}
+.btn-reject .bi{
+    margin-right: 5px;
+}
+.btn-pay {
+    color: #198754;
+    border-radius: 37px;
+    padding: 4px 10px;
+    font-weight: 400;
+    border: 1px solid;
+    font-size: 14px;
+    background: #fff;
+}
+.btn-pay .bi{
+    margin-right: 5px;
 }
