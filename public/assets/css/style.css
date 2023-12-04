@@ -55,7 +55,7 @@ section.login {
 }
 .form-inputs i.bi {
     position: absolute;
-    left: 8px;
+    left: 12px;
     bottom: 8px;
     color: #002a48;
 }
@@ -67,20 +67,20 @@ label.form-label {
 }
 .form-inputs .form-control {
     padding-left: 35px;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 26px;
     border: 1px solid #7bc7c5;
     box-shadow: 1px 1px 6px 0px #7bc7c538;
+    border-radius: 37px;
 }
 select.form-select {
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 26px;
     border: 1px solid #7bc7c5;
     box-shadow: 1px 1px 6px 0px #7bc7c538;
+    border-radius: 37px;
 }
 .form-check-input:checked {
     background-color: #002a48;
@@ -323,13 +323,15 @@ button.btn-close {
     margin: auto;
 }
 .table tr td {
-    padding: 11px 10px;
+    padding: 11px 10px !important;
     font-size: 15px;
+    background: #fff !important;
+    box-shadow: none !important;
 }
 .table tr th {
     padding: 11px 10px;
 }
-.verify-icon{
+.verify-icon {
     font-size: 17px;
     color: #002a48;
     margin-right: 8px;
@@ -343,7 +345,7 @@ button.btn-close {
     font-size: 14px;
     background: #fff;
 }
-.btn-reject .bi{
+.btn-reject .bi {
     margin-right: 5px;
 }
 .btn-pay {
@@ -355,19 +357,28 @@ button.btn-close {
     font-size: 14px;
     background: #fff;
 }
-.btn-pay .bi{
+.btn-pay .bi {
     margin-right: 5px;
 }
-
+.print-btn {
+    color: #002a48;
+    font-weight: 400;
+    border: none;
+    font-size: 17px;
+    background: #fff;
+}
+.print-btn .bi {
+    margin-right: 5px;
+}
 /* Export Buttons */
-.export-buttons{
+.export-buttons {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     column-gap: 10px;
     margin-bottom: 20px;
 }
-.export-buttons .btn{
+.export-buttons .btn {
     width: fit-content;
     font-size: 14px;
     padding: 4px 16px;
@@ -375,6 +386,56 @@ button.btn-close {
     color: #002a48;
     background: #d3eaff;
 }
-.export-buttons .btn .bi{
+.export-buttons .btn .bi {
     margin-right: 5px;
 }
+input[type="date"] {
+    padding: 4px 10px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #002a48;
+    border-radius: 37px;
+    border: 1px solid #7bc7c5;
+    box-shadow: 1px 1px 6px 0px #7bc7c538;
+    width: -webkit-fill-available;
+}
+.report-form {
+    margin-bottom: 30px;
+    float: right;
+    display: flex;
+    column-gap: 12px;
+}
+input[type="search"]{
+    padding: 5px 10px !important;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #002a48 !important;
+    border-radius: 37px !important;
+    border: 1px solid #7bc7c5 !important;
+    box-shadow: 1px 1px 6px 0px #7bc7c538;
+    width: auto;
+}
+div#report_data_filter {
+    margin-bottom: 25px;
+}
+div#report_data_info {
+    margin-top: 20px;
+    padding-top: 0;
+}
+div#report_data_paginate {
+    margin-top: 20px;
+}
+a.paginate_button.current {
+    color: #002a48 !important;
+    background: #d3eaff !important;
+    border-radius: 50% !important;
+    border: 1px solid #002a48 !important;
+}
+/* a.paginate_button {
+    color: #fff !important;
+    background: #002a48 !important;
+    border-radius: 50% !important;
+    border: 1px solid #002a48 !important;
+} */
