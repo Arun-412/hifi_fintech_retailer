@@ -371,6 +371,15 @@ button.btn-close {
     margin-right: 5px;
 }
 /* Export Buttons */
+.export_btn {
+    font-size: 14px !important;
+    background: #d3eaff !important;
+    color: #002a48 !important;
+    padding: 4px 16px !important;
+    border: none !important;
+    border-radius: 14px !important;
+    font-weight: 400 !important;
+}
 .export-buttons {
     display: flex;
     justify-content: flex-start;

@@ -38,7 +38,27 @@
                         <img class="profile-icon me-2 dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false" src="{{asset('assets/images/avatar.png')}}">
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li>
+                                <p>{{Auth::user()->shop_name}}</p>
+                                <p>Active</p>
+                            </li>
+                            <hr>
+                            <li>
+                                <a class="dropdown-item" href="{{route('kyc')}}">KYC</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('profile')}}">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('support')}}">Support</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('settings')}}">Settings</a>
+                            </li>
+                            <hr>
+                            <li>
+                                <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
