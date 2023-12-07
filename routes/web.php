@@ -18,6 +18,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::get('/logout', [UserController::class, 'Logout'])->name('logout');
 
+    Route::get('/profile', function () { return view('profile'); })->name('profile');
+    Route::get('/settings', function () { return view('settings'); })->name('settings');
+    Route::get('/kyc', function () { return view('kyc'); })->name('kyc');
+    Route::get('/support', function () { return view('support'); })->name('support');
+
     Route::group(['prefix' => 'payout'], function () {
         Route::get('/ekopayout', function () { return view('payout.eko_payout'); })->name('eko_payout');
         Route::get('/ekofunctional', function () { return view('payout.eko_functional'); })->name('ekofunctional');

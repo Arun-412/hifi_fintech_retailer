@@ -39,6 +39,24 @@
                             aria-expanded="false" src="{{asset('assets/images/avatar.png')}}">
                         <ul class="dropdown-menu">
                             <li>
+                                <p>{{Auth::user()->shop_name}}</p>
+                                <p>Active</p>
+                            </li>
+                            <hr>
+                            <li>
+                                <a class="dropdown-item" href="{{route('kyc')}}">KYC</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('profile')}}">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('support')}}">Support</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{route('settings')}}">Settings</a>
+                            </li>
+                            <hr>
+                            <li>
                                 <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
                             </li>
                         </ul>

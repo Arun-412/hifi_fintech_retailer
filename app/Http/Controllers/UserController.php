@@ -108,13 +108,6 @@ class UserController extends Controller
         catch(\Throwable $e){
             return back()->withInput()->with("failed",$e->getmessage());
         }
-     
-        // if (Auth::attempt(['mobile_number' => "6383224535", 'password' => "Arun@412"])) {
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('dashboard');
-        // }else{
-        //     return "failed";
-        // }
     }
 
     public function Logout(Request $request) {
