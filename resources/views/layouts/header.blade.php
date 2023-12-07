@@ -28,6 +28,15 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 </head>
 <body>
+        <div class="loader-section">
+        <div class="payment-loader">
+            <div class="pad">
+                <div class="chip"></div>
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </div>
+    </div>
     @if(Auth::check())
     @include('layouts.menubar')
     @endif

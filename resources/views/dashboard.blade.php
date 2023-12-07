@@ -238,17 +238,5 @@
             </div> -->
         </div>
     </div>
-    <!-- <div class="loader-section">
-        <div class="payment-loader">
-            <div class="pad">
-                <div class="chip"></div>
-                <div class="line line1"></div>
-                <div class="line line2"></div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="loader-text">
-    Please wait while payment is loading
-  </div> -->
 </section>
 @endsection
