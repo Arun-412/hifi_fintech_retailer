@@ -471,7 +471,7 @@ a.paginate_button.current {
     border-radius: 15px;
     box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
     background: #fff;
-    padding: 20px 15px 15px;
+    padding: 20px 20px 15px;
     margin: auto;
     color: #fff;
     background-color: #002a48;
@@ -485,12 +485,15 @@ a.paginate_button.current {
 }
 .service-box .bi{
     float: right;
-    font-size: 40px;
+    font-size: 25px;
 }
 .service-title{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.service-title h5 {
+    margin-bottom: 0px;
 }
 .table-responsive::-webkit-scrollbar {
     width: 3px;
@@ -520,8 +523,17 @@ a.nav-link.active {
     text-decoration: underline !important;
 }
 
-
-
+/* Loder style */
+.loader-section {
+    background-color: #002a48;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 9999;
+}
 .payment-loader {
     width : 150px;
     position: absolute;
@@ -537,7 +549,7 @@ a.nav-link.active {
     content : '';
     width : 60px;
     height : 4px;
-    border : 2px solid #002a48;
+    border : 2px solid #fff;
     margin : 0 auto;
   }
   
@@ -545,7 +557,7 @@ a.nav-link.active {
     width: 76px;
     height: 51px;
     border-radius : 8px;
-    border : 2px solid #002a48;
+    border : 2px solid #fff;
     padding : 6px;
     margin : 0 auto;
   }
@@ -553,7 +565,7 @@ a.nav-link.active {
   .payment-loader .chip {
     width : 12px;
     height: 8px;
-    background: #002a48;
+    background: #fff;
     border-radius: 3px;
     margin-top: 4px;
     margin-left: 3px;
@@ -564,7 +576,7 @@ a.nav-link.active {
     margin-top : 6px;
     margin-left : 3px;
     height : 4px;
-    background: #002a48;
+    background: #fff;
     border-radius: 100px;
     opacity : 0;
     -webkit-animation : writeline 3s infinite ease-in;
@@ -578,7 +590,7 @@ a.nav-link.active {
     margin-top : 6px;
     margin-left : 3px;
     height : 4px;
-    background: #002a48;
+    background: #fff;
     border-radius: 100px;
     opacity : 0;
     -webkit-animation : writeline2 3s infinite ease-in;
@@ -610,7 +622,7 @@ a.nav-link.active {
     margin-top : 20px;
     font-size : 16px;
     line-height: 16px;
-    color : #5f6571;
+    color : #fff;
     font-weight: bold;
   }
   
@@ -628,4 +640,29 @@ a.nav-link.active {
     70% { opacity : 1; }
     100% {opacity : 0; }
   }
-  
+
+  /* dashboard */
+  .amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 6px;
+    margin-top: 10px;
+    border-top: 1px solid #fff;
+    padding-top: 12px;
+}
+.amount p {
+    margin-bottom: 10px;
+}
+.status-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.status-title h5{
+    margin-bottom: 0;
+}
+.status-title p{
+    margin-bottom: 0;
+}

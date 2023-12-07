@@ -12,52 +12,128 @@
     <div class="container-fluid">
         <div class="row">
             <div style="padding-left:15px;" class="col-sm-12 col-md-12 col-xs-12">
-                <h4 style="margin-bottom: 21px;margin-top: 5px;padding-left: 15px;">Our Services </h4>
-                <div class="services">
-                    <div class="service-box">
-                        <div class="service-title">
-                            <h5>Money Transfer</h5>
-                            <i class="bi bi-wallet2"></i>
+                <div class="payout-box">
+                    <h4 style="margin-bottom: 21px;margin-top: 5px;padding-left: 15px;">Our Services </h4>
+                    <div class="services">
+                        <div class="service-box">
+                            <div class="service-title">
+                                <h5>Statistics</h5>
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <div class="amount">
+                                <div>
+                                    <p>Today</p>
+                                    <p>₹123456</p>
+                                </div>
+                                <div>
+                                    <p>Current Month</p>
+                                    <p>₹123456</p>
+                                </div>
+                                <div>
+                                    <p>Previews Month</p>
+                                    <p>₹123456</p>
+                                </div>
+                            </div>
+                            <div class="status-title">
+                                <h5>Status </h5>
+                                <p>17/12/2023</p>
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                            <div class="amount">
+                                <div>
+                                    <p>Success</p>
+                                    <p>0</p>
+                                </div>
+                                <div>
+                                    <p>Pending</p>
+                                    <p>123456</p>
+                                </div>
+                                <div>
+                                    <p>Faild</p>
+                                    <p>23456</p>
+                                </div>
+                            </div>
                         </div>
-                        <p>17/12/2023</p>
-                    </div>
-                    <div class="service-box">
-                        <div class="service-title">
-                            <h5>Payout</h5>
-                            <i class="bi bi-credit-card-2-back"></i>
+                        <div class="service-box">
+                            <div class="service-title">
+                                <h5>Statistics</h5>
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <div class="amount">
+                                <div>
+                                    <p>Today</p>
+                                    <p>₹123456</p>
+                                </div>
+                                <div>
+                                    <p>Current Month</p>
+                                    <p>₹123456</p>
+                                </div>
+                                <div>
+                                    <p>Previews Month</p>
+                                    <p>₹123456</p>
+                                </div>
+                            </div>
+                            <div class="status-title">
+                                <h5>Status </h5>
+                                <p>17/12/2023</p>
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                            <div class="amount">
+                                <div>
+                                    <p>Success</p>
+                                    <p>0</p>
+                                </div>
+                                <div>
+                                    <p>Pending</p>
+                                    <p>123456</p>
+                                </div>
+                                <div>
+                                    <p>Faild</p>
+                                    <p>23456</p>
+                                </div>
+                            </div>
                         </div>
-                        <p>17/12/2023</p>
-                    </div>
-                    <div class="service-box">
-                        <div class="service-title">
-                            <h5>AEPS</h5>
-                            <i class="bi bi-wallet2"></i>
+                        <div class="service-box">
+                            <div class="service-title">
+                                <h5>Statistics</h5>
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <div class="amount">
+                                <div>
+                                    <p>Today</p>
+                                    <p>₹123456</p>
+                                </div>
+                                <div>
+                                    <p>Current Month</p>
+                                    <p>₹123456</p>
+                                </div>
+                                <div>
+                                    <p>Previews Month</p>
+                                    <p>₹123456</p>
+                                </div>
+                            </div>
+                            <div class="status-title">
+                                <h5>Status </h5>
+                                <p>17/12/2023</p>
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                            <div class="amount">
+                                <div>
+                                    <p>Success</p>
+                                    <p>0</p>
+                                </div>
+                                <div>
+                                    <p>Pending</p>
+                                    <p>123456</p>
+                                </div>
+                                <div>
+                                    <p>Faild</p>
+                                    <p>23456</p>
+                                </div>
+                            </div>
                         </div>
-                        <p>17/12/2023</p>
                     </div>
-                    <div class="service-box">
-                        <div class="service-title">
-                            <h5>Recharge</h5>
-                            <i class="bi bi-phone"></i>
-                        </div>
-                        <p>17/12/2023</p>
-                    </div>
-                    <div class="service-box">
-                    <div class="service-title">
-                        <h5>Bill payments</h5>
-                        <i class="bi bi-receipt"></i>
-                    </div>
-                    <p>17/12/2023</p>
                 </div>
-                <div class="service-box">
-                    <div class="service-title">
-                        <h5>Bill payments</h5>
-                        <i class="bi bi-receipt"></i>
-                    </div>
-                    <p>17/12/2023</p>
-                </div>
-                </div>
-                
             </div>
             <!-- <div class="col-sm-12 col-md-7 col-xs-12">
                 <div class="payout-box">
@@ -162,13 +238,16 @@
             </div> -->
         </div>
     </div>
-    <div class="payment-loader">
-    <div class="pad">
-     <div class="chip"></div>
-    <div class="line line1"></div>
-    <div class="line line2"></div>
-  </div>
-  <!-- <div class="loader-text">
+    <!-- <div class="loader-section">
+        <div class="payment-loader">
+            <div class="pad">
+                <div class="chip"></div>
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="loader-text">
     Please wait while payment is loading
   </div> -->
 </section>
