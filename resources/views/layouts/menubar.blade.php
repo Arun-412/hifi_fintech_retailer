@@ -24,6 +24,15 @@
                     </li>
                 </ul>
                 <div class="d-flex profile">
+                    <div class="wallet-amout">
+                        <div class="wallet">
+                            <img src="{{asset('assets/images/wallet-filled-money-tool.png')}}">
+                        </div>
+                        <div>
+                            <p>Main Wallet</p>
+                            <p>₹ 12345678</p>
+                        </div>
+                    </div>
                     <img class="notify-icon me-2" src="{{asset('assets/images/notification.png')}}">
                     <div class="dropdown">
                         <img class="profile-icon me-2 dropdown-toggle" type="button" data-bs-toggle="dropdown"
