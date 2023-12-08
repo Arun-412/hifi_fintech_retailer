@@ -35,7 +35,7 @@
 
                         <!-- Modal -->
                         <div class="modal fade payout-model" id="payout_add_or_verify_Account" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" >
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="modal fade payout-model" id="verified_account_name" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -145,7 +145,7 @@
                         </tbody>
                     </table>
                     <div class="modal fade payout-model" id="exampleModal" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                     <div class="modal fade payout-model" id="transaction_confirm_model" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -216,7 +216,7 @@
                         </div>
                     </div>
                     <div class="modal fade payout-model" id="transaction_details_model" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
