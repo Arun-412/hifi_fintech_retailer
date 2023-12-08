@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $('.loader-section').fadeOut('slow');
+    $('.account_holder_name').hide();
+    $('.bank_ifsc').hide();
     $('#show_password').hide();
     $('#c_show_password').hide();
     $('#hide_password').click(function(){
@@ -119,4 +121,42 @@ $(document).ready(function(){
         ]
     });
 
+});
+
+$('.verify_Account_checkbox').change(function(){
+    if(this.checked){
+        $('.account_holder_name').hide();
+        $('.bank_ifsc').hide();
+        $('.add_or_verify_submit_btn').text('Verify Account');
+    }
+    else{
+        $('.account_holder_name').show();
+        $('.bank_ifsc').show();
+        $('.add_or_verify_submit_btn').text('Add Account');
+    }
+});
+
+$('.add_or_verify_submit_btn').click(function(){
+    $('.loader-section').fadeIn('slow');
+    $.ajax({
+        url: "add_account",
+        method:"POST",
+        data: { 
+            'name': 'Arun',
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+           
+           $('#payout_add_or_verify_Account').modal('hide');
+           $('#verified_account_name').modal('show');
+           $('.loader-section').fadeOut('slow');
+        },
+        error: function (xhr, status, error) {
+            
+            console.log(error);
+            $('.loader-section').fadeOut('slow');
+        }
+    });
 });

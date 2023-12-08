@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\PayoutController;
 
 Route::get('/verify', function () { return view('auth.OTP'); });
 
@@ -24,8 +25,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/support', function () { return view('support'); })->name('support');
 
     Route::group(['prefix' => 'payout'], function () {
-        Route::get('/ekopayout', function () { return view('payout.eko_payout'); })->name('eko_payout');
-        Route::get('/ekofunctional', function () { return view('payout.eko_functional'); })->name('ekofunctional');
+        Route::get('/login', function () { return view('payout.login'); })->name('payout_login');
+        Route::get('/dashboard', function () { return view('payout.dashboard'); })->name('payout_dashboard');
+        Route::post('/payout_user', [PayoutController::class, 'payout_user'])->name('payout_user');
+        Route::post('/add_account', [PayoutController::class, 'add_account'])->name('add_account');
     });
 
     Route::get('/report', function () { return view('report'); })->name('report');

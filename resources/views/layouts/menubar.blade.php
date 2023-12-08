@@ -15,8 +15,7 @@
                         <a class="nav-link">
                             <span class="lan-7">Payout</span></a>
                         <ul class="submenu">
-                            <li><a href="{{route('eko_payout')}}">EKO Payout</a></li>
-                            <li><a href="{{route('ekofunctional')}}">EKO Functional</a></li>
+                            <li><a href="{{route('payout_login')}}">EKO</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
