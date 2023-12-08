@@ -206,9 +206,49 @@
                                 </div>
                                 <div class="modal-footer">
                                
-                                    <button type="button" style="width:100%;" class="btn btn-secondary">Yes! Proceed</button>
+                                    <button type="button" style="width:100%;" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#transaction_details_model" data-bs-dismiss="modal"
+                                            aria-label="Close">Yes! Proceed</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                                             aria-label="Close">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade payout-model" id="transaction_details_model" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Transaction Detail</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div style="margin-top:25px;">
+                                        <div class="mb-3 form-inputs">
+                                       need to show success, failed, pending status with icons/image
+                                        <p>Date - Time: 12-12-2023 12:23:21 PM</p>
+                                        <p>Transaction ID: 2001001202</p>
+                                        <p>Mobile number: 6383224535</p>
+                                        <p>Bank Name: HDFC Bank</p>
+                                        <p>Account Number: 1212112121212</p>
+                                        <p>IFSC Code: HDFC0002123</p>
+                                        <p>Account Holder Name: <b>Hifi FIntech</b></p>
+                                        <p>Amount: ₹10000</p>
+                                       <p>Payment mode: IMPS</p>
+                                       <p>Status: <b>Success</b></p>
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                               
+                                    <button type="button" style="width:100%;" class="btn btn-secondary">Print</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                            aria-label="Close">Close</button>
                                 </div>
                             </div>
                         </div>
