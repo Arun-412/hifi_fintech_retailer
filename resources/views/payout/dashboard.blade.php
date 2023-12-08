@@ -120,7 +120,7 @@
                             data-bs-target="#payout_add_or_verify_Account">
                             Add/Verify Account
                         </button>
-                    <table id="payout_account_list" class="table display nowrap" style="width:100%">
+                    <table id="payout_accounts_list" class="table display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Verification Status</th>

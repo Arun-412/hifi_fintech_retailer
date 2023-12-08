@@ -121,6 +121,18 @@ $(document).ready(function(){
         ]
     });
 
+    
+
+    $('#payout_accounts_list').DataTable({
+        
+        dom:'Blfrtip',
+        buttons:[],
+        colReorder: true,
+        fixedHeader: {
+            header: true
+        }, 
+    });
+
 });
 
 $('.verify_Account_checkbox').change(function(){
