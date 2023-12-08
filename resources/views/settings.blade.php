@@ -18,6 +18,13 @@
 <h5>Master Logout</h5>
 <small>(if you use logout from all devices all logined access of your will be logout from all devices (highly recommended twise in a week))</small>
 <input type="button" value="logout from all devices">
+<hr>
+<h5>Access Report</h5>
+<p>payout report</p>
+<input type="checkbox" name="" id="">
+<p>profit report</p>
+<input type="checkbox" name="" id="">
+<hr>
 </div>
 </section>
 @endsection

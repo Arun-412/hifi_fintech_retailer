@@ -107,7 +107,14 @@ $(document).ready(function(){
                     columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 orientation: 'portrait',
-                pageSize: 'A4'
+                pageSize: 'A4',
+                messageBottom: null,
+                customize: function (win) {
+                    $(win.document.body).find('table').addClass('print_table');
+                    $(win.document.body).find('th').css('border','1px solid gray');
+                    $(win.document.body).find('td').css('border','1px solid gray');
+                    $(win.document.body).find('h1').css('text-align','center');
+                }
             },
         ]
     });

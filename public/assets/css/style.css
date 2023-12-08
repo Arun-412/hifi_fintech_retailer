@@ -370,6 +370,19 @@ button.btn-close {
 .print-btn .bi {
     margin-right: 5px;
 }
+.print_table{
+    border: 1px solid gray;
+}
+@media print {
+    @page {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    body {
+        padding-top: 72px;
+        padding-bottom: 72px ;
+    }
+}
 /* Export Buttons */
 .export_btn {
     font-size: 14px !important;
