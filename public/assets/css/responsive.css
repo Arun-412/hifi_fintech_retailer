@@ -7,6 +7,9 @@
     .form-box {
         padding: 40px 20px;
     }
+    .icon-box {
+        margin-bottom: 10px;
+    }
  }
 
 /* `md` applies to small devices (landscape phones, less than 768px) */
@@ -20,6 +23,13 @@
     }
     .otp-box{
         padding: 40px 25px;
+    }
+    
+    .amount {
+        flex-wrap: wrap;
+    }
+    .service-box {
+        margin-bottom: 15px;
     }
 }
 

@@ -38,8 +38,7 @@
                             aria-expanded="false" src="{{asset('assets/images/avatar.png')}}">
                         <ul class="dropdown-menu">
                             <li>
-                                <p>{{Auth::user()->shop_name}}</p>
-                                <p>Active</p>
+                                <p class="username">{{Auth::user()->shop_name}}<i class="bi bi-dot"></i></p>
                             </li>
                             <hr>
                             <li>
@@ -55,8 +54,8 @@
                                 <a class="dropdown-item" href="{{route('settings')}}">Settings</a>
                             </li>
                             <hr>
-                            <li>
-                                <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                            <li class="logout">
+                                <a class="dropdown-item" href="{{route('logout')}}"><i class="bi bi-box-arrow-right"></i> Logout</a>
                             </li>
                         </ul>
                     </div>
