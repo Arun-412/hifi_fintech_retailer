@@ -37,6 +37,4 @@
             </div>
         </div>
     </div>
-    @if(Auth::check())
-    @include('layouts.menubar')
-    @endif
+  

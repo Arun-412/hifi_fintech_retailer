@@ -41,7 +41,7 @@
                                 <td>2003020001020</td>
                                 <td>₹12500</td>
                                 <td>Success</td>
-                                <td><button class="print-btn" type="button"><i class="bi bi-printer-fill"></i></button>
+                                <td><button class="print-btn" type="button"><a href="{{route('print_transaction')}}"><i class="bi bi-printer-fill"></i></a></button>
                                     <button class="print-btn" type="button"><i
                                             class="bi bi-arrow-clockwise"></i></button>
                                 </td>
