@@ -87,7 +87,7 @@
                                                 ₹5+GST)</small></label>
                                     </div>
                                     <button type="button" style="width:100%;"
-                                        class="btn btn-secondary add_or_verify_submit_btn">Verify
+                                        class="btn btn-secondary add_or_verify_submit_btn"><i class="bi bi-person-check"></i> Verify
                                         Account</button>
                                 </div>
                             </div>
@@ -108,10 +108,10 @@
                                             <img style="margin-bottom:20px;" src="{{asset('assets/images/verification.png')}}">
                                             <h5 class="text-center text-success">HIFI FINTECH</h5>
                                         </div>
-                                            <div style="display:flex;margin: auto;padding:20px 20px;">
-                                                <button type="button" class="btn btn-secondary">Add Account</button>
+                                            <div style="display:flex;margin: auto;padding:20px 0px;">
+                                                <button type="button" class="btn btn-secondary"><i class="bi bi-person-add"></i> Add Account</button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                                    aria-label="Close">Cancel</button>
+                                                    aria-label="Close"><i class="bi bi-x"></i> Cancel</button>
                                             </div>
                                     </div>
                                 </div>
@@ -121,8 +121,7 @@
                     <div style="margin-bottom: 25px;" class="d-flex align-items-center justify-content-between">
                         <h4 style="margin-bottom: 0px;">Account List</h4>
                         <button style="width:fit-content;" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#payout_add_or_verify_Account">
-                            Add/Verify Account
+                            data-bs-target="#payout_add_or_verify_Account"><i class="bi bi-person-fill-add"></i> Add/Verify Account
                         </button>
                     </div>
                     <table id="payout_accounts_list" class="table display nowrap" style="width:100%">
