@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div style="height: 74vh;display: flex;" class="col-sm-12 col-md-12 col-xs-12">
-                <div class="payout-box">
+                <div class="payout-box pay-login">
                     <!-- <div class="export-buttons">
                         <button class="btn"><i class="bi bi-printer-fill"></i> Print </button>
                         <button class="btn"><i class="bi bi-file-earmark-pdf-fill"></i> PDF </button>

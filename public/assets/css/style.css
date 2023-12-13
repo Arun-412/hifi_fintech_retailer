@@ -50,9 +50,7 @@ section.login {
     text-align: left;
     position: relative;
 }
-.form-inputs .form-control {
-    padding-left: 30px;
-}
+
 .form-inputs i.bi {
     position: absolute;
     left: 12px;
@@ -66,13 +64,16 @@ label.form-label {
     font-weight: 400;
 }
 .form-inputs .form-control {
-    padding-left: 35px;
     font-size: 15px;
     font-weight: 400;
     line-height: 26px;
     border: 1px solid #7bc7c5;
     box-shadow: 1px 1px 6px 0px #7bc7c538;
     border-radius: 37px;
+}
+.login-box .form-inputs .form-control, .pay-login .form-inputs .form-control{
+    padding-left: 35px !important;
+
 }
 select.form-select {
     font-size: 15px;
@@ -917,4 +918,41 @@ a.dropdown-item:hover {
     border-radius: 5px !important;
     margin-right: 10px !important;
     padding: 7px 3px !important;
+}
+.form-check-input[type=checkbox] {
+    border-radius: 0.25em !important;
+    padding: 0 !important;
+}
+.pay-login{
+    max-width: 400px;
+    width: 100%;
+}
+.transaction-modal .profile-bar {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.transaction-modal .profile-bar p {
+    margin-bottom: 8px;
+}
+.transaction-modal input.form-check-input {
+    padding: unset !important;
+}
+.transaction-modal label.form-check-label {
+    font-size: unset;
+    margin-left: 5px;
+}
+.confirm-modal label.form-label {
+    color: #2e52ff;
+    text-align: center;
+    font-weight: 600;
+}
+.confirm-modal button.btn.btn-secondary.cancel-btn {
+    width: 100%;
+    margin-top: 15px;
+    background-color: #fb3535;
+    border-color: red;
+}
+.dataTables_wrapper .dataTables_length select {
+    border: 2px solid #002a48 !important;
+    border-radius: 37px !important;
 }
