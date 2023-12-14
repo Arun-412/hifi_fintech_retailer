@@ -1,14 +1,19 @@
 @include('layouts.header')
 <style>
-   table, th, td {
-    border:1px solid black;
-   }
+table,
+th,
+td {
+    border: 1px solid black;
+}
 </style>
-                                       <center>
-    
+<div class="print-page">
     <table>
-        <tr><h1>HIFI FINTECH</h1></tr>
-        <tr><p> need to show success, failed, pending status with icons/image</p></tr>
+        <tr>
+            <h1>HIFI FINTECH</h1>
+        </tr>
+        <tr><img src="{{asset('assets/images/check-mark.png')}}"></tr>
+        <!-- <tr><img src="{{asset('assets/images/faild.png')}}"></tr>
+        <tr><img src="{{asset('assets/images/pending-new.png')}}"></tr> -->
         <tr>
             <th>Date | Time</th>
             <td>12-12-2023 | 9:17:36 AM</td>
@@ -35,31 +40,37 @@
         </tr>
         <tr>
             <th>Account Holder Name</th>
-            <td><h5>Hifi fintech</h5></td>
+            <td>
+                <h5>Hifi fintech</h5>
+            </td>
         </tr>
         <tr>
             <th>Amount</th>
-            <td><h5>5000</h5></td>
+            <td>
+                <h5>5000</h5>
+            </td>
         </tr>
         <tr>
             <th>Transaction Status</th>
-            <td><h5>SUCCESS</h5></td>
+            <td>
+                <h5 style="color: #198754;">SUCCESS</h5>
+            </td>
         </tr>
         <tfoot>
-            <th colspan="2"><center>Computer Generated Receipt No Need of Signature/Seal</center></th>
-        </tfoot>           
-                   
-                  </table>
-        
-</center>
+            <th colspan="2">
+                <center>Computer Generated Receipt No Need of Signature/Seal</center>
+            </th>
+        </tfoot>
+    </table>
+</div>
 @include('layouts.footer')
 <script>
-    // $(document).ready(function(){
-    //     setTimeout(function () {
-    //         window.print();
-    //     }, 500);
-    //     window.onafterprint = function(){
-    //         window.location.replace("{{route('report')}}");
-    //     }
-    // });
+// $(document).ready(function(){
+//     setTimeout(function () {
+//         window.print();
+//     }, 500);
+//     window.onafterprint = function(){
+//         window.location.replace("{{route('report')}}");
+//     }
+// });
 </script>

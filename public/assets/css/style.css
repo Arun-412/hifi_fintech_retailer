@@ -956,3 +956,33 @@ a.dropdown-item:hover {
     border: 2px solid #002a48 !important;
     border-radius: 37px !important;
 }
+.print-page{
+    max-width: 650px;
+    margin: auto;
+    padding: 30px;
+    box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
+    margin-top: 40px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: #fff;
+}
+.print-page table tr {
+    border-radius: 10px;
+    color: #000000;
+    background: #d3eaff;
+}
+.print-page table {
+    border-collapse: separate;
+    border-spacing: 0 2px;
+    border: none;
+    margin: auto;
+}
+.print-page table th, .print-page table td {
+    border: none;
+    padding: 7px 10px;
+    border-radius: 1px;
+    border: 1px solid #002a48;
+}
+/* .print-page table th {
+    border-right: 2px solid #ffffff;
+} */
