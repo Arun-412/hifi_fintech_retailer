@@ -1,10 +1,13 @@
 @extends('layouts.master')
 @section('content')
-<section style="margin-top: 94px;margin-bottom: 40px;padding: 0px 30px;">
-    <div class="container-fluid">
-        <div class="row">
-            <div style="height: 74vh;display: flex;" class="col-sm-12 col-md-12 col-xs-12">
-                <div class="payout-box pay-login">
+<section style="margin-top: 140px;margin-bottom: 40px;padding: 0px 30px;">
+    <div class="container">
+        <div style="max-width:900px;padding:0px" class="row payout-box pay-login mx-auto">
+            <div style="padding-left: 0px;" class="col-sm-12 col-md-7 col-xs-12">
+                <img style="width: 100%;border-radius: 12px 20% 20% 12px;" src="{{asset('assets/images/mobile-banner.jpg')}}" />
+            </div>
+            <div style="" class="col-sm-12 col-md-5 col-xs-12 my-auto">
+            <div style="padding: 30px;">
                     <!-- <div class="export-buttons">
                         <button class="btn"><i class="bi bi-printer-fill"></i> Print </button>
                         <button class="btn"><i class="bi bi-file-earmark-pdf-fill"></i> PDF </button>

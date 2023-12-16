@@ -169,11 +169,17 @@
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
+                                                    <p>IFSC Code</p>
+                                                    <p>HDFC00041331</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="profile-bar">
                                                     <p>Account Number</p>
                                                     <p>21212121212</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 col-xs-12">
+                                            <div class="col-md-6 col-xs-6">
                                                 <div class="profile-bar">
                                                     <p>Account Holder Name</p>
                                                     <p>HIFI FINTECH</p>
@@ -227,18 +233,18 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-
                                     <div style="margin-top:25px;">
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label">Are you sure make
                                                 payment of ₹10000(Ten Thousand Ruppess) to HIFI FINTECH</label>
-
                                         </div>
-
+                                        <div class="mb-3 form-inputs">
+                                        <label for="exampleFormControlInput1" class="form-label">Enter Password</label>
+                                        <input style="width:100%;" type="password" name="Enter Password" id="" placeholder="Enter Password">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-
                                     <button type="button" style="width:100%;" class="btn btn-secondary"
                                         data-bs-toggle="modal" data-bs-target="#transaction_details_model"
                                         data-bs-dismiss="modal" aria-label="Close">Yes! Proceed</button>

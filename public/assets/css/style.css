@@ -923,10 +923,6 @@ a.dropdown-item:hover {
     border-radius: 0.25em !important;
     padding: 0 !important;
 }
-.pay-login{
-    max-width: 400px;
-    width: 100%;
-}
 .transaction-modal .profile-bar {
     margin-bottom: 20px;
     padding: 10px;
@@ -943,7 +939,6 @@ a.dropdown-item:hover {
 }
 .confirm-modal label.form-label {
     color: #2e52ff;
-    text-align: center;
     font-weight: 600;
 }
 .confirm-modal button.btn.btn-secondary.cancel-btn {
