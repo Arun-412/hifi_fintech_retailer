@@ -7,11 +7,11 @@ td {
 }
 </style>
 <div class="print-page">
+<div class="mb-2 d-flex align-items-center justify-content-center">
+<h4>HIFI FINTECH</h4><img src="http://127.0.0.1:8000/assets/images/check-mark.png" style="width: 36px;margin-left: 15px;">
+    </div>
     <table>
-        <tr>
-            <h1>HIFI FINTECH</h1>
-        </tr>
-        <tr><img src="{{asset('assets/images/check-mark.png')}}"></tr>
+        <img class="printbg-img" src="http://127.0.0.1:8000/assets/images/checked-1.png"/>
         <!-- <tr><img src="{{asset('assets/images/faild.png')}}"></tr>
         <tr><img src="{{asset('assets/images/pending-new.png')}}"></tr> -->
         <tr>

@@ -954,23 +954,31 @@ a.dropdown-item:hover {
 .print-page{
     max-width: 650px;
     margin: auto;
-    padding: 30px;
+    padding: 20px 30px;
     box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
-    margin-top: 40px;
     border-radius: 15px;
     text-align: center;
     background-color: #fff;
+    position: relative;
 }
 .print-page table tr {
     border-radius: 10px;
     color: #000000;
-    background: #d3eaff;
+    /* background: #d3eaff; */
 }
 .print-page table {
     border-collapse: separate;
     border-spacing: 0 2px;
     border: none;
     margin: auto;
+    /* background-image: url(../images/checked-1.png);
+    background-repeat: no-repeat;
+    background-position: 78% 81%; */
+}
+.printbg-img{
+    position: absolute;
+    bottom: 15%;
+    right: 21%;
 }
 .print-page table th, .print-page table td {
     border: none;
