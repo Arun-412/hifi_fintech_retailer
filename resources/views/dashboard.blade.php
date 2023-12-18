@@ -13,8 +13,10 @@
         <div class="row">
             <div style="padding-left:15px;" class="col-sm-12 col-md-12 col-xs-12">
                 <div class="payout-box welcome-box">
-                    <h4 style="margin-bottom: 0px;padding-left: 15px;">Welcome! Hifi </h4>
-                    <button class="btn">Explore</button>
+                    <h4 style="margin-bottom: 0px;padding-left: 15px;">Welcome to HIFI FINTECH <span style="color:green;">{{Auth::user()->shop_name}} </span> </h4>
+                    @if(Auth::user()->kyc_status == 'HFN')
+                    <a href="{{route('kyc')}}"><button class="btn">Complete KYC</button></a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -22,8 +24,58 @@
 <section style="margin-bottom: 40px;padding: 0px 30px;">
     <div class="container-fluid">
         <div class="row payout-box">
-            <h4 style="margin-bottom: 21px;margin-top: 5px;padding-left: 15px;">Our Services </h4>
+            <h4 style="margin-bottom: 21px;margin-top: 5px;padding-left: 15px;">Statistics</h4>
             <div class="col-sm-12 col-md-4 col-xs-12">
+                <div class="service-box">
+                    <div class="service-title">
+                        <h5>Payout</h5>
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+                    <div class="amount currency">
+                        <div>
+                            <p>Today</p>
+                            <p>₹0</p>
+                        </div>
+                        <div>
+                            <p>Current Month</p>
+                            <p>₹0</p>
+                        </div>
+                        <div>
+                            <p>Previews Month</p>
+                            <p>₹0</p>
+                        </div>
+                    </div>
+                    <div class="status-title">
+                        <h5>Status </h5>
+                        <p>{{date('d/m/Y')}}</p>
+                        <i class="bi bi-calendar-check-fill"></i>
+                    </div>
+                    <div class="amount amt-status">
+                        <div class="icon-box green">
+                            <img src="{{asset('assets/images/success.png')}}">
+                            <div>
+                                <p>Success</p>
+                                <p>0</p>
+                            </div>
+                        </div>
+                        <div class="icon-box yellow">
+                            <img src="{{asset('assets/images/pending.png')}}">
+                            <div>
+                                <p>Pending</p>
+                                <p>0</p>
+                            </div>
+                        </div>
+                        <div class="icon-box red">
+                            <img src="{{asset('assets/images/failure.png')}}">
+                            <div>
+                                <p>Failed</p>
+                                <p>0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-12 col-md-4 col-xs-12">
                 <div class="service-box">
                     <div class="service-title">
                         <h5>Statistics</h5>
@@ -122,57 +174,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-xs-12">
-                <div class="service-box">
-                    <div class="service-title">
-                        <h5>Statistics</h5>
-                        <i class="bi bi-wallet2"></i>
-                    </div>
-                    <div class="amount currency">
-                        <div>
-                            <p>Today</p>
-                            <p>₹123456</p>
-                        </div>
-                        <div>
-                            <p>Current Month</p>
-                            <p>₹123456</p>
-                        </div>
-                        <div>
-                            <p>Previews Month</p>
-                            <p>₹123456</p>
-                        </div>
-                    </div>
-                    <div class="status-title">
-                        <h5>Status </h5>
-                        <p>17/12/2023</p>
-                        <i class="bi bi-calendar-check-fill"></i>
-                    </div>
-                    <div class="amount amt-status">
-                        <div class="icon-box green">
-                            <img src="{{asset('assets/images/success.png')}}">
-                            <div>
-                                <p>Success</p>
-                                <p>0</p>
-                            </div>
-                        </div>
-                        <div class="icon-box yellow">
-                            <img src="{{asset('assets/images/pending.png')}}">
-                            <div>
-                                <p>Pending</p>
-                                <p>123456</p>
-                            </div>
-                        </div>
-                        <div class="icon-box red">
-                            <img src="{{asset('assets/images/failure.png')}}">
-                            <div>
-                                <p>Faild</p>
-                                <p>23456</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> -->
             <!-- <div class="services">
                     </div> -->
         </div>
