@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-sm-12 col-md-6 col-xs-12">
                         <div class="profile-bar">
-                            <p>KYC Status : @if(Auth::user()->kyc_status ==
+                            <p>KYC Status @if(Auth::user()->kyc_status ==
                                 'HFY')</P>
                             <p>Completed</p>@elseif((Auth::user()->kyc_status ==
                             'HFI'))<p>Incomplete</p>@else<p>Pending</p>@endif</p>
@@ -57,7 +57,7 @@
                     <tr>
                         <td>1</td>
                         <td>Payout</td>
-                        <td>5.5+GST</td>
+                        <td>0.50%</td>
                     </tr>
                 </table>
             </div>

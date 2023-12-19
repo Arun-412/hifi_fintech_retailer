@@ -4,7 +4,7 @@
     <div class="container">
         <div style="max-width:900px;padding:0px" class="row payout-box pay-login mx-auto">
             <div style="padding-left: 0px;" class="col-sm-12 col-md-7 col-xs-12">
-                <img style="width: 100%;border-radius: 12px 20% 20% 12px;" src="{{asset('assets/images/mobile-banner.jpg')}}" />
+                <img style="width: 100%;border-radius: 12px 20% 20% 12px;" src="{{asset('assets/images/money_transfer.jpg')}}" />
             </div>
             <div style="" class="col-sm-12 col-md-5 col-xs-12 my-auto">
             <div style="padding: 30px;">
