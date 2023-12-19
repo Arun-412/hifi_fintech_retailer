@@ -36,19 +36,26 @@
             </div>
             <div class="col-sm-12 col-md-6 col-xs-12">
                 <div class="payout-box contact logut-report">
-                    <h5>Logout Devices</h5>
-                    <div class="d-flex align-items-center">
-                        <button type="button" class="btn btn-logout"><i class="bi bi-laptop-fill"></i> logout from all
-                            devices</button>
-                    </div>
-                    <h5>Access Report</h5>
+                <div class="d-flex align-items-center">
+                <h5>Access Report</h5>
+                <input type="checkbox">
+                            </div> 
+                   
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Payout Report</label>
+                        <label class="form-check-label" for="inlineCheckbox1">Profit Report</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Commission Report</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Cashback Report</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Profit Report</label>
+                        <label class="form-check-label" for="inlineCheckbox2">Charges Report</label>
                     </div>
                     <button class="btn" type="button">View Reports</button>
                 </div>
