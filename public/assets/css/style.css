@@ -28,7 +28,9 @@ section.login {
     background-repeat: no-repeat;
     background-size: contain;
     background-color: #7bc7c5;
-    border-radius: 12px;
+    /* border-radius: 12px; */
+    border-radius: 0px 20% 20% 1px;
+    margin: 15px 0px !important;
 }
 .login-banner {
     width: 100%;
