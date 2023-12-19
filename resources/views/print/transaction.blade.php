@@ -1,19 +1,13 @@
 @include('layouts.header')
-<style>
-table,
-th,
-td {
-    border: 1px solid black;
-}
-</style>
 <div class="print-page">
-<div class="mb-2 d-flex align-items-center justify-content-center">
-<h4>HIFI FINTECH</h4><img src="http://127.0.0.1:8000/assets/images/check-mark.png" style="width: 36px;margin-left: 15px;">
+<div class="mb-2 align-items-center justify-content-center">
+<h4>HIFI FINTECH</h4><img src="{{asset('assets/images/check-mark.png')}}" style="width: 36px;margin-left: 15px;"> <br> <h5 style="color:green;">Payment Successful</h5>
+
     </div>
-    <table>
-        <img class="printbg-img" src="http://127.0.0.1:8000/assets/images/checked-1.png"/>
+    <img class="printbg-img" src="{{asset('assets/images/checked-1.png')}}"/>
         <!-- <tr><img src="{{asset('assets/images/faild.png')}}"></tr>
         <tr><img src="{{asset('assets/images/pending-new.png')}}"></tr> -->
+    <table>
         <tr>
             <th>Date | Time</th>
             <td>12-12-2023 | 9:17:36 AM</td>
@@ -41,19 +35,19 @@ td {
         <tr>
             <th>Account Holder Name</th>
             <td>
-                <h5>Hifi fintech</h5>
+                <h6>Hifi fintech</h6>
             </td>
         </tr>
         <tr>
             <th>Amount</th>
             <td>
-                <h5>5000</h5>
+                <h6>5000</h6>
             </td>
         </tr>
         <tr>
             <th>Transaction Status</th>
             <td>
-                <h5 style="color: #198754;">SUCCESS</h5>
+                <h6 style="color: #198754;">SUCCESS</h6>
             </td>
         </tr>
         <tfoot>
@@ -65,12 +59,12 @@ td {
 </div>
 @include('layouts.footer')
 <script>
-// $(document).ready(function(){
-//     setTimeout(function () {
-//         window.print();
-//     }, 500);
-//     window.onafterprint = function(){
-//         window.location.replace("{{route('report')}}");
-//     }
-// });
+$(document).ready(function(){
+    setTimeout(function () {
+        window.print();
+    }, 500);
+    window.onafterprint = function(){
+        window.location.replace("{{route('report')}}");
+    }
+});
 </script>
