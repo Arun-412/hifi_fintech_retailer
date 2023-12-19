@@ -29,7 +29,8 @@
                         </div>
                         <div>
                             <p>Wallet Balance</p>
-                            <p>₹{{Auth::user()->awards}}</p>
+                            <p>₹0.00</p>
+                            <!-- <p>₹{{Auth::user()->awards}}</p> -->
                         </div>
                     </div>
                     <img class="notify-icon me-2" src="{{asset('assets/images/notification.png')}}">
