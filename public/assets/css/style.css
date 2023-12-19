@@ -835,13 +835,20 @@ a.dropdown-item:hover {
 .kyc-info input {
     margin-bottom: 12px;
     margin-right: 10px;
-    max-width: 200px;
     width: 100%;
+    padding: 7px 10px !important;
 }
 .kyc-info input.btn {
     background-color: #002a48;
     color: #fff !important;
     border-radius: 37px;
+    padding: 10px 23px !important;
+    min-width: 150px;
+    width: max-content;
+}
+.kyc-info label.form-label {
+    font-weight: 500;
+    color: #002a48;
 }
 .kyc-info input.btn:hover,
 .kyc-info input.btn:active {
@@ -988,3 +995,6 @@ a.dropdown-item:hover {
 /* .print-page table th {
     border-right: 2px solid #ffffff;
 } */
+.payout-model.otp-modal .modal-body {
+    padding: 25px 25px;
+}
