@@ -53,6 +53,7 @@ $(document).ready(function(){
             header: true
         }, 
         initComplete: function() {
+            $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
             $('.buttons-copy').html('<i class="bi bi-clipboard-check-fill"></i> Copy  ')
             $('.buttons-csv').html('<i class="bi bi-filetype-csv"></i> CSV ')
             $('.buttons-excel').html('<i class="bi bi-file-earmark-spreadsheet-fill"></i> Excel')
@@ -131,6 +132,9 @@ $(document).ready(function(){
         fixedHeader: {
             header: true
         }, 
+        initComplete: function() {
+            $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+        },
     });
 
 });

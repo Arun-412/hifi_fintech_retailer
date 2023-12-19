@@ -82,9 +82,8 @@
                                     <div style="margin-bottom:15px" class="form-check form-check-inline">
                                         <input class="form-check-input verify_Account_checkbox" checked type="checkbox"
                                             id="inlineCheckbox1">
-                                        <label class="form-check-label" for="inlineCheckbox1"><small>Verify account
-                                                holder name(Charges
-                                                ₹5+GST)</small></label>
+                                        <label class="form-check-label" for="inlineCheckbox1"><small style="font-weight:400;font-size:14px;">Verify account
+                                                holder name(₹4 / FREE for eligible accounts)</small></label>
                                     </div>
                                     <button type="button" style="width:100%;"
                                         class="btn btn-secondary add_or_verify_submit_btn"><i class="bi bi-person-check"></i> Verify
@@ -136,7 +135,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><i class="verify-icon bi bi-person-fill-check"></i>verified</td>
+                                <td style="color:green;"><i class="verify-icon bi bi-person-fill-check"></i>Verified</td>
                                 <td>Hifi Money</td>
                                 <td>HDFC Bank</td>
                                 <td>2003020001020</td>
@@ -153,7 +152,7 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content transaction-modal">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Transaction</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Transaction To</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -191,7 +190,7 @@
                                                 <label for="exampleFormControlInput1" class="form-label">Amount</label>
                                                 <input type="text" name="Amount" autofocus required minlength="3"
                                                     placeholder="Amount" class="form-control"
-                                                    id="exampleFormControlInput1" autocomplete="off">
+                                                    id="exampleFormControlInput1" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
                                             </div>
                                             <div style="margin-top:10px;" class="col-md-6 col-xs-12">
                                                 <div>
@@ -200,7 +199,7 @@
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                        name="inlineRadioOptions" checked id="inlineRadio1" value="option1">
                                                     <label class="form-check-label" for="inlineRadio1">IMPS</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
@@ -235,12 +234,12 @@
                                 <div class="modal-body">
                                     <div style="margin-top:25px;">
                                         <div class="mb-3 form-inputs">
-                                            <label for="exampleFormControlInput1" class="form-label">Are you sure make
-                                                payment of ₹10000(Ten Thousand Ruppess) to HIFI FINTECH</label>
+                                            <label for="exampleFormControlInput1" class="form-label text-center">Are you sure make
+                                                payment of ₹10000 (Ten Thousand Ruppess) to HIFI FINTECH</label>
                                         </div>
                                         <div class="mb-3 form-inputs">
-                                        <label for="exampleFormControlInput1" class="form-label">Enter Password</label>
-                                        <input style="width:100%;" type="password" name="Enter Password" id="" placeholder="Enter Password">
+                                        <label>Enter transaction password to complete the transaction</label>
+                                        <input style="width:100%;" type="password" name="Enter Password" id="" placeholder="Enter Transaction Password">
                                         </div>
                                     </div>
                                 </div>
@@ -335,7 +334,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" style="width:100%;" class="btn btn-secondary"><i class="bi bi-printer-fill"></i> Print</button>
+                                  <a href="{{route('print_transaction')}}"><button type="button" style="width:100%;" class="btn btn-secondary"><i class="bi bi-printer-fill"></i> Print</button></a>
                                     <button style="width: -webkit-fill-available;margin-top: 15px;" type="button"
                                         class="btn btn-secondary" data-bs-dismiss="modal"
                                         aria-label="Close"><i class="bi bi-x"></i> Close</button>
