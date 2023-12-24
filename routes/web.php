@@ -16,6 +16,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/coming_soon', function () { return view('coming_soon'); })->name('coming_soon'); 
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::get('/logout', [UserController::class, 'Logout'])->name('logout');
 
@@ -31,8 +32,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add_account', [PayoutController::class, 'add_account'])->name('add_account');
     });
 
-    Route::get('/report', function () { return view('report'); })->name('report');
-    Route::post('/search_report', [ReportController::class, 'search_report'])->name('search_report');
+    Route::group(['prefix' => 'report'], function () {
+        Route::get('/', function () { return view('report'); })->name('report'); 
+        Route::get('/search', [ReportController::class, 'search_report'])->name('search_report');
+    });
 
     Route::group(['prefix' => 'print'], function () {   
         Route::get('/transaction', function () { return view('print.transaction'); })->name('print_transaction');

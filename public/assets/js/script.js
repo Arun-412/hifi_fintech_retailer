@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
     $('.loader-section').fadeOut('slow');
     $('.account_holder_name').hide();
     $('.bank_ifsc').hide();
