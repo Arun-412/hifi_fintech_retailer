@@ -42,7 +42,14 @@
                                 @error('email')
     <span class="text-danger">{{$message}}</span>
     @enderror
-                            
+    <div class="mb-3 form-inputs">
+                                <label for="exampleFormControlInput1" class="form-label">Distributer Code (Optional)</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Distributer Code"
+                                name="distributer_code" minlength="8" maxlength="40" value="{{ old('distributer_code') }}">
+                                <i class="bi bi-diagram-3-fill"></i></div>
+                                @error('distributer_code')
+    <span class="text-danger">{{$message}}</span>
+    @enderror     
                         <div class="mb-3 form-inputs">
                             <label for="exampleFormControlInput1" class="form-label">Password</label>
                             <input type="password" id="password" class="form-control" placeholder="Password"

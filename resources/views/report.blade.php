@@ -8,11 +8,11 @@
                     <h4 style="float:left;">Report</h4>
                     <form class="report-form">
                         @csrf
-                        <input type="date" name="from date" id="" placeholder="From Date">
-                        <input type="date" name="to date" id="" placeholder="To Date">
+                        <input type="date" name="from date" id="" value="<?= date('Y-m-d') ?>" placeholder="From Date">
+                        <input type="date" name="to date" id="" value="<?= date('Y-m-d') ?>" placeholder="To Date">
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Select Service</option>
-                            <option value="1">All</option>
+                            <option value="1">Account Statement</option>
                             <option value="2">Payout</option>
                         </select>
                         <button class="btn" type="button" value="search_report">Search Report</button>

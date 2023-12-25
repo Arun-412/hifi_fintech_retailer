@@ -31,6 +31,7 @@ class User extends Authenticatable
         'door_opened_by',
         'door_status',
         'door_price',
+        'awards',
         'door_key'
     ];
 

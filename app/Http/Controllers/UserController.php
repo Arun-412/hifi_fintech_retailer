@@ -84,24 +84,52 @@ class UserController extends Controller
                 return back()->withInput()->withErrors($validate);
             }
             else{
-                $door_access = User::create([
-                    'door_code' => "HFR".Str::random(4)."S".Str::random(4),
-                    'shop_name' => $request->shop_name,
-                    'mobile_number' => $request->mobile_number,
-                    'mobile_otp' =>123456,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'kyc_status' => "HFN",
-                    'door_mode' => "HF00",
-                    'door_opened_by' => "HFS",
-                    'door_status' => "HFY",
-                    'door_price' => "HFN",
-                    'door_key' => 0
-                ]);
-                if($door_access){
-                    return redirect('verify')->with("user",$request->mobile_number);
+                if(!empty($request->distributer_code)){
+                    if(User::where(['door_code'=>$request->distributer_code, 'door_mode'=>'HF11'])->exists()){
+                        $door_access = User::create([
+                            'door_code' => "HFR".Str::random(4)."S".Str::random(4),
+                            'shop_name' => $request->shop_name,
+                            'mobile_number' => $request->mobile_number,
+                            'mobile_otp' =>123456,
+                            'email' => $request->email,
+                            'password' => Hash::make($request->password),
+                            'kyc_status' => "HFN",
+                            'door_mode' => "HF00",
+                            'door_opened_by' => $request->distributer_code,
+                            'door_status' => "HFY",
+                            'door_price' => "HFN",
+                            'awards'=>0,
+                            'door_key' => 0
+                        ]);
+                        if($door_access){
+                            return redirect('verify')->with("user",$request->mobile_number);
+                        }else{
+                            return back()->with("failed","Unable to Register");
+                        }
+                    }else{
+                        return back()->withInput()->with("failed","Invalid Distributer Code");
+                    }
                 }else{
-                    return back()->with("failed","Unable to Register");
+                    $door_access = User::create([
+                        'door_code' => "HFR".Str::random(4)."S".Str::random(4),
+                        'shop_name' => $request->shop_name,
+                        'mobile_number' => $request->mobile_number,
+                        'mobile_otp' =>123456,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                        'kyc_status' => "HFN",
+                        'door_mode' => "HF00",
+                        'door_opened_by' => "HFS",
+                        'door_status' => "HFY",
+                        'door_price' => "HFN",
+                        'awards'=>0,
+                        'door_key' => 0
+                    ]);
+                    if($door_access){
+                        return redirect('verify')->with("user",$request->mobile_number);
+                    }else{
+                        return back()->with("failed","Unable to Register");
+                    }
                 }
             }
         }
