@@ -12,17 +12,17 @@
                         <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="Transaction amount if more than ₹5000, that amount splitting as ₹5000 each. eg: ₹10000 = ₹5000+₹5000">Money Transfer</a>
+                        <a class="nav-link" href="{{route('coming_soon')}}">Money Transfer</a>
                     </li>
                     <li class="nav-item hoverd">
-                        <a class="nav-link" data-toggle="tooltip" data-placement="left" title="Transaction amount send as one payment without splitting. Eg: ₹200000 = ₹200000">
+                        <a class="nav-link">
                             <span class="lan-7">Payout</span></a>
                         <ul class="submenu">
                             <li><a href="{{route('payout_login')}}">EKO</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="Aadhar based Transactions">AEPS</a>
+                        <a class="nav-link" href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="Aadhar based Transactions">AEPS</a>
                     </li>
                     <li class="nav-item hoverd">
                         <a class="nav-link">
@@ -33,7 +33,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="Create Payment Link for your products, collect your payment digitally">Payment Link</a>
+                        <a class="nav-link" href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="Create Payment Link for your products, collect your payment digitally">Payment Link</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('report')}}">Report</a>
