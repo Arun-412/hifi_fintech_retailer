@@ -187,20 +187,21 @@ span.signup-link {
 }
 .navbar-nav li.nav-item a {
     display: block;
-    color: #2f2f3b;
+    color: #ffffff;
     line-height: 23px;
     text-decoration: none;
     text-transform: capitalize;
-    padding: 5px 10px;
+    padding: 2px 5px;
     letter-spacing: 0.04em;
     position: relative;
     border-radius: 5px;
     font-weight: 500;
+    margin: 5px 2px;
 }
 .navbar-nav li.nav-item a:hover,
 .navbar-nav li.nav-item a:active {
     color: #002a48;
-    text-decoration: underline;
+    background-color: #7bc7c5;
 }
 .navbar-nav li .submenu {
     position: fixed;
@@ -545,11 +546,13 @@ a.paginate_button.current {
 }
 .wallet-amout img {
     width: 24px;
+    filter: brightness(0) invert(1);
 }
 .wallet-amout p {
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 500;
+    color: #fff;
 }
 a.nav-link.active {
     text-decoration: underline !important;
@@ -999,4 +1002,33 @@ a.dropdown-item:hover {
 } */
 .payout-model.otp-modal .modal-body {
     padding: 25px 25px;
+}
+img.profile-icon.me-2.dropdown-toggle {
+    box-shadow: 0px 0px 10px 1px #d3eaff;
+}
+.submenu ul.second-submenu:hover {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 12px;
+    transition: all 0.5s ease;
+}
+
+.submenu ul.second-submenu {
+    position: absolute;
+    z-index: 4;
+    box-shadow: 0 0 1px 0 #898989;
+    padding: 15px 0px 15px 0px;
+    background: #002a48;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    margin-left: 203px;
+}
+.second-submenu li {
+    border: 0;
+    float: none;
+    position: relative;
+    display: block;
 }

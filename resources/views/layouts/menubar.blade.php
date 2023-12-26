@@ -28,7 +28,13 @@
                         <a class="nav-link">
                             <span class="lan-7">Bill Payments</span></a>
                         <ul class="submenu">
-                            <li><a href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="EB Bill, Mobile Postpaid Bill, Water Tax etc">BBPS Bill</a></li>
+                            <li><a href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="EB Bill, Mobile Postpaid Bill, Water Tax etc">BBPS Bill</a>
+                            <ul class="second-submenu">
+                                <li><a>test</a></li>
+                                 <li><a>test</a></li>
+                                 <li><a>test</a></li>
+                            </ul>
+                        </li>
                             <li><a href="{{route('coming_soon')}}" data-toggle="tooltip" data-placement="top" title="Loan Payments">CMS Bill</a></li>
                         </ul>
                     </li>
