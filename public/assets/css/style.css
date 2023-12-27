@@ -555,6 +555,7 @@ a.paginate_button.current {
     color: #fff;
 }
 a.nav-link.active {
+    background-color: #7bc7c5;
     text-decoration: underline !important;
 }
 
@@ -809,7 +810,9 @@ a.dropdown-item {
     letter-spacing: 0.06em;
     transition: all 0.3s ease;
 }
-a.dropdown-item:hover {
+a.dropdown-item:hover,
+a.dropdown-item:active,
+a.dropdown-item.active {
     color: #002a48;
     transition: all 0.3s ease;
     background-color: #7bc7c5;

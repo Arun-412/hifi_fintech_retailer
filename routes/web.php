@@ -40,5 +40,26 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'print'], function () {   
         Route::get('/transaction', function () { return view('print.transaction'); })->name('print_transaction');
     }); 
+ 
+    Route::group(['prefix' => 'money_transfer'], function () {   
+        Route::get('/', function () { return view('money_transfer.login'); })->name('money_transfer_login');
+    }); 
+
+    Route::group(['prefix' => 'aeps'], function () {   
+        Route::get('/', function () { return view('aeps.login'); })->name('aeps_login');
+    }); 
+
+    Route::group(['prefix' => 'bill_payments'], function () {   
+        Route::get('/bbps', function () { return view('bill_payments.bbps'); })->name('bill_payments_bbps');
+        Route::get('/cms', function () { return view('bill_payments.cms'); })->name('bill_payments_cms');
+    });
+
+    Route::group(['prefix' => 'payment_link'], function () {   
+        Route::get('/', function () { return view('payment_link.login'); })->name('payment_link_login');
+    }); 
+
+    Route::group(['prefix' => 'wallet_topup'], function () {   
+        Route::get('/', function () { return view('wallet_topup.dashboard'); })->name('wallet_topup_dashboard');
+    }); 
 });
 
