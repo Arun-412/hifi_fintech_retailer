@@ -95,7 +95,7 @@ $current_path = dynamicActiveLink(Request::path());
                             aria-expanded="false" src="{{asset('assets/images/avatar.png')}}">
                         <ul class="dropdown-menu">
                             <li>
-                                <p class="username">{{Auth::user()->shop_name}}<i class="bi bi-dot"></i></p>
+                                <p class="username">{{substr(Auth::user()->shop_name, 0, 20)}}<i class="bi bi-dot"></i></p>
                             </li>
                             <hr>
                             <li>

@@ -7,48 +7,51 @@
                 <div class="payout-box kyc-info">
                     <h2>KYC</h2>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="formGroupExampleInput" class="form-label">PAN Number</label>
-                            <input type="text" name="pan" placeholder="PAN Number" id="">
+                        @if(Auth::user()->kyc_status == 'HFN')
+                            <div class="row">
+                            <div class="col-md-6">
+                                <label for="formGroupExampleInput" class="form-label">PAN Number</label>
+                                <input type="text" name="pan" placeholder="PAN Number" id="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="formGroupExampleInput" class="form-label">Date</label>
+                                <input type="date" name="pan" id="">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="formGroupExampleInput" class="form-label">Date</label>
-                            <input type="date" name="pan" id="">
+                        <div class="col-12">
+                            <label for="formGroupExampleInput" class="form-label">D.No,street</label>
+                            <input type="text" name="pan" placeholder="D.No,street" id="">
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <label for="formGroupExampleInput" class="form-label">D.No,street</label>
-                        <input type="text" name="pan" placeholder="D.No,street" id="">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="formGroupExampleInput" class="form-label">City</label>
-                            <input type="text" name="pan" placeholder="City" id="">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="formGroupExampleInput" class="form-label">City</label>
+                                <input type="text" name="pan" placeholder="City" id="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="formGroupExampleInput" class="form-label">District</label>
+                                <input type="text" name="pan" placeholder="District" id="">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="formGroupExampleInput" class="form-label">District</label>
-                            <input type="text" name="pan" placeholder="District" id="">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="formGroupExampleInput" class="form-label">State</label>
+                                <input type="text" name="pan" placeholder="State" id="">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="formGroupExampleInput" class="form-label">Pincode</label>
+                                <input type="text" name="pan" placeholder="Pincode" id="">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="formGroupExampleInput" class="form-label">Landmark</label>
+                                <input type="text" name="pan" placeholder="Landmark" id="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="formGroupExampleInput" class="form-label">State</label>
-                            <input type="text" name="pan" placeholder="State" id="">
+                        <div class="col-12 text-center">
+                            <input class="btn" type="button" value="Verify Details" id="">
                         </div>
-                        <div class="col-md-3">
-                            <label for="formGroupExampleInput" class="form-label">Pincode</label>
-                            <input type="text" name="pan" placeholder="Pincode" id="">
-                        </div>
-                        <div class="col-md-5">
-                            <label for="formGroupExampleInput" class="form-label">Landmark</label>
-                            <input type="text" name="pan" placeholder="Landmark" id="">
-                        </div>
-                    </div>
-                    <div class="col-12 text-center">
-                        <input class="btn" type="button" value="Submit" id="">
-                    </div>
                     <hr>
+                    @endif
+                    @if(Auth::user()->kyc_status == 'HF0')
                     <div class="row align-items-end">
                         <div class="col-md-4">
                             <label for="formGroupExampleInput" class="form-label">Adhar Number</label>
@@ -59,6 +62,7 @@
                         </div>
                     </div>
                     <hr>
+                    @endif
                     <!-- <div class="row align-items-end otp">
                         <div class="col-md-4">
                             <label for="formGroupExampleInput" class="form-label">Enter OTP</label>
