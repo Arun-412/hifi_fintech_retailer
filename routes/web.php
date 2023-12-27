@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PayoutController;
+use App\Http\Controllers\IdentityController;
 
 Route::get('/verify', function () { return view('auth.OTP'); });
 
@@ -22,7 +23,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/profile', function () { return view('profile'); })->name('profile');
     Route::get('/settings', function () { return view('settings'); })->name('settings');
-    Route::get('/kyc', function () { return view('kyc'); })->name('kyc');
     Route::get('/support', function () { return view('support'); })->name('support');
 
     Route::group(['prefix' => 'payout'], function () {
@@ -60,6 +60,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'wallet_topup'], function () {   
         Route::get('/', function () { return view('wallet_topup.dashboard'); })->name('wallet_topup_dashboard');
+    }); 
+
+    Route::group(['prefix' => 'kyc'], function () {   
+        Route::get('/', function () { return view('kyc'); })->name('kyc');
+        Route::get('/kyc_pan_address_verify', [IdentityController::class, 'kyc_pan_address_verify'])->name('kyc_pan_address_verify');
     }); 
 });
 

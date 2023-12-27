@@ -8,6 +8,7 @@
                     <h2>KYC</h2>
                     <hr>
                         @if(Auth::user()->kyc_status == 'HFN')
+                        <form action="{{route('kyc_pan_address_verify')}}" method="get">
                             <div class="row">
                             <div class="col-md-6">
                                 <label for="formGroupExampleInput" class="form-label">PAN Number</label>
@@ -47,8 +48,9 @@
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <input class="btn" type="button" value="Verify Details" id="">
+                            <input class="btn" type="submit" value="Verify Details" id="">
                         </div>
+                        </form>
                     <hr>
                     @endif
                     @if(Auth::user()->kyc_status == 'HF0')
