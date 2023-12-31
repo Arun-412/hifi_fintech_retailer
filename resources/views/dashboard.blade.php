@@ -6,7 +6,7 @@
             <div style="padding-left:15px;" class="col-sm-12 col-md-12 col-xs-12">
                 <div class="payout-box welcome-box">
                     <h4 style="margin-bottom: 0px;padding-left: 15px;">Welcome to HIFI FINTECH <span style="color:green;">{{Auth::user()->shop_name}} </span> </h4>
-                    @if(Auth::user()->kyc_status == 'HFN')
+                    @if(Auth::user()->kyc_status != 'HFY')
                     <a href="{{route('kyc')}}"><button class="btn">Complete KYC</button></a>
                     @endif
                 </div>

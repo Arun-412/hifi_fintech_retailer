@@ -7,48 +7,55 @@
                 <div class="payout-box kyc-info">
                     <h2>KYC</h2>
                     <hr>
+                    @if(session('success'))
+                       <center><div class="alert alert-success"> {{ session('success') }}</div></center>
+					@endif
+                    @if(session('failed'))
+                       <center><div class="alert alert-danger"> {{ session('failed') }}</div></center>
+					@endif
                         @if(Auth::user()->kyc_status == 'HFN')
-                        <form action="{{route('kyc_pan_address_verify')}}" method="get">
+                        <form action="{{route('address_pan_verify')}}" method="POST">
+                            @csrf
                             <div class="row">
                             <div class="col-md-6">
                                 <label for="formGroupExampleInput" class="form-label">PAN Number</label>
-                                <input type="text" name="pan" placeholder="PAN Number" id="">
+                                <input type="text" name="pan_number" minlength="10" maxlength="10" value="{{ old('pan_number') }}" placeholder="PAN Number">
+                                @error('pan_number') <p class="text-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="formGroupExampleInput" class="form-label">Date</label>
-                                <input type="date" name="pan" id="">
+                                <input type="date" name="date_of_birth" max="01/01/2024" value="{{ old('date_of_birth') }}">
+                                @error('date_of_birth') <p class="text-danger">{{ $message }}</p> @enderror
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <label for="formGroupExampleInput" class="form-label">D.No,street</label>
-                            <input type="text" name="pan" placeholder="D.No,street" id="">
                         </div>
                         <div class="row">
+                        <h6>Address <span style="font-size:12px;">(As per Aadhar)</span></h6>
+                        <div class="col-md-6">
+                            <label for="formGroupExampleInput" class="form-label">Street</label>
+                            <input type="text" name="street" placeholder="Street" value="{{ old('street') }}">
+                            @error('street') <p class="text-danger">{{ $message }}</p> @enderror
+                        </div>
+                        
                             <div class="col-md-6">
                                 <label for="formGroupExampleInput" class="form-label">City</label>
-                                <input type="text" name="pan" placeholder="City" id="">
+                                <input type="text" name="city" placeholder="City" value="{{ old('city') }}">
+                                @error('city') <p class="text-danger">{{ $message }}</p> @enderror
+                            </div>
+</div>
+<div class="row">
+                            <div class="col-md-6">
+                                <label for="formGroupExampleInput" class="form-label">State</label>
+                                <input type="text" name="state" placeholder="State" value="{{ old('state') }}">
+                                @error('state') <p class="text-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="col-md-6">
-                                <label for="formGroupExampleInput" class="form-label">District</label>
-                                <input type="text" name="pan" placeholder="District" id="">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="formGroupExampleInput" class="form-label">State</label>
-                                <input type="text" name="pan" placeholder="State" id="">
-                            </div>
-                            <div class="col-md-3">
                                 <label for="formGroupExampleInput" class="form-label">Pincode</label>
-                                <input type="text" name="pan" placeholder="Pincode" id="">
-                            </div>
-                            <div class="col-md-5">
-                                <label for="formGroupExampleInput" class="form-label">Landmark</label>
-                                <input type="text" name="pan" placeholder="Landmark" id="">
+                                <input type="text" name="pincode" placeholder="Pincode" value="{{ old('pincode') }}">
+                                @error('pincode') <p class="text-danger">{{ $message }}</p> @enderror
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <input class="btn" type="submit" value="Verify Details" id="">
+                            <input class="btn" type="submit" value="Verify Details">
                         </div>
                         </form>
                     <hr>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PayoutController;
-use App\Http\Controllers\IdentityController;
+use App\Http\Controllers\KycController;
 
 Route::get('/verify', function () { return view('auth.OTP'); });
 
@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'kyc'], function () {   
         Route::get('/', function () { return view('kyc'); })->name('kyc');
-        Route::get('/kyc_pan_address_verify', [IdentityController::class, 'kyc_pan_address_verify'])->name('kyc_pan_address_verify');
+        Route::post('/kyc_pan_address_verify', [KycController::class, 'kyc_pan_address_verify'])->name('address_pan_verify');
     }); 
 });
 
