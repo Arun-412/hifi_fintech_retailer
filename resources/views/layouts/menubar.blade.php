@@ -42,24 +42,24 @@ $current_path = dynamicActiveLink(Request::path());
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link {{$current_path == 'home' ? 'active' : ''}}" aria-current="page" href="{{route('dashboard')}}">Home</a>
+                        <a class="nav-link {{$current_path == 'home' ? 'active' : ''}}" aria-current="page" href="{{route('dashboard')}}"><i class="bi bi-house-fill"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{$current_path == 'money_transfer' ? 'active' : ''}}" href="{{route('money_transfer_login')}}">Money Transfer</a>
+                        <a class="nav-link {{$current_path == 'money_transfer' ? 'active' : ''}}" href="{{route('money_transfer_login')}}"><i class="bi bi-wallet-fill"></i>Money Transfer</a>
                     </li>
                     <li class="nav-item hoverd">
                         <a class="nav-link {{$current_path == 'payout' ? 'active' : ''}}">
-                            <span class="lan-7">Payout</span></a>
+                            <span class="lan-7"><i class="bi bi-credit-card-2-front-fill"></i>Payout</span></a>
                         <ul class="submenu">
                             <li><a href="{{route('payout_login')}}">EKO</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{$current_path == 'aeps' ? 'active' : ''}}" href="{{route('aeps_login')}}">AEPS</a>
+                        <a class="nav-link {{$current_path == 'aeps' ? 'active' : ''}}" href="{{route('aeps_login')}}"><i class="bi bi-cash-stack"></i> AEPS</a>
                     </li>
                     <li class="nav-item hoverd">
                         <a class="nav-link {{$current_path == 'bill_payments_bbps' ? 'active' : ($current_path == 'bill_payments_cms' ? 'active' : '')}}">
-                            <span class="lan-7">Bill Payments</span></a>
+                            <span class="lan-7"><i class="bi bi-receipt"></i>Bill Payments</span></a>
                         <ul class="submenu">
                             <li><a href="{{route('bill_payments_bbps')}}">BBPS Bill</a>
                             <ul class="second-submenu">
@@ -68,14 +68,14 @@ $current_path = dynamicActiveLink(Request::path());
                                  <li><a>test</a></li>
                             </ul>
                         </li>
-                            <li><a href="{{route('bill_payments_cms')}}">CMS Bill</a></li>
+                            <li><a href="{{route('bill_payments_cms')}}"> CMS Bill</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{$current_path == 'payment_link' ? 'active' : ''}}" href="{{route('payment_link_login')}}">Payment Link</a>
+                        <a class="nav-link {{$current_path == 'payment_link' ? 'active' : ''}}" href="{{route('payment_link_login')}}"><i class="bi bi-link"></i>Payment Link</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{$current_path == 'report' ? 'active' : ''}}" href="{{route('report')}}">Report</a>
+                        <a class="nav-link {{$current_path == 'report' ? 'active' : ''}}" href="{{route('report')}}"><i class="bi bi-receipt-cutoff"></i>Report</a>
                     </li>
                 </ul>
                 <div class="d-flex profile">
