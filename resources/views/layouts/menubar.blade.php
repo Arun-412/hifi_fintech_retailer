@@ -101,9 +101,11 @@ $current_path = dynamicActiveLink(Request::path());
                             <li>
                                 <a class="dropdown-item {{$current_path == 'wallet_topup' ? 'active' : ''}}" href="{{route('wallet_topup_dashboard')}}">Wallet Topup</a>
                             </li>
+                            @if(Auth::user()->kyc_status != 'HFY')
                             <li>
                                 <a class="dropdown-item {{$current_path == 'kyc' ? 'active' : ''}}" href="{{route('kyc')}}">KYC</a>
                             </li>
+                            @endif
                             <li>
                                 <a class="dropdown-item {{$current_path == 'profile' ? 'active' : ''}}" href="{{route('profile')}}">Profile</a>
                             </li>

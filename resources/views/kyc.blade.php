@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('content')
+@if(Auth::user()->kyc_status == 'HFY')
+<script>window.location.replace("{{route('dashboard')}}");</script>
+@endif
 <section style="margin-top: 110px;margin-bottom: 40px;padding: 0px 30px;">
     <div class="container-fluid">
         <div class="row">
@@ -17,13 +20,18 @@
                         <form action="{{route('address_pan_verify')}}" method="POST">
                             @csrf
                             <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="formGroupExampleInput" class="form-label">PAN Number</label>
                                 <input type="text" name="pan_number" minlength="10" maxlength="10" value="{{ old('pan_number') }}" placeholder="PAN Number">
                                 @error('pan_number') <p class="text-danger">{{ $message }}</p> @enderror
                             </div>
-                            <div class="col-md-6">
-                                <label for="formGroupExampleInput" class="form-label">Date</label>
+                            <div class="col-md-4">
+                                <label for="formGroupExampleInput" class="form-label">Adhar Number</label>
+                                <input type="text" name="aadhar_number" placeholder="Adhar Number" minlength="12" maxlength="12" value="{{ old('aadhar_number') }}">
+                                @error('aadhar_number') <p class="text-danger">{{ $message }}</p> @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <label for="formGroupExampleInput" class="form-label">Date of Birth</label>
                                 <input type="date" name="date_of_birth" max="01/01/2024" value="{{ old('date_of_birth') }}">
                                 @error('date_of_birth') <p class="text-danger">{{ $message }}</p> @enderror
                             </div>

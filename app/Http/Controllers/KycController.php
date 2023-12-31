@@ -62,7 +62,8 @@ class KycController extends Controller
                 'street'=>'required|string|min:10|max:40',
                 'city'=>'required|string|min:5|max:20',
                 'state'=>'required|string|min:5|max:20',
-                'pincode'=>'required|digits:6|numeric'
+                'pincode'=>'required|digits:6|numeric',
+                'aadhar_number'=>'required|digits:12|numeric'
             ],);
             if($validate->fails()){
                 return back()->withInput()->withErrors($validate);
@@ -71,12 +72,16 @@ class KycController extends Controller
                 if( DB::table('identities')->where(['pan_number'=>$request->pan_number])->exists()){
                     return back()->withInput()->with("failed","PAN Number already Taken use different one to complete your KYC");
                 }
+                elseif(DB::table('identities')->where(['aadhar_number'=>$request->aadhar_number])->exists()){
+                    return back()->withInput()->with("failed","Aadhar Number already Taken use different one to complete your KYC");
+                }
                 else{
                     $data = array(
                         "url"=>'kyc/pan_address',
                         "data"=>
                             'token='.$this->Access_Key.
                             '&pan='.strtoupper($request->pan_number).
+                            '&aadhar_number='.$request->aadhar_number.
                             '&door_code='.Auth::user()->door_code.
                             '&date_of_birth='.$request->date_of_birth.
                             '&street='.$request->street.
@@ -88,9 +93,9 @@ class KycController extends Controller
                     $Pan_address = $this->curl_post($data);
                     if($Pan_address->status == true){
                         $update_kyc = Auth::user(); 
-                        $update_kyc->kyc_status = "HF0";
+                        $update_kyc->kyc_status = "HFY";
                         $update_kyc->save();
-                        return redirect('kyc')->with("success",$Pan_address->message);
+                        return redirect('dashboard')->with("success",$Pan_address->message);
                     }else{
                         return back()->withInput()->with("failed",$Pan_address->message);
                     }

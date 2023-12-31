@@ -9,6 +9,9 @@
                     @if(Auth::user()->kyc_status != 'HFY')
                     <a href="{{route('kyc')}}"><button class="btn">Complete KYC</button></a>
                     @endif
+                    @if(session('success'))
+                       <center><div class="alert alert-success"> {{ session('success') }}</div></center>
+					@endif
                 </div>
             </div>
         </div>
