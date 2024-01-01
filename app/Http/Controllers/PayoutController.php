@@ -56,31 +56,41 @@ class PayoutController extends Controller
     }
 
     public function activate_payout (Request $request) {
-        $service = json_decode(Auth::user()->service_status);
-        if(empty($service->payout)){
-            $provider = json_decode(Auth::user()->provider_status);
-            $data = array(
-                "url"=>'payout/activate_service',
-                "data"=>
-                    'service_code=4'.
-                    '&user_code='.$provider->eko. 
-                    '&token='.$this->Access_Key
-                ,
-            );
-            $activate_payout = $this->curl_post($data);
-            if($activate_payout->status == true){
-                $s = User::where(['door_code'=>Auth::user()->door_code])->first();
-                $serve = [];
-                $serve['payout'] = "HFY";
-                $s->service_status = $serve;
-                $s->save();
-                return redirect('/payout/login')->with("success",$activate_payout->message);
-            }else{
-                return back()->withInput()->with("failed",$activate_payout->message);
+        try{
+            if(Auth::user()->kyc_status != "HFY"){
+                return back()->with("failed","Complete your KYC to Activate this service");
+            }
+            else{
+                $service = json_decode(Auth::user()->service_status);
+                if(empty($service->payout)){
+                    $provider = json_decode(Auth::user()->provider_status);
+                    $data = array(
+                        "url"=>'payout/activate_service',
+                        "data"=>
+                            'service_code=4'.
+                            '&user_code='.$provider->eko. 
+                            '&token='.$this->Access_Key
+                        ,
+                    );
+                    $activate_payout = $this->curl_post($data);
+                    if($activate_payout->status == true){
+                        $s = User::where(['door_code'=>Auth::user()->door_code])->first();
+                        $serve = [];
+                        $serve['payout'] = "HFY";
+                        $s->service_status = $serve;
+                        $s->save();
+                        return redirect('/payout/login')->with("success",$activate_payout->message);
+                    }else{
+                        return back()->withInput()->with("failed",$activate_payout->message);
+                    }
+                }
+                else{
+                    return back()->withInput()->with("failed","Service already Activated and ready use");
+                }
             }
         }
-        else{
-            return back()->withInput()->with("failed","Service already Activated and ready use");
+        catch(\Throwable $e){
+            return back()->with("failed",$e->getmessage());
         }
     }
 

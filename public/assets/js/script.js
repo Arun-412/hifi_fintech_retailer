@@ -182,6 +182,7 @@ $('.add_or_verify_submit_btn').click(function(){
 });
 
 $("#add_account").click(function(){
+    $('.loader-section').fadeIn('slow');
     $.ajax({
         url: "bank_list",
         method:"GET",
@@ -193,6 +194,7 @@ $("#add_account").click(function(){
                 $('#bank_list')
                     .append($("<option></option>")
                                .attr("value", value['ifsc_code'])
+                               .attr("data-set", value['bank_code'])
                                .text(value['bank_name'])); 
                 
            });
@@ -202,7 +204,7 @@ $("#add_account").click(function(){
             $('#ifsc_code').val(ifsc_code); 
             });
            $('#payout_add_or_verify_Account').modal('show');
-        //    $('.loader-section').fadeOut('slow');
+           $('.loader-section').fadeOut('slow');
         },
         error: function (xhr, status, error) {
             console.log(error);
