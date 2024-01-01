@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'payout'], function () {
         Route::get('/login', function () { return view('payout.login'); })->name('payout_login');
         Route::get('/dashboard', function () { return view('payout.dashboard'); })->name('payout_dashboard');
+        Route::post('/activate_payout', [PayoutController::class, 'activate_payout'])->name('activate_payout');
         Route::post('/payout_user', [PayoutController::class, 'payout_user'])->name('payout_user');
         Route::post('/add_account', [PayoutController::class, 'add_account'])->name('add_account');
     });

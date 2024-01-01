@@ -8,13 +8,13 @@
             </div>
             <div style="" class="col-sm-12 col-md-5 col-xs-12 my-auto">
             <div style="padding: 30px;">
-                    <!-- <div class="export-buttons">
-                        <button class="btn"><i class="bi bi-printer-fill"></i> Print </button>
-                        <button class="btn"><i class="bi bi-file-earmark-pdf-fill"></i> PDF </button>
-                        <button class="btn"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Excel </button>
-                        <button class="btn"><i class="bi bi-filetype-csv"></i> CSV </button>
-                        <button class="btn"><i class="bi bi-clipboard-check-fill"></i> Copy </button>
-                    </div> -->
+            @if(session('success'))
+                       <center><div class="alert alert-success"> {{ session('success') }}</div></center>
+					@endif
+                    @if(session('failed'))
+                       <center><div class="alert alert-danger"> {{ session('failed') }}</div></center>
+					@endif
+            @if(Auth::user()->kyc_status == "HFY")
                     <h4 style="margin-bottom: 20px;">Payout</h4>
                     <form action="payout_user" method="post">
                         @csrf
@@ -31,6 +31,12 @@
                         </div>
                         <button style="margin-bottom: 15px;" class="btn" type="submit">Submit</button>
                     </form>
+                @else
+                <form action="{{route('activate_payout')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn">Activate Payout Service</button>
+                </form>
+                @endif
                 </div>
             </div>
         </div>
