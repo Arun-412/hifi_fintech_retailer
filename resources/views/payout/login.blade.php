@@ -16,7 +16,7 @@
 					@endif
                     
            
-          <?php $l = json_decode(Auth::user()->service_status);  if(isset($l) && isset($l->eko) && $l->eko == "HFY") { ?>
+          <?php $l = json_decode(Auth::user()->service_status);  if(isset($l) && isset($l->payout) && $l->payout == "HFY") { ?>
                     <h4 style="margin-bottom: 20px;">Payout</h4>
                     <form action="payout_user" method="post">
                         @csrf

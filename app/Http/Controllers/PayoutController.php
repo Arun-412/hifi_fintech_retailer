@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class PayoutController extends Controller
 {
@@ -43,7 +44,7 @@ class PayoutController extends Controller
         ));
         $responses = curl_exec($curl);
         $err = curl_error($curl);
-        $response = 'Something went wrong from sending values for kyc';
+        $response = 'Something went wrong from sending values for activation';
         if ($err) {
             $response = $err;
         }else{
@@ -56,18 +57,25 @@ class PayoutController extends Controller
     public function activate_payout (Request $request) {
         $service = json_decode(Auth::user()->service_status);
         if(empty($service->payout)){
+            $provider = json_decode(Auth::user()->provider_status);
             $data = array(
-                "url"=>'activate_service',
-                "service_code"=>4
+                "url"=>'payout/activate_service',
+                "data"=>
+                    'service_code=4'.
+                    '&user_code='.$provider->eko. 
+                    '&token='.$this->Access_Key
+                ,
             );
-            $Pan_address = $this->curl_post($data);
-            if($Pan_address->status == true){
-                $update_kyc = Auth::user(); 
-                $update_kyc->kyc_status = "HFY";
-                $update_kyc->save();
-                return redirect('dashboard')->with("success",$Pan_address->message);
+            $activate_payout = $this->curl_post($data);
+            if($activate_payout->status == true){
+                $s = User::where(['door_code'=>Auth::user()->door_code])->first();
+                $serve = [];
+                $serve['payout'] = "HFY";
+                $s->service_status = $serve;
+                $s->save();
+                return redirect('/payout/login')->with("success",$activate_payout->message);
             }else{
-                return back()->withInput()->with("failed",$Pan_address->message);
+                return back()->withInput()->with("failed",$activate_payout->message);
             }
         }
         else{
