@@ -180,3 +180,33 @@ $('.add_or_verify_submit_btn').click(function(){
         }
     });
 });
+
+$("#add_account").click(function(){
+    $.ajax({
+        url: "bank_list",
+        method:"GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $.each(data, function(key, value) {   
+                $('#bank_list')
+                    .append($("<option></option>")
+                               .attr("value", value['ifsc_code'])
+                               .text(value['bank_name'])); 
+                
+           });
+           let ifsc_code = "";
+           $("#bank_list").change(function () {
+            ifsc_code = $('#bank_list').find("option:selected").val(); 
+            $('#ifsc_code').val(ifsc_code); 
+            });
+           $('#payout_add_or_verify_Account').modal('show');
+        //    $('.loader-section').fadeOut('slow');
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+            $('.loader-section').fadeOut('slow');
+        }
+    });
+});

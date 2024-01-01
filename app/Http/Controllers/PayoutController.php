@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use DB;
 
 class PayoutController extends Controller
 {
@@ -97,6 +98,15 @@ class PayoutController extends Controller
         }
         catch(\Throwable $e){
             return back()->with("failed",$e->getmessage());
+        }
+    }
+
+    public function bank_list(Request $request){
+        try{
+            $bank_list = DB::table('bank_list')->where(['bank_status'=>"HFY"])->orderBy('bank_name','ASC')->get();
+            return response()->json($bank_list);
+        }catch(\Throwable $e){
+            return $e->getmessage();
         }
     }
 

@@ -48,18 +48,15 @@
                                     <div style="margin-top:25px;">
                                         <label for="exampleFormControlInput1" class="form-label">Bank Name</label>
                                         <select style="margin-bottom:15px" class="form-select"
-                                            aria-label="Default select example">
-                                            <option selected disabled>Bank Name</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            aria-label="Default select example" id="bank_list">
+                                            <option selected disabled>Select Bank Name</option>
                                         </select>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label bank_ifsc">IFSC
                                                 Code</label>
                                             <input type="text" name="bank_ifsc" value="" autofocus required
                                                 minlength="10" placeholder="IFSC Code" class="form-control bank_ifsc"
-                                                id="exampleFormControlInput1" autocomplete="off">
+                                                id="ifsc_code" autocomplete="off">
                                         </div>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label">Account
@@ -119,8 +116,7 @@
                     </div>
                     <div style="margin-bottom: 25px;" class="d-flex align-items-center justify-content-between">
                         <h4 style="margin-bottom: 0px;">Account List</h4>
-                        <button style="width:fit-content;" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#payout_add_or_verify_Account"><i class="bi bi-person-fill-add"></i> Add/Verify Account
+                        <button style="width:fit-content;" type="button" class="btn btn-primary" id="add_account"><i class="bi bi-person-fill-add"></i> Add/Verify Account
                         </button>
                     </div>
                     <table id="payout_accounts_list" class="table display nowrap" style="width:100%">
