@@ -14,7 +14,9 @@
                     @if(session('failed'))
                        <center><div class="alert alert-danger"> {{ session('failed') }}</div></center>
 					@endif
-            @if(Auth::user()->kyc_status == "HFY")
+                    
+           
+          <?php $l = json_decode(Auth::user()->service_status);  if(isset($l) && isset($l->eko) && $l->eko == "HFY") { ?>
                     <h4 style="margin-bottom: 20px;">Payout</h4>
                     <form action="payout_user" method="post">
                         @csrf
@@ -31,12 +33,14 @@
                         </div>
                         <button style="margin-bottom: 15px;" class="btn" type="submit">Submit</button>
                     </form>
-                @else
+              <?php } else { ?>
+                
                 <form action="{{route('activate_payout')}}" method="POST">
                     @csrf
                     <button type="submit" class="btn">Activate Payout Service</button>
                 </form>
-                @endif
+                
+              <?php } ?>
                 </div>
             </div>
         </div>
