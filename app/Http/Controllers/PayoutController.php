@@ -61,31 +61,61 @@ class PayoutController extends Controller
                 return back()->with("failed","Complete your KYC to Activate this service");
             }
             else{
-                $service = json_decode(Auth::user()->service_status);
-                if(empty($service->payout)){
-                    $provider = json_decode(Auth::user()->provider_status);
-                    $data = array(
-                        "url"=>'payout/activate_service',
-                        "data"=>
-                            'service_code=4'.
-                            '&user_code='.$provider->eko. 
-                            '&token='.$this->Access_Key
-                        ,
-                    );
-                    $activate_payout = $this->curl_post($data);
-                    if($activate_payout->status == true){
-                        $s = User::where(['door_code'=>Auth::user()->door_code])->first();
-                        $serve = [];
-                        $serve['payout'] = "HFY";
-                        $s->service_status = $serve;
-                        $s->save();
-                        return redirect('/payout/login')->with("success",$activate_payout->message);
-                    }else{
-                        return back()->withInput()->with("failed",$activate_payout->message);
+                if(env("API_ACCESS_MODE") == "LIVE"){
+                    $service = json_decode(Auth::user()->service_status);
+                    if(empty($service->payout)){
+                        $provider = json_decode(Auth::user()->provider_status);
+                        $data = array(
+                            "url"=>'payout/activate_service',
+                            "data"=>
+                                'service_code=45'.
+                                '&user_code='.$provider->eko. 
+                                '&token='.$this->Access_Key
+                            ,
+                        );
+                        $activate_payout = $this->curl_post($data);
+                        if($activate_payout->status == true){
+                            $s = User::where(['door_code'=>Auth::user()->door_code])->first();
+                            $serve = [];
+                            $serve['payout'] = "HFY";
+                            $s->service_status = $serve;
+                            $s->save();
+                            return redirect('/payout/login')->with("success",$activate_payout->message);
+                        }else{
+                            return back()->withInput()->with("failed",$activate_payout->message);
+                        }
+                    }
+                    else{
+                        return back()->withInput()->with("failed","Service already Activated and ready use");
                     }
                 }
                 else{
-                    return back()->withInput()->with("failed","Service already Activated and ready use");
+                    $service = json_decode(Auth::user()->service_status);
+                    if(empty($service->payout)){
+                        $provider = json_decode(Auth::user()->provider_status);
+                        $data = array(
+                            "url"=>'payout/activate_service',
+                            "data"=>
+                                'service_code=4'.
+                                '&user_code='.$provider->eko. 
+                                '&token='.$this->Access_Key
+                            ,
+                        );
+                        $activate_payout = $this->curl_post($data);
+                        if($activate_payout->status == true){
+                            $s = User::where(['door_code'=>Auth::user()->door_code])->first();
+                            $serve = [];
+                            $serve['payout'] = "HFY";
+                            $s->service_status = $serve;
+                            $s->save();
+                            return redirect('/payout/login')->with("success",$activate_payout->message);
+                        }else{
+                            return back()->withInput()->with("failed",$activate_payout->message);
+                        }
+                    }
+                    else{
+                        return back()->withInput()->with("failed","Service already Activated and ready use");
+                    }
                 }
             }
         }
