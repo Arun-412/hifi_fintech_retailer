@@ -40,7 +40,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Add/Verify Account</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    <button type="button" id="payout_add_or_verify_account_model_close" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -48,7 +48,7 @@
                                     <div style="margin-top:25px;">
                                         <label for="exampleFormControlInput1" class="form-label">Bank Name</label>
                                         <select style="margin-bottom:15px" class="form-select"
-                                            aria-label="Default select example" id="bank_list">
+                                            aria-label="Default select example" id="payout_bank_list">
                                             <option selected disabled>Select Bank Name</option>
                                         </select>
                                         <div class="mb-3 form-inputs">
@@ -56,21 +56,21 @@
                                                 Code</label>
                                             <input type="text" name="bank_ifsc" value="" autofocus required
                                                 minlength="10" placeholder="IFSC Code" class="form-control bank_ifsc"
-                                                id="ifsc_code" autocomplete="off">
+                                                id="payout_ifsc_code" autocomplete="off">
                                         </div>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label">Account
                                                 Number</label>
                                             <input type="text" name="mobile_number" value="" autofocus required
                                                 minlength="10" placeholder="Account Number" class="form-control"
-                                                id="exampleFormControlInput1" autocomplete="off">
+                                                id="payout_account_number" autocomplete="off">
                                         </div>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1"
                                                 class="form-label account_holder_name">Name</label>
                                             <input type="text" name="account_holder_name" autofocus required
                                                 minlength="10" placeholder="Name"
-                                                class="form-control account_holder_name" id="exampleFormControlInput1"
+                                                class="form-control account_holder_name" id="payout_account_holder_name"
                                                 autocomplete="off">
                                         </div>
                                     </div>

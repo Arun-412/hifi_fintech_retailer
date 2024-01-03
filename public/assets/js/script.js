@@ -148,6 +148,12 @@ $('.verify_Account_checkbox').change(function(){
         $('.account_holder_name').hide();
         $('.bank_ifsc').hide();
         $('.add_or_verify_submit_btn').text('Verify Account');
+        if($('#payout_ifsc_code').val() != ''){
+            $('.bank_ifsc').hide();
+        }
+        else{
+            $('.bank_ifsc').show();
+        }
     }
     else{
         $('.account_holder_name').show();
@@ -191,17 +197,23 @@ $("#add_account").click(function(){
         },
         success: function (data) {
             $.each(data, function(key, value) {   
-                $('#bank_list')
+                $('#payout_bank_list')
                     .append($("<option></option>")
                                .attr("value", value['ifsc_code'])
                                .attr("data-set", value['bank_code'])
                                .text(value['bank_name'])); 
                 
            });
-           let ifsc_code = "";
-           $("#bank_list").change(function () {
-            ifsc_code = $('#bank_list').find("option:selected").val(); 
-            $('#ifsc_code').val(ifsc_code); 
+           let payout_ifsc_code = "";
+           $("#payout_bank_list").change(function () {
+            payout_ifsc_code = $('#payout_bank_list').find("option:selected").val(); 
+            $('#payout_ifsc_code').val(payout_ifsc_code != "" ?payout_ifsc_code : ""); 
+            if($('#payout_ifsc_code').val() != ''){
+                $('.bank_ifsc').hide();
+            }
+            else{
+                $('.bank_ifsc').show();
+            }
             });
            $('#payout_add_or_verify_Account').modal('show');
            $('.loader-section').fadeOut('slow');
@@ -211,4 +223,11 @@ $("#add_account").click(function(){
             $('.loader-section').fadeOut('slow');
         }
     });
+});
+
+$('#payout_add_or_verify_account_model_close').click(function () {
+    $('#payout_bank_list').val('');
+    $('#payout_ifsc_code').val('');
+    $('#payout_account_number').val('');
+    $('#payout_account_holder_name').val('');
 });
