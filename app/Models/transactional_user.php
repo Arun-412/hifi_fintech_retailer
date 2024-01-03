@@ -9,10 +9,12 @@ class transactional_user extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_code',
         'mobile_number',
         'accounts',
         'verify_otp',
-        'status'
+        'status',
+        'created_by'
     ];
     protected $hidden = [];
     protected $casts = [];

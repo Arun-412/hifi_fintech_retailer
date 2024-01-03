@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('transactional_users', function (Blueprint $table) {
             $table->id();
+            $table->string('user_code');
             $table->string('mobile_number')->unique();
             $table->string('accounts')->nullable();
             $table->string('status');
-            $table->string('verify_otp');
+            $table->string('verify_otp')->nullable();
+            $table->string('created_by');
             $table->timestamps();
         });
     }
