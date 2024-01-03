@@ -58,7 +58,7 @@
 </section>
 <script>
 //  $("#otp_submit").click( function () {
-$("#otp_form").submit(function() {
+    $("#otp_form").submit(function() {
     let i1 = $("#input1").val();
     let i2 = $("#input2").val();
     let i3 = $("#input3").val();

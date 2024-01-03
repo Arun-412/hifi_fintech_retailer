@@ -1037,3 +1037,13 @@ img.profile-icon.me-2.dropdown-toggle {
 .navbar-nav li.nav-item a i.bi {
     margin-right: 5px;
 }
+.validation{
+    border: 2px solid red !important;
+    border-radius: 6px;
+}
+#mobile_check
+{
+    color:red;
+    font-size: 13px;
+    font-weight: 700;
+}
