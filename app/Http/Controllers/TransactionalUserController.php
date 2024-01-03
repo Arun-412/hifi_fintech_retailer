@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class TransactionalUserController extends Controller
 {
     public function user_login(Request $request){
-        return "working";
+        try{
+            return back()->with("success",$request->mobile_number);
+        }catch(\Throwable $e){
+            return back()->with("failed",$e->getmessage());
+        }
     }
 }

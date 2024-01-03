@@ -277,28 +277,8 @@ function mobile(){
 $('#payout_mobile_number_login').click( function () {
     mobile();
 	if ( mobile_check == true ) {
-        let mobile = $('#payout_mobile_number').val();
-        register_mobile_number(mobile);
+        return true;
     }else{
         return false;
     }
 });
-
-function register_mobile_number (mobile) {
-    $('.loader-section').fadeIn('slow');
-    $.ajax({
-        url: "login",
-        method:"GET",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function (data) {
-            $('.loader-section').fadeOut('slow');
-            alert(data);
-        },
-        error: function (xhr, status, error) {
-            console.log(error);
-            $('.loader-section').fadeOut('slow');
-        }
-    });
-}

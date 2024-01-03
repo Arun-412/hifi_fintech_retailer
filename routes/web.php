@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/payout_user', [PayoutController::class, 'payout_user'])->name('payout_user');
         Route::post('/add_account', [PayoutController::class, 'add_account'])->name('add_account');
         Route::get('/bank_list', [PayoutController::class, 'bank_list'])->name('bank_list');
-        Route::get('/login', [TransactionalUserController::class, 'user_login'])->name('transaction_user_login');
+        Route::post('/login', [TransactionalUserController::class, 'user_login'])->name('transaction_user_login');
     });
 
     Route::group(['prefix' => 'report'], function () {

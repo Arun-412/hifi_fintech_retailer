@@ -18,7 +18,7 @@
            
           <?php $l = json_decode(Auth::user()->service_status);  if(isset($l) && isset($l->payout) && $l->payout == "HFY") { ?>
                     <h4 style="margin-bottom: 20px;">Payout</h4>
-                    
+                    <form action="{{route('transaction_user_login')}}" method="post"> @csrf 
                         <!-- Button trigger modal -->
                         <div class="mb-3 form-inputs">
                             <label for="exampleFormControlInput1" class="form-label">Mobile Number</label>
@@ -32,7 +32,7 @@
                         </div>
                         <p id="mobile_check"></p>
                         <button style="margin-bottom: 15px;" class="btn" id="payout_mobile_number_login" type="submit">Submit</button>
-                    
+                        </form>
               <?php } else { ?>
                 
                 <form action="{{route('activate_payout')}}" method="POST">
@@ -58,7 +58,7 @@
                 
                     <form id="payout_otp_form">  
                         <center>
-                        <p style="width:100%;padding: 5px;">To complete user registration please enter OTP which is sent to <b id="register_mobile_number"></b></p>    
+                        <p style="width:100%;padding: 5px;">To complete user registration please enter OTP which is sent to <b>****{{substr(session('success'), -2)}}</b></p>    
                         <div class="otp-inputs" id='inputs'>
                             
                         <input id='pinput1' autofocus required type='password' maxLength="1" />
@@ -71,25 +71,41 @@
                         <input type="hidden" id="mobile_otp" name="mobile_otp">
                         <button class="btn login-btn" id="otp_submit" type="button">Submit</button></center>
                     </form>
+                    <form id="otp_form" action="" method="post"> @csrf
+                <div class="otp-inputs" id='inputs'>
+                  
+                    <input type="hidden" name="mobile_number" value="{{session('otp')}}">
+                   
+                    <input id='input1' autofocus required type='password' maxLength="1" />
+                    <input id='input2' required type='password' maxLength="1" />
+                    <input id='input3' required type='password' maxLength="1" />
+                    <input id='input4' required type='password' maxLength="1" />
+                    <input id='input5' required type='password' maxLength="1" />
+                    <input id='input6' required type='password' maxLength="1" />
+                </div>
+                <input type="hidden" id="mobile_otp" name="mobile_otp">
+                <button class="btn login-btn" id="otp_submit" type="submit">Submit</button>
+            </form>
                 </div>
 
             </div>
         </div>
     </div>
     <script>
-    $("#payout_otp_form").submit(function() {
-    let i1 = $("#pinput1").val();
-    let i2 = $("#pinput2").val();
-    let i3 = $("#pinput3").val();
-    let i4 = $("#pinput4").val();
-    let i5 = $("#pinput5").val();
-    let i6 = $("#pinput6").val();
+//  $("#otp_submit").click( function () {
+    $("#otp_form").submit(function() {
+    let i1 = $("#input1").val();
+    let i2 = $("#input2").val();
+    let i3 = $("#input3").val();
+    let i4 = $("#input4").val();
+    let i5 = $("#input5").val();
+    let i6 = $("#input6").val();
     let otp = i1.toString() + i2.toString() + i3.toString() + i4.toString() + i5.toString() + i6.toString();
     console.log(otp);
     $("#mobile_otp").val(otp);
 });
 
-const inputs = ["pinput1", "pinput2", "pinput3", "pinput4", "pinput5", "pinput6"];
+const inputs = ["input1", "input2", "input3", "input4", "input5", "input6"];
 
 inputs.map((id) => {
     const input = document.getElementById(id);
