@@ -148,6 +148,12 @@ $('.verify_Account_checkbox').change(function(){
         $('.account_holder_name').hide();
         $('.bank_ifsc').hide();
         $('.add_or_verify_submit_btn').text('Verify Account');
+        if($('#payout_ifsc_code').val() != ''){
+            $('.bank_ifsc').hide();
+        }
+        else{
+            $('.bank_ifsc').show();
+        }
     }
     else{
         $('.account_holder_name').show();
@@ -179,4 +185,100 @@ $('.add_or_verify_submit_btn').click(function(){
             $('.loader-section').fadeOut('slow');
         }
     });
+});
+
+$("#add_account").click(function(){
+    $('.loader-section').fadeIn('slow');
+    $.ajax({
+        url: "bank_list",
+        method:"GET",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            $.each(data, function(key, value) {   
+                $('#payout_bank_list')
+                    .append($("<option></option>")
+                               .attr("value", value['ifsc_code'])
+                               .attr("data-set", value['bank_code'])
+                               .text(value['bank_name'])); 
+                
+           });
+           let payout_ifsc_code = "";
+           $("#payout_bank_list").change(function () {
+            payout_ifsc_code = $('#payout_bank_list').find("option:selected").val(); 
+            $('#payout_ifsc_code').val(payout_ifsc_code != "" ?payout_ifsc_code : ""); 
+            if($('#payout_ifsc_code').val() != ''){
+                $('.bank_ifsc').hide();
+            }
+            else{
+                $('.bank_ifsc').show();
+            }
+            });
+           $('#payout_add_or_verify_Account').modal('show');
+           $('.loader-section').fadeOut('slow');
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+            $('.loader-section').fadeOut('slow');
+        }
+    });
+});
+
+$('#payout_add_or_verify_account_model_close').click(function () {
+    $('#payout_bank_list').val('');
+    $('#payout_ifsc_code').val('');
+    $('#payout_account_number').val('');
+    $('#payout_account_holder_name').val('');
+});
+
+let mobile_check = "";
+
+$("#payout_mobile_number").on("keyup change", function(e) {
+    if($('#payout_mobile_number').val().length > 9 ){
+        $('#payout_mobile_number').removeClass('validation');
+        $('#mobile_check').hide();
+        mobile_check = true;
+    }else if($('#payout_mobile_number').val().length == 0 ){
+        $('#payout_mobile_number').addClass('validation');
+        $('#mobile_check').show();
+        $('#mobile_check').html("Mobile Number is required*");
+        mobile_check = false;
+        $('#payout_mobile_number').focus();
+    }else{
+        $('#payout_mobile_number').addClass('validation');
+        $('#mobile_check').show();
+        $('#mobile_check').html("Mobile Number must be 10 digit");
+        mobile_check = false;
+        $('#payout_mobile_number').focus();
+    }
+});
+
+function mobile(){
+	if($('#payout_mobile_number').val().length > 9 ){
+		$('#payout_mobile_number').removeClass('validation');
+		$('#mobile_check').hide();
+		mobile_check = true;
+	}else if($('#payout_mobile_number').val().length == 0 ){
+		$('#payout_mobile_number').addClass('validation');
+		$('#mobile_check').show();
+		$('#mobile_check').html("Mobile Number is required*");
+		mobile_check = false;
+		$('#payout_mobile_number').focus();
+	}else{
+		$('#payout_mobile_number').addClass('validation');
+		$('#mobile_check').show();
+		$('#mobile_check').html("Mobile Number must be 10 digit");
+		mobile_check = false;
+		$('#payout_mobile_number').focus();
+	}
+}
+
+$('#payout_mobile_number_login').click( function () {
+    mobile();
+	if ( mobile_check == true ) {
+        return true;
+    }else{
+        return false;
+    }
 });

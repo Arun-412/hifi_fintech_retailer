@@ -26,32 +26,36 @@ class KycController extends Controller
     }
 
     public function curl_post($data) {
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL =>  $this->Base_URL.$data['url'],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_POST => true,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $data['data'],
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/x-www-form-urlencoded',
-            ),
-        ));
-        $responses = curl_exec($curl);
-        $err = curl_error($curl);
-        $response = 'Something went wrong from sending values for kyc';
-        if ($err) {
-            $response = $err;
-        }else{
-            $response = $responses;
+        try{
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL =>  $this->Base_URL.$data['url'],
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_POST => true,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => $data['data'],
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/x-www-form-urlencoded',
+                ),
+            ));
+            $responses = curl_exec($curl);
+            $err = curl_error($curl);
+            $response = 'Something went wrong from sending values for kyc';
+            if ($err) {
+                $response = "Something went wrong in KYC verification";
+            }else{
+                $response = $responses;
+            }
+            curl_close($curl);
+            return json_decode($response);    
+        }catch(\Throwable $e){
+            return $e->getmessage();
         }
-        curl_close($curl);
-        return json_decode($response);    
     }
     
     public function kyc_pan_address_verify(Request $request) {
@@ -92,12 +96,9 @@ class KycController extends Controller
                     );
                     $Pan_address = $this->curl_post($data);
                     if($Pan_address->status == true){
-                        $update_kyc = Auth::user(); 
-                        $update_kyc->kyc_status = "HFY";
-                        $update_kyc->save();
                         return redirect('dashboard')->with("success",$Pan_address->message);
                     }else{
-                        return back()->withInput()->with("failed",$Pan_address->message);
+                        return back()->withInput()->with("failed",$Pan_address);
                     }
                 }
             }

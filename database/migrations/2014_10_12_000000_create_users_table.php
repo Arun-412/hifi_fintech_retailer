@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('kyc_status');
+            $table->string('service_status')->nullable();
+            $table->string('provider_status')->nullable();
+            $table->string('provider_response')->nullable();
             $table->string('door_mode');
             $table->string('door_opened_by');
             $table->string('door_status');
