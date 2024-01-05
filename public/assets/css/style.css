@@ -1034,6 +1034,9 @@ img.profile-icon.me-2.dropdown-toggle {
     position: relative;
     display: block;
 }
+/* .navbar-nav li.nav-item a i.bi {
+    margin-right: 5px;
+} */
 .navbar-nav li.nav-item a i.bi {
     margin-right: 5px;
 }
