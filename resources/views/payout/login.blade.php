@@ -18,7 +18,7 @@
            
           <?php $l = json_decode(Auth::user()->service_status);  if(isset($l) && isset($l->payout) && $l->payout == "HFY") { ?>
                     <h4 style="margin-bottom: 20px;">Payout</h4>
-                    <form action="{{route('transaction_user_login')}}" method="post"> @csrf 
+                    <form action="{{route('transaction_user_login')}}" method="get"> @csrf 
                         <!-- Button trigger modal -->
                         <div class="mb-3 form-inputs">
                             <label for="exampleFormControlInput1" class="form-label">Mobile Number</label>

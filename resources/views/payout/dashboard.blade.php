@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@if(session('success'))
 <section style="margin-top: 94px;margin-bottom: 40px;padding: 0px 30px;">
     <div class="container-fluid">
         <div class="row">
@@ -122,14 +123,15 @@
                     <table id="payout_accounts_list" class="table display nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">Verification Status</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Bank Name</th>
                                 <th scope="col">Account Number</th>
+                                <th scope="col">Verification Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if(session('success')!=1)
                             <tr>
                                 <td style="color:green;"><i class="verify-icon bi bi-person-fill-check"></i>Verified</td>
                                 <td>Hifi Money</td>
@@ -141,6 +143,7 @@
                                         type="button"><i class="bi bi-cash-stack"></i>Pay</button>
                                 </td>
                             </tr>
+                            @endif
                         </tbody>
                     </table>
                     <div class="modal fade payout-model" id="exampleModal" tabindex="-1"
@@ -344,4 +347,7 @@
     </div>
     </div>
 </section>
+@else
+<script>window.location.replace("/payout/");</script>
+@endif
 @endsection
