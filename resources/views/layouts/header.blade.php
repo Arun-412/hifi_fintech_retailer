@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
 </head>
 <body>
-        <div class="loader-section">
+    <div class="loader-section">
         <div class="payment-loader">
             <div class="pad">
                 <div class="chip"></div>
@@ -38,4 +38,36 @@
             </div>
         </div>
     </div>
+    <section>
+        <div style="position: absolute; top: 70px; right: 10px;">  
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" id="t_pending">      
+                <div class="toast-header"> 
+                    <i class="bi bi-patch-question-fill fa-lg" style="padding:0px 5px 0px 0px"></i>
+                    <strong class="mr-auto">Pending</strong>
+                </div>
+                <div class="toast-body" id="t_pending_body">
+                </div>
+            </div>
+        </div>
+        <div style="position: absolute; top: 70px; right: 10px;">  
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" id="t_success">      
+                <div class="toast-header"> 
+                    <i class="bi bi-patch-check-fill fa-lg" style="padding:0px 5px 0px 0px"></i>
+                    <strong class="mr-auto">Success</strong>
+                </div>
+                <div class="toast-body" id="t_success_body" style="color:white;">
+                </div>
+            </div>
+        </div>
+        <div style="position: absolute; top: 70px; right: 10px;">  
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" id="t_failed">      
+                <div class="toast-header"> 
+                    <i class="bi bi-patch-exclamation-fill fa-lg" style="padding:0px 5px 0px 0px"></i>
+                    <strong class="mr-auto">Failed</strong>
+                </div>
+                <div class="toast-body" id="t_failed_body" style="color:white;">
+                </div>
+            </div>
+        </div>
+    </section>
   

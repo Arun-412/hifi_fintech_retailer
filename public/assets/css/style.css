@@ -1044,9 +1044,22 @@ img.profile-icon.me-2.dropdown-toggle {
     border: 2px solid red !important;
     border-radius: 6px;
 }
-#mobile_check
+#mobile_check,
+#account_number_check,
+#payout_bank_list_check,
+#payout_ifsc_code_check,
+#name_check
 {
     color:red;
     font-size: 13px;
     font-weight: 700;
+}
+#t_pending{
+    background-color:#F4BC37;
+}
+#t_success{
+    background-color:#02A94C;
+}
+#t_failed{
+    background-color:#E00123;
 }
