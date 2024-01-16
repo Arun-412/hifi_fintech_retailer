@@ -14,6 +14,7 @@ class stoneseeds extends Model
         'ifsc_code',
         'account_number',
         'account_holder_name',
+        'verification_response',
         'verification_status',
         'account_status',
         'created_by',

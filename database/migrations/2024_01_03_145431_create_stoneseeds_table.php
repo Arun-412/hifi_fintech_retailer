@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('ifsc_code');
             $table->string('account_number')->unique();
             $table->string('account_holder_name');
+            $table->string('verification_response')->nullable();
             $table->string('verification_status');
             $table->string('account_status');
             $table->string('created_by')->nullable();

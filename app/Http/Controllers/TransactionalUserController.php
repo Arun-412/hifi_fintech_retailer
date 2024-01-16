@@ -27,8 +27,12 @@ class TransactionalUserController extends Controller
                 if(transactional_user::where(['mobile_number'=>$request->mobile_number])->exists()){
                     $user = transactional_user::select('user_code')->where(['mobile_number'=>$request->mobile_number])->first();
                     $accounts_list = $this->user_accounts($user_code = $user->user_code);
-                    // return $accounts_list ? $accounts_list : 0;
-                    return redirect('payout/dashboard')->with("success",$accounts_list ? $accounts_list : 1);
+                    if($accounts_list){
+                        return redirect('payout/dashboard')->with("success",$accounts_list);
+                    }   
+                    else{
+                        return redirect('payout/dashboard')->with("failed",0);
+                    }
                 }
                 else{
                     $user_access = transactional_user::create([
@@ -52,26 +56,32 @@ class TransactionalUserController extends Controller
 
     public function user_accounts($user_code) {
         try{
-            $accounts = sandstone::select('account_code')->where(['user_code'=>$user_code])->get();   
-            $accounts_ids = [];
-            foreach($accounts as $key=>$value){
-                if($value->account_code != ""){
-                    array_push($accounts_ids,$value->account_code);
-                    continue;
+            if(sandstone::select('account_code')->where(['user_code'=>$user_code])->exists()){
+                $accounts = sandstone::select('account_code')->where(['user_code'=>$user_code])->get();   
+                $accounts_ids = [];
+                foreach($accounts as $key=>$value){
+                    if($value->account_code != ""){
+                        array_push($accounts_ids,$value->account_code);
+                        continue;
+                    }
+                    else{
+                        break;
+                    }
                 }
-                else{
-                    break;
+                $accounts_list = [];
+                if($accounts_ids != ''){
+                    foreach($accounts_ids as $key=>$value){
+                        $account = stoneseeds::where(['account_code'=>$value])->first();
+                        array_push($accounts_list,$account);
+                    }
                 }
+                return $accounts_list;    
             }
-            $accounts_list = [];
-            if($accounts_ids != ''){
-                foreach($accounts_ids as $key=>$value){
-                    $account = stoneseeds::where(['account_code'=>$value])->first();
-                    array_push($accounts_list,$account);
-                }
+            else{
+                return;
             }
-            return $accounts_list;
-        }catch(\Throwable $e){
+        }
+        catch(\Throwable $e){
             return back()->with("failed",$e->getmessage());
         }
     }

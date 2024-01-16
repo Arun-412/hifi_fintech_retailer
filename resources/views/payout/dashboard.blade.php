@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-@if(session('success'))
 <section style="margin-top: 94px;margin-bottom: 40px;padding: 0px 30px;">
     <div class="container-fluid">
         <div class="row">
@@ -52,27 +51,31 @@
                                             aria-label="Default select example" id="payout_bank_list">
                                             <option selected disabled>Select Bank Name</option>
                                         </select>
+                                        <p id="payout_bank_list_check"></p>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label bank_ifsc">IFSC
                                                 Code</label>
                                             <input type="text" name="bank_ifsc" value="" autofocus required
-                                                minlength="10" placeholder="IFSC Code" class="form-control bank_ifsc"
+                                                minlength="11" maxlength="11" placeholder="IFSC Code" class="form-control bank_ifsc"
                                                 id="payout_ifsc_code" autocomplete="off">
+                                                <p id="payout_ifsc_code_check"></p>
                                         </div>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label">Account
                                                 Number</label>
                                             <input type="text" name="mobile_number" value="" autofocus required
-                                                minlength="10" placeholder="Account Number" class="form-control"
+                                                minlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Account Number" class="form-control"
                                                 id="payout_account_number" autocomplete="off">
+                                                <p id="account_number_check"></p>
                                         </div>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1"
                                                 class="form-label account_holder_name">Name</label>
                                             <input type="text" name="account_holder_name" autofocus required
-                                                minlength="10" placeholder="Name"
+                                                minlength="3" maxlength="20" placeholder="Name"
                                                 class="form-control account_holder_name" id="payout_account_holder_name"
                                                 autocomplete="off">
+                                                <p id="name_check"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +106,7 @@
                                     <div style="margin:25px 25px;padding:0px 20px;">
                                         <div style="text-align: center;">
                                             <img style="margin-bottom:20px;" src="{{asset('assets/images/verification.png')}}">
-                                            <h5 class="text-center text-success">HIFI FINTECH</h5>
+                                            <h5 class="text-center text-success" id="verified_name"></h5>
                                         </div>
                                             <div style="display:flex;margin: auto;padding:20px 0px;">
                                                 <button type="button" class="btn btn-secondary"><i class="bi bi-person-add"></i> Add Account</button>
@@ -131,18 +134,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(session('success')!=1)
+
+                            @if(session('success'))
+                            @foreach(session('success') as $key=>$value)
                             <tr>
+                                <td>{{$value['account_holder_name']}}</td>
+                                <td>{{$value['bank_name']}}</td>
+                                <td>{{$value['account_number']}}</td>
+                                @if($value['verification_status'] == "HFY")
                                 <td style="color:green;"><i class="verify-icon bi bi-person-fill-check"></i>Verified</td>
-                                <td>Hifi Money</td>
-                                <td>HDFC Bank</td>
-                                <td>2003020001020</td>
+                                @else
+                                <td><button class="btn-pay" type="button">Verify Account</button></td>
+                                @endif 
                                 <td><button class="btn-reject" type="button"><i
                                             class="bi bi-trash3-fill"></i>Delete</button>
                                     <button class="btn-pay" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                         type="button"><i class="bi bi-cash-stack"></i>Pay</button>
                                 </td>
                             </tr>
+                            @endforeach
                             @endif
                         </tbody>
                     </table>
@@ -347,7 +357,4 @@
     </div>
     </div>
 </section>
-@else
-<script>window.location.replace("/payout/");</script>
-@endif
 @endsection

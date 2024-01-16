@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use DB;
+use App\Models\stoneseeds;
+use App\Models\bank_list;
 
 class PayoutController extends Controller
 {
@@ -143,14 +144,38 @@ class PayoutController extends Controller
 
     public function bank_list(Request $request){
         try{
-            $bank_list = DB::table('bank_list')->where(['bank_status'=>"HFY"])->orderBy('bank_name','ASC')->get();
-            return response()->json($bank_list);
+            $bank_list = bank_list::where(['bank_status'=>"HFY"])->orderBy('bank_usage','DESC')->orderBy('bank_name','ASC')->get();
+            return response()->json(['status'=>true,'message'=>$bank_list]);
         }catch(\Throwable $e){
-            return $e->getmessage();
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
+        }
+    }
+
+    public function verify_account(Request $request) {
+        try{
+            $validate = Validator::make($request->all(), [
+                'bank_name' => 'required|string|max:50',
+                'ifsc_code' => 'required|string|max:11|min:11',
+                'account_number' => 'required|min:8|numeric',
+            ],);
+            if($validate->fails()){
+                return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            }
+            else{
+                if(stoneseeds::where(['account_number'=>$request->account_number,'bank_name'=>'cnrb','verification_status'=>"HFY"])->exists()){
+                    $account = stoneseeds::where(['account_number'=>$request->account_number,'bank_name'=>'cnrb','verification_status'=>"HFY"])->first();
+                    return response()->json(['status'=>true,'message'=>$account->account_holder_name]);
+                }
+                else{
+                    return response()->json(['status'=>false,'message'=>"No"]);
+                }
+            }
+        }catch(\Throwable $e){
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
         }
     }
 
     public function add_account(Request $request) {
-        return response()->json('success');
+        return $request->all();
     }
 }
