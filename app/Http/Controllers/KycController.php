@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Support\Facades\Artisan;
 
 class KycController extends Controller
 {
@@ -80,6 +81,10 @@ class KycController extends Controller
                     return back()->withInput()->with("failed","Aadhar Number already Taken use different one to complete your KYC");
                 }
                 else{
+                    if(empty($this->Access_Key)){
+                        Artisan::call('config:clear');
+                        return back()->withInput()->with("failed","Try again");
+                    }
                     $data = array(
                         "url"=>'kyc/pan_address',
                         "data"=>

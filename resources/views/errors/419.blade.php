@@ -16,3 +16,7 @@
         <p>&mdash; The Team</p>
     </div>
 </article>
+
+<script>
+window.location = host;
+</script>

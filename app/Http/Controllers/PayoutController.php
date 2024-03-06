@@ -167,7 +167,17 @@ class PayoutController extends Controller
                     return response()->json(['status'=>true,'message'=>$account->account_holder_name]);
                 }
                 else{
-                    return response()->json(['status'=>false,'message'=>"No"]);
+                    $data = array(
+                        "url"=>'bank_account_verify',
+                        "data"=>
+                            'ifsc_code=CNRB0003437'.
+                            '&account_number=32332323233232'. 
+                            '&token='.$this->Access_Key
+                        ,
+                    );
+                    $verified_account = $this->curl_post($data);
+                    return $verified_account;
+                    return response()->json(['status'=>false,'message'=>$verified_account]);
                 }
             }
         }catch(\Throwable $e){
