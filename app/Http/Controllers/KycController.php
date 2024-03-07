@@ -103,7 +103,7 @@ class KycController extends Controller
                     if($Pan_address->status == true){
                         return redirect('dashboard')->with("success",$Pan_address->message);
                     }else{
-                        return back()->withInput()->with("failed",$Pan_address);
+                        return back()->withInput()->with("failed",$Pan_address->message);
                     }
                 }
             }
