@@ -62,7 +62,7 @@ class PayoutController extends Controller
                 return back()->with("failed","Complete your KYC to Activate this service");
             }
             else{
-                if(env("API_ACCESS_MODE") == "LIVE"){
+                if(env("EKO_MODE") == "LIVE"){
                     $service = json_decode(Auth::user()->service_status);
                     if(empty($service->payout)){
                         $provider = json_decode(Auth::user()->provider_status);
