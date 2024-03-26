@@ -85,8 +85,14 @@ $current_path = dynamicActiveLink(Request::path());
                         </div>
                         <div>
                             <p>Wallet Balance</p>
-                            <p>₹0.00</p>
-                            <!-- <p>₹{{Auth::user()->awards}}</p> -->
+                            <!-- <p>₹0.00</p> -->
+                            <p>₹{{ Auth::user()->awards }}
+                                <?php 
+                                if(Auth::user()->awards_hold > 0){ ?>
+                                    <span style="color:red;">{{ " + " . Auth::user()->awards_hold}}</span>
+                               <?php }
+                                ?>
+                            </p>
                         </div>
                     </div>
                     <img class="notify-icon me-2" src="{{asset('assets/images/notification.png')}}" data-toggle="tooltip" data-placement="top" title="Notifications">
