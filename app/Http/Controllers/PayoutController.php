@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\stoneseeds;
 use App\Models\bank_list;
+use Artisan;
 
 class PayoutController extends Controller
 {
@@ -28,6 +29,7 @@ class PayoutController extends Controller
     }
 
     public function curl_post($data) {
+        // return $this->Base_URL;
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL =>  $this->Base_URL.$data['url'],
@@ -53,7 +55,7 @@ class PayoutController extends Controller
             $response = $responses;
         }
         curl_close($curl);
-        return json_decode($response);    
+        return $response;    die;
     }
 
     public function activate_payout (Request $request) {
@@ -153,33 +155,38 @@ class PayoutController extends Controller
 
     public function verify_account(Request $request) {
         try{
-            $validate = Validator::make($request->all(), [
-                'bank_name' => 'required|string|max:50',
-                'ifsc_code' => 'required|string|max:11|min:11',
-                'account_number' => 'required|min:8|numeric',
-            ],);
-            if($validate->fails()){
-                return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
-            }
-            else{
-                if(stoneseeds::where(['account_number'=>$request->account_number,'bank_name'=>'cnrb','verification_status'=>"HFY"])->exists()){
-                    $account = stoneseeds::where(['account_number'=>$request->account_number,'bank_name'=>'cnrb','verification_status'=>"HFY"])->first();
-                    return response()->json(['status'=>true,'message'=>$account->account_holder_name]);
-                }
-                else{
-                    $data = array(
-                        "url"=>'bank_account_verify',
-                        "data"=>
-                            'ifsc_code=CNRB0003437'.
-                            '&account_number=32332323233232'. 
-                            '&token='.$this->Access_Key
-                        ,
-                    );
-                    $verified_account = $this->curl_post($data);
-                    return $verified_account;
-                    return response()->json(['status'=>false,'message'=>$verified_account]);
-                }
-            }
+            // $validate = Validator::make($request->all(), [
+            //     'bank_name' => 'required|string|max:50',
+            //     'ifsc_code' => 'required|string|max:11|min:11',
+            //     'account_number' => 'required|min:8|numeric',
+            // ],);
+            // if($validate->fails()){
+            //     return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            // }
+            // else{
+                // if(stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->exists()){
+                //     $account = stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->first();
+                //     return response()->json(['status'=>true,'message'=>$account->account_holder_name]);
+                // }
+                // else{
+                    if(empty($this->Access_Key)){
+                        Artisan::call('config:clear');
+                        return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
+                    }else{
+                        $data = array(
+                            "url"=>'bank_account_verify',
+                            "data"=>
+                                'ifsc_code=CNRB0003437'.
+                                '&account_number=32332323233232'. 
+                                '&token='.$this->Access_Key
+                            ,
+                        );
+                        $verified_account = $this->curl_post($data);
+                        return $verified_account;
+                    }
+                    // return response()->json(['status'=>false,'message'=>$verified_account]);
+                // }
+            // }
         }catch(\Throwable $e){
             return response()->json(['status'=>false,'message'=>$e->getmessage()]);
         }
