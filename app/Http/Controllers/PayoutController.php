@@ -75,7 +75,7 @@ class PayoutController extends Controller
                         '&token='.$this->Access_Key
                     ,
                 );
-                $bank = json_decode($this->curl_post($data));
+                $bank = $this->curl_post($data);
                 if($bank->status == true){
                     return response()->json(['status'=>true,'message'=>$bank->message]);
                 }
