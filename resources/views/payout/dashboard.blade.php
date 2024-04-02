@@ -82,8 +82,8 @@
                                 <div class="modal-footer">
                                     <div style="margin-bottom:15px" class="form-check form-check-inline">
                                         <input class="form-check-input verify_Account_checkbox" checked type="checkbox"
-                                            id="inlineCheckbox1">
-                                        <label class="form-check-label" for="inlineCheckbox1"><small style="font-weight:400;font-size:14px;">Verify account
+                                            id="inlineCheckbox1"/>
+                                        <label class="form-label"><small id="account_verify_error" style="font-weight:400;font-size:14px;">Verify account
                                                 holder name(₹4 / FREE for eligible accounts)</small></label>
                                     </div>
                                     <button type="button" style="width:100%;"

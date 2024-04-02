@@ -29,7 +29,6 @@ class PayoutController extends Controller
     }
 
     public function curl_post($data) {
-        // return $this->Base_URL;
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL =>  $this->Base_URL.$data['url'],
@@ -56,6 +55,34 @@ class PayoutController extends Controller
         }
         curl_close($curl);
         return $response;    die;
+    }
+
+    public function get_bank (Request $request) {
+        try{
+            if(empty($this->Access_Key)){
+                Artisan::call('config:clear');
+                return response()->json(['status'=>false,'message'=>"Try Again"]);
+            }
+            else{
+                $data = array(
+                    "url"=>'Get_Banks_List',
+                    "data"=>
+                        'bank_code='.$request->bank_code.
+                        '&token='.$this->Access_Key
+                    ,
+                );
+                $bank = json_decode($this->curl_post($data));
+                if($bank->status == true){
+                    return response()->json(['status'=>true,'message'=>$bank->message]);
+                }
+                else{
+                    return response()->json(['status'=>false,'message'=>$bank->message]);
+                }
+            }
+        }
+        catch(\Throwable $e){
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
+        }
     }
 
     public function activate_payout (Request $request) {
@@ -169,6 +196,7 @@ class PayoutController extends Controller
                 //     return response()->json(['status'=>true,'message'=>$account->account_holder_name]);
                 // }
                 // else{
+                    return response()->json(['status'=>false,'message'=>"Verify account not available"]);
                     if(empty($this->Access_Key)){
                         Artisan::call('config:clear');
                         return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
@@ -176,8 +204,8 @@ class PayoutController extends Controller
                         $data = array(
                             "url"=>'bank_account_verify',
                             "data"=>
-                                'ifsc_code=CNRB0003437'.
-                                '&account_number=32332323233232'. 
+                                'ifsc_code=CNRB'.
+                                '&account_number=3437108001565'. 
                                 '&token='.$this->Access_Key
                             ,
                         );

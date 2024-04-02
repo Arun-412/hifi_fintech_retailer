@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class bank_list extends Model
 {
     use HasFactory;
+    protected $table = 'bank_list';
     protected $fillable = [
         'ifsc_code',
         'bank_usage'
