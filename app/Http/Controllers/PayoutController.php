@@ -29,32 +29,36 @@ class PayoutController extends Controller
     }
 
     public function curl_post($data) {
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL =>  $this->Base_URL.$data['url'],
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_POST => true,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $data['data'],
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/x-www-form-urlencoded',
-            ),
-        ));
-        $responses = curl_exec($curl);
-        $err = curl_error($curl);
-        $response = 'Something went wrong from sending values for activation';
-        if ($err) {
-            $response = $err;
-        }else{
-            $response = $responses;
-        }
-        curl_close($curl);
-        return $response;    die;
+        try{
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL =>  $this->Base_URL.$data['url'],
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_POST => true,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => $data['data'],
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/x-www-form-urlencoded',
+                ),
+            ));
+            $responses = curl_exec($curl);
+            $err = curl_error($curl);
+            $response = 'Something went wrong from sending values for activation';
+            if ($err) {
+                $response = $err;
+            }else{
+                $response = $responses;
+            }
+            curl_close($curl);
+            return json_decode($response);
+        }catch(\Throwable $e){
+            return $e->getmessage();
+        }  
     }
 
     public function get_bank (Request $request) {
@@ -195,8 +199,8 @@ class PayoutController extends Controller
                 //     $account = stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->first();
                 //     return response()->json(['status'=>true,'message'=>$account->account_holder_name]);
                 // }
-                // else{
-                    return response()->json(['status'=>false,'message'=>"Verify account not available"]);
+                // else{8870778821
+                    // return response()->json(['status'=>false,'message'=>"Verify account not available"]);
                     if(empty($this->Access_Key)){
                         Artisan::call('config:clear');
                         return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
@@ -204,13 +208,20 @@ class PayoutController extends Controller
                         $data = array(
                             "url"=>'bank_account_verify',
                             "data"=>
-                                'ifsc_code=CNRB'.
-                                '&account_number=3437108001565'. 
-                                '&token='.$this->Access_Key
-                            ,
+                                'bank_code=HDFC'.
+                                '&account_number=50100524031051'. 
+                                '&token='.$this->Access_Key.
+                                '&customer=HFYfjjdVFieoi'.
+                                '&customer_id=6383224535'.
+                                '&user='.Auth::user()->door_code
                         );
                         $verified_account = $this->curl_post($data);
-                        return $verified_account;
+                        if($verified_account->status == 'success'){
+                            return response()->json(['status'=>true,'message'=>$verified_account->message]);
+                        }
+                        else{
+                            return response()->json(['status'=>false,'message'=>$verified_account->message]);
+                        }
                     }
                     // return response()->json(['status'=>false,'message'=>$verified_account]);
                 // }
