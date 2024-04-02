@@ -363,7 +363,6 @@ $('.add_or_verify_submit_btn').click(function(){
             ifsc_code_check == true;
         }
         if ( account_number_check == true && bank_list_check == true && ifsc_code_check == true) {
-            alert();
             $('.loader-section').fadeIn('slow');
             $.ajax({
                 url: "verify_account",
