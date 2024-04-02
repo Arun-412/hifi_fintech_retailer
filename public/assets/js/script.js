@@ -142,12 +142,14 @@ $(document).ready(function(){
 
 });
 
+let ifsc_status = false;
+
 $('.verify_Account_checkbox').change(function(){
     if(this.checked){
         $('.account_holder_name').hide();
         $('.bank_ifsc').hide();
         $('.add_or_verify_submit_btn').text('Verify Account');
-        if($('#payout_ifsc_code').val() != ''){
+        if(ifsc_status == false){
             $('.bank_ifsc').hide();
         }
         else{
@@ -156,7 +158,6 @@ $('.verify_Account_checkbox').change(function(){
     }
     else{
         $('.account_holder_name').show();
-        $('.bank_ifsc').show();
         $('.add_or_verify_submit_btn').text('Add Account');
     }
 });
@@ -360,7 +361,7 @@ $('.add_or_verify_submit_btn').click(function(){
             ifsc_code();
         }
         else{
-            ifsc_code_check == true;
+            ifsc_code_check = true;
         }
         if ( account_number_check == true && bank_list_check == true && ifsc_code_check == true) {
             $('.loader-section').fadeIn('slow');
@@ -389,8 +390,12 @@ $('.add_or_verify_submit_btn').click(function(){
                     }
                 },
                 error: function (xhr, status, error) {
-                    $('#t_failed_body').text(error);
+                    var message = xhr['responseText'];
+                    message = JSON.parse(message);
+                    message= message['message'];
+                    $('#t_failed_body').text(message);
                     $('#t_failed').toast('show');
+                    $('#payout_add_or_verify_Account').modal('hide');
                     $('.loader-section').fadeOut('slow');
                 }
             });
@@ -429,8 +434,12 @@ $('.add_or_verify_submit_btn').click(function(){
                    $('.loader-section').fadeOut('slow');
                 },
                 error: function (xhr, status, error) {
-                    $('#t_failed_body').text(error);
+                    var message = xhr['responseText'];
+                    message = JSON.parse(message);
+                    message= message['message'];
+                    $('#t_failed_body').text(message);
                     $('#t_failed').toast('show');
+                    $('#payout_add_or_verify_Account').modal('hide');
                     $('.loader-section').fadeOut('slow');
                 }
             });
@@ -468,7 +477,10 @@ $("#add_account").click(function(){
             }
         },
         error: function (xhr, status, error) {
-            $('#t_failed_body').text(error);
+            var message = xhr['responseText'];
+            message = JSON.parse(message);
+            message= message['message'];
+            $('#t_failed_body').text(message);
             $('#t_failed').toast('show');
             $('.loader-section').fadeOut('slow');
         }
@@ -487,7 +499,6 @@ $("#payout_bank_list").change(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            console.log(data);
             if(data['status'] == true){
                 if(data['message']['data']['isverificationavailable'] == 0) {
                     $('.verify_Account_checkbox').prop('checked', false);
@@ -505,10 +516,12 @@ $("#payout_bank_list").change(function () {
                 }
                 if(data['message']['data']['ifsc_status'] == 2 || data['message']['data']['ifsc_status'] == 4){
                     $('.bank_ifsc').prop('disabled',false);
+                    ifsc_status = true;
                     $('.bank_ifsc').show();
                 }
                 else{
                     $('.bank_ifsc').prop('disabled',true);
+                    ifsc_status = false;
                     $('.bank_ifsc').hide();
                 }
                 $('.loader-section').fadeOut('slow');
@@ -520,8 +533,12 @@ $("#payout_bank_list").change(function () {
             }
         },
         error: function (xhr, status, error) {
-            $('#t_failed_body').text(error);
+            var message = xhr['responseText'];
+            message = JSON.parse(message);
+            message= message['message'];
+            $('#t_failed_body').text(message);
             $('#t_failed').toast('show');
+            $('#payout_add_or_verify_Account').modal('hide');
             $('.loader-section').fadeOut('slow');
         }
     });
