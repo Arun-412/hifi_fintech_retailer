@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/payout_user', [PayoutController::class, 'payout_user'])->name('payout_user');
         Route::post('/add_account', [PayoutController::class, 'add_account'])->name('add_account');
         Route::post('/verify_account', [PayoutController::class, 'verify_account'])->name('verify_account');
+        Route::post('/add_verified_account', [PayoutController::class, 'add_verified_account'])->name('add_verified_account');
         Route::get('/bank_list', [PayoutController::class, 'bank_list'])->name('bank_list');
         Route::post('/get_bank',[PayoutController::class, 'get_bank'])->name('get_bank');
         Route::get('/login', [TransactionalUserController::class, 'user_login'])->name('transaction_user_login');

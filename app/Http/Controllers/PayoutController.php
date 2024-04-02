@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\stoneseeds;
+use App\Models\sandstone;
 use App\Models\bank_list;
 use Artisan;
 
@@ -194,16 +195,6 @@ class PayoutController extends Controller
             // if($validate->fails()){
             //     return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
             // }
-            // $account_map = new sandstone;
-            // $account_map->user_code = $request->customer;
-            // $account_map->account_code = $bank_account->account_code;
-            // $account_map->save();
-            // if($account_map->save()){
-            //     $account_verify = array("status"=>"success","message"=>"Account verified and added successfully");
-            // }
-            // else{
-            //     $account_verify = array("status"=>"failed","message"=>"Something went wrong in account adding");
-            // }
             // else{
                 // if(stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->exists()){
                 //     $account = stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->first();
@@ -237,6 +228,42 @@ class PayoutController extends Controller
                     // return response()->json(['status'=>false,'message'=>$verified_account]);
                 // }
             // }
+        }catch(\Throwable $e){
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
+        }
+    }
+
+    public function add_verified_account(Request $request) {
+        try{
+            $validate = Validator::make($request->all(), [
+                'code' => 'required|string|max:15',
+                'number' => 'required|string|max:15',
+            ],);
+            if($validate->fails()){
+                return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            }
+            else{
+                if(stoneseeds::where(['account_code'=>$request->code])->exists()){
+                    if(sandstone::where(['user_code'=>$request->number,'account_code'=>$request->code])->exists()){
+                        return response()->json(['status'=>false,'message'=>"Account already exists"]);
+                    }
+                    else{
+                        $account_map = new sandstone;
+                        $account_map->user_code = $request->number;
+                        $account_map->account_code = $request->code;
+                        $account_map->save();
+                        if($account_map->save()){
+                            return response()->json(['status'=>true,'message'=>"Account added successfully"]);
+                        }
+                        else{
+                            return response()->json(['status'=>false,'message'=>"Something went wrong in account adding"]);
+                        }
+                    }
+                }
+                else{
+                    return response()->json(['status'=>false,'message'=>"Account not found"]);
+                }
+            }
         }catch(\Throwable $e){
             return response()->json(['status'=>false,'message'=>$e->getmessage()]);
         }

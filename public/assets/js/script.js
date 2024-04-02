@@ -353,6 +353,42 @@ function account_name() {
 	}
 }
 
+$('#add_verified_account').click(function () { 
+    $.ajax({
+        url: "add_verified_account",
+        method:"POST",
+        data: { 
+            "code":$('#verify_id').val(),
+            "number":"HFYwei993jk",
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            if(data['status'] == true){
+                $('#t_success_body').text(data['message']);
+                $('#verified_account_name').modal('hide');
+                $('#t_success').toast('show');
+                $('.loader-section').fadeOut('slow');
+            }else{
+                $('#t_failed_body').text(data['message']);
+                $('#verified_account_name').modal('hide');
+                $('#t_failed').toast('show');
+                $('.loader-section').fadeOut('slow');
+            }
+        },
+        error: function (xhr, status, error) {
+            var message = xhr['responseText'];
+            message = JSON.parse(message);
+            message= message['message'];
+            $('#t_failed_body').text(message);
+            $('#t_failed').toast('show');
+            $('#payout_add_or_verify_Account').modal('hide');
+            $('.loader-section').fadeOut('slow');
+        }
+    });
+});
+
 $('.add_or_verify_submit_btn').click(function(){
     if($(".verify_Account_checkbox").prop('checked') == true){
         account_number();
@@ -382,6 +418,7 @@ $('.add_or_verify_submit_btn').click(function(){
                     if(data['status'] == true){
                         $('#payout_add_or_verify_Account').modal('hide');
                         $('#verified_name').text(data['name'].toUpperCase());
+                        $('#verify_id').val(data['code']);
                         $('#verified_account_name').modal('show');
                         $('.loader-section').fadeOut('slow');
                     }else{

@@ -107,9 +107,10 @@
                                         <div style="text-align: center;">
                                             <img style="margin-bottom:20px;" src="{{asset('assets/images/verification.png')}}">
                                             <h5 class="text-center text-success" id="verified_name"></h5>
+                                            <input type="hidden" id="verify_id" value="" />
                                         </div>
                                             <div style="display:flex;margin: auto;padding:20px 0px;">
-                                                <button type="button" class="btn btn-secondary"><i class="bi bi-person-add"></i> Add Account</button>
+                                                <button type="button" id="add_verified_account" class="btn btn-secondary"><i class="bi bi-person-add"></i> Add Account</button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                                                     aria-label="Close"><i class="bi bi-x"></i> Cancel</button>
                                             </div>
