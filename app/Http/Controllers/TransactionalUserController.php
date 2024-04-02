@@ -28,10 +28,14 @@ class TransactionalUserController extends Controller
                     $user = transactional_user::select('user_code')->where(['mobile_number'=>$request->mobile_number])->first();
                     $accounts_list = $this->user_accounts($user_code = $user->user_code);
                     if($accounts_list){
-                        return redirect('payout/dashboard')->with("success",$accounts_list);
+                        $data = array(
+                            "accounts"=>$accounts_list,
+                            "user"=>$user->user_code
+                        );
+                        return redirect('payout/dashboard')->with("success",$data);
                     }   
                     else{
-                        return redirect('payout/dashboard')->with("failed",0);
+                        return redirect('payout/dashboard')->with("failed",$user->user_code);
                     }
                 }
                 else{
@@ -43,7 +47,16 @@ class TransactionalUserController extends Controller
                     ]);
                     if($user_access){
                         $accounts_list = $this->user_accounts($user_code = $user_access->user_code);
-                        return view('payout/dashboard')->with("success",$accounts_list);
+                        if($accounts_list){
+                            $data = array(
+                                "accounts"=>$accounts_list,
+                                "user"=>$user_access->user_code
+                            );
+                            return redirect('payout/dashboard')->with("success",$data);
+                        }   
+                        else{
+                            return redirect('payout/dashboard')->with("failed",$user_access->user_code);
+                        }
                     }else{
                         return back()->with("failed","Unable to Register");
                     }

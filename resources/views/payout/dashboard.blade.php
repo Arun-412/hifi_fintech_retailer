@@ -5,34 +5,6 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-xs-12">
                 <div class="payout-box">
-                    <!-- <form action="">
-                    @csrf
-                    <input type="text" name="mobile_number" id="" placeholder="Mobile Number">
-                    <input type="button" value="Submit">
-                </form>
-                <hr>
-                <p>show in model</p>
-                <form action="">
-                    @csrf
-                    <select name="bank_name" id="">
-                        <option value="0" selected disabled>Select Bank Name</option>
-                        <option value="HDFC">HDFC Bank</option>
-                    </select>
-                    <input type="text" name="account_number" placeholder="Account Number" id="">
-                    <input type="text" name="name" placeholder="Name">
-                    <input type="checkbox" name="verify" id=""> <span>verify account(Charges ₹5+GST)</span>
-                    <button>Add Account</button>
-                </form>
-                <hr>
-                <p>model response if checked</p>
-                <form action="">
-                    @csrf
-                    <h6>NAMV FINTECH</h6>
-                    <input type="button" value="Add Account">
-                    <input type="button" value="Cancel">
-                </form>
-                <hr> -->
-
                     <!-- Modal -->
                     <div class="modal fade payout-model" id="payout_add_or_verify_Account" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
@@ -124,6 +96,11 @@
                         <button style="width:fit-content;" type="button" class="btn btn-primary" id="add_account"><i class="bi bi-person-fill-add"></i> Add/Verify Account
                         </button>
                     </div>
+                    @if(session('success'))
+                    <input type="hidden" id="customer_id" value="{{session('success')['user']}}" />
+                    @elseif(session('failed'))
+                    <input type="hidden" id="customer_id" value="{{session('failed')}}" />
+                    @endif
                     <table id="payout_accounts_list" class="table display nowrap" style="width:100%">
                         <thead>
                             <tr>
@@ -137,7 +114,7 @@
                         <tbody>
 
                             @if(session('success'))
-                            @foreach(session('success') as $key=>$value)
+                            @foreach(session('success')['accounts'] as $key=>$value)
                             <tr>
                                 <td>{{$value['account_holder_name']}}</td>
                                 <td>{{$value['bank_name']}}</td>
