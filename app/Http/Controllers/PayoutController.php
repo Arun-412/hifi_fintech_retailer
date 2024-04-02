@@ -194,6 +194,16 @@ class PayoutController extends Controller
             // if($validate->fails()){
             //     return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
             // }
+            // $account_map = new sandstone;
+            // $account_map->user_code = $request->customer;
+            // $account_map->account_code = $bank_account->account_code;
+            // $account_map->save();
+            // if($account_map->save()){
+            //     $account_verify = array("status"=>"success","message"=>"Account verified and added successfully");
+            // }
+            // else{
+            //     $account_verify = array("status"=>"failed","message"=>"Something went wrong in account adding");
+            // }
             // else{
                 // if(stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->exists()){
                 //     $account = stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->first();
@@ -208,16 +218,17 @@ class PayoutController extends Controller
                         $data = array(
                             "url"=>'bank_account_verify',
                             "data"=>
-                                'bank_code=HDFC'.
-                                '&account_number=50100524031051'. 
+                                '&bank_name='.$request->name.
+                                '&bank_code='.$request->code.
+                                '&account_number='.$request->number. 
                                 '&token='.$this->Access_Key.
-                                '&customer=HFYfjjdVFieoi'.
-                                '&customer_id=6383224535'.
+                                '&customer='.$request->token.
+                                '&customer_id='.$request->id.
                                 '&user='.Auth::user()->door_code
                         );
                         $verified_account = $this->curl_post($data);
                         if($verified_account->status == 'success'){
-                            return response()->json(['status'=>true,'message'=>$verified_account->message]);
+                            return response()->json(['status'=>true,'code'=>$verified_account->code,'name'=>$verified_account->name]);
                         }
                         else{
                             return response()->json(['status'=>false,'message'=>$verified_account->message]);

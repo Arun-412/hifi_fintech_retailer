@@ -369,9 +369,11 @@ $('.add_or_verify_submit_btn').click(function(){
                 url: "verify_account",
                 method:"POST",
                 data: { 
-                    "bank_name":$('#payout_bank_list').find(":selected").text(),
-                    "ifsc_code":$('#payout_bank_list').find(":selected").data('set'),
-                    "account_number":$('#payout_account_number').val(),
+                    "name":$('#payout_bank_list').find(":selected").text(),
+                    "code":$('#payout_bank_list').find(":selected").data('set'),
+                    "number":$('#payout_account_number').val(),
+                    "token":"HFYfjjdVFieoi",
+                    "id":"8870778821"
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -379,7 +381,7 @@ $('.add_or_verify_submit_btn').click(function(){
                 success: function (data) {
                     if(data['status'] == true){
                         $('#payout_add_or_verify_Account').modal('hide');
-                        $('#verified_name').text(data['message'].toUpperCase());
+                        $('#verified_name').text(data['name'].toUpperCase());
                         $('#verified_account_name').modal('show');
                         $('.loader-section').fadeOut('slow');
                     }else{
