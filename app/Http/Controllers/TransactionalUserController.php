@@ -27,15 +27,16 @@ class TransactionalUserController extends Controller
                 if(transactional_user::where(['mobile_number'=>$request->mobile_number])->exists()){
                     $user = transactional_user::select('user_code')->where(['mobile_number'=>$request->mobile_number])->first();
                     $accounts_list = $this->user_accounts($user_code = $user->user_code);
+                    $data = array(
+                        "user"=>$user->user_code,
+                        "mobile"=>$request->mobile_number
+                    );
                     if($accounts_list){
-                        $data = array(
-                            "accounts"=>$accounts_list,
-                            "user"=>$user->user_code
-                        );
+                        $data["accounts"]=$accounts_list;
                         return redirect('payout/dashboard')->with("success",$data);
                     }   
                     else{
-                        return redirect('payout/dashboard')->with("failed",$user->user_code);
+                        return redirect('payout/dashboard')->with("failed",$data);
                     }
                 }
                 else{
@@ -47,15 +48,16 @@ class TransactionalUserController extends Controller
                     ]);
                     if($user_access){
                         $accounts_list = $this->user_accounts($user_code = $user_access->user_code);
+                        $data = array(
+                            "mobile"=>$request->mobile_number,
+                            "user"=>$user_access->user_code
+                        );
                         if($accounts_list){
-                            $data = array(
-                                "accounts"=>$accounts_list,
-                                "user"=>$user_access->user_code
-                            );
+                            $data['accounts'] = $accounts_list;
                             return redirect('payout/dashboard')->with("success",$data);
                         }   
                         else{
-                            return redirect('payout/dashboard')->with("failed",$user_access->user_code);
+                            return redirect('payout/dashboard')->with("failed",$data);
                         }
                     }else{
                         return back()->with("failed","Unable to Register");

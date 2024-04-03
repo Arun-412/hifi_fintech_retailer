@@ -359,14 +359,14 @@ $('#add_verified_account').click(function () {
         method:"POST",
         data: { 
             "code":$('#verify_id').val(),
-            "number":"HFYwei993jk",
+            "number":$('#customer_id').val(),
         },
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
             if(data['status'] == true){
-                $('#t_success_body').text(data['message']);
+                $('#t_success_body').text("Account added successfully");
                 $('#verified_account_name').modal('hide');
                 $('#t_success').toast('show');
                 $('.loader-section').fadeOut('slow');
@@ -408,8 +408,8 @@ $('.add_or_verify_submit_btn').click(function(){
                     "name":$('#payout_bank_list').find(":selected").text(),
                     "code":$('#payout_bank_list').find(":selected").data('set'),
                     "number":$('#payout_account_number').val(),
-                    "token":"HFYfjjdVFieoi",
-                    "id":"8870778821"
+                    "token":$('#customer_id').val(),
+                    "id":$('#mobile_id').val()
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

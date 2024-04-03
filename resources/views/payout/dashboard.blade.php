@@ -98,8 +98,10 @@
                     </div>
                     @if(session('success'))
                     <input type="hidden" id="customer_id" value="{{session('success')['user']}}" />
+                    <input type="hidden" id="mobile_id" value="{{session('success')['mobile']}}" />
                     @elseif(session('failed'))
-                    <input type="hidden" id="customer_id" value="{{session('failed')}}" />
+                    <input type="hidden" id="customer_id" value="{{session('failed')['user']}}" />
+                    <input type="hidden" id="mobile_id" value="{{session('failed')['mobile']}}" />
                     @endif
                     <table id="payout_accounts_list" class="table display nowrap" style="width:100%">
                         <thead>
