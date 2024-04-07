@@ -640,3 +640,13 @@ $('#payout_mobile_number_login').click( function () {
         return false;
     }
 });
+
+$('#payout_pay').click(function () {
+    var table = new DataTable('#payout_accounts_list'); 
+    $('#payout_accounts_list tbody').on('click', 'tr', function () {
+        var selectedRow = table.row(this).data();
+        $("#selected_payment_bank").text(selectedRow[1]);
+        $("#selected_payment_account").text(selectedRow[2]);
+        $("#selected_payment_name").text(selectedRow[0]);
+    });
+});
