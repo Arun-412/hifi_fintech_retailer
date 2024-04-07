@@ -36,10 +36,12 @@
             </div>
             <div class="col-sm-12 col-md-6 col-xs-12">
                 <div class="payout-box contact logut-report">
-                <div class="d-flex align-items-center">
-                <h5>Access Report</h5>
-                <input type="checkbox">
-                            </div> 
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>Access Report</h5>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    </div>
+                </div> 
                    
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">

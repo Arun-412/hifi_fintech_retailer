@@ -1105,3 +1105,13 @@ a.print-icon {
 .field-title{
     color: #E00123;
 }
+.kyc-info.settings .logut-report input#flexSwitchCheckChecked {
+    width: 2em !important;
+    border-radius: 2em !important;
+    margin-right: 0px !important;
+    padding: 0 !important;
+    margin-bottom: 25px;
+    max-width: none;
+    margin-left: -22px;
+    cursor: pointer;
+}
