@@ -106,6 +106,8 @@
                     <table id="payout_accounts_list" class="table display nowrap" style="width:100%">
                         <thead>
                             <tr>
+                                <th hidden></th>
+                                <th hidden></th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Bank Name</th>
                                 <th scope="col">Account Number</th>
@@ -118,6 +120,8 @@
                             @if(session('success'))
                             @foreach(session('success')['accounts'] as $key=>$value)
                             <tr>
+                                <td hidden>{{$value['ifsc_code']}}</td>
+                                <td hidden>{{$value['account_code']}}</td>
                                 <td>{{$value['account_holder_name']}}</td>
                                 <td>{{$value['bank_name']}}</td>
                                 <td>{{$value['account_number']}}</td>
@@ -128,7 +132,7 @@
                                 @endif 
                                 <td><button class="btn-reject" type="button"><i
                                             class="bi bi-trash3-fill"></i>Delete</button>
-                                    <button class="btn-pay" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    <button class="btn-pay" data-bs-toggle="modal" data-bs-target="#payout_transaction_model"
                                         type="button" id="payout_pay"><i class="bi bi-cash-stack"></i>Pay</button>
                                 </td>
                             </tr>
@@ -136,7 +140,7 @@
                             @endif
                         </tbody>
                     </table>
-                    <div class="modal fade payout-model" id="exampleModal" tabindex="-1"
+                    <div class="modal fade payout-model" id="payout_transaction_model" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content transaction-modal">
@@ -146,12 +150,12 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-
                                     <div style="margin-top:25px;">
                                         <div class="row">
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Bank Name</p>
+                                                    <p hidden id="selected_payment_code"></p>
                                                     <p id="selected_payment_bank"></p>
                                                 </div>
                                             </div>
@@ -186,14 +190,14 @@
                                                     <label for="exampleFormControlInput1" class="form-label">Payment
                                                         Mode</label>
                                                 </div>
-                                                <div class="form-check form-check-inline">
+                                                <div class="form-check form-check-inline" id="payout_imps">
                                                     <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" checked id="inlineRadio1" value="option1">
+                                                        name="inlineRadioOptions" id="payout_imps_check" value="option1">
                                                     <label class="form-check-label" for="inlineRadio1">IMPS</label>
                                                 </div>
-                                                <div class="form-check form-check-inline">
+                                                <div class="form-check form-check-inline" id="payout_neft">
                                                     <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                        name="inlineRadioOptions" id="payout_neft_check" value="option2">
                                                     <label class="form-check-label" for="inlineRadio2">NEFT</label>
                                                 </div>
                                             </div>
