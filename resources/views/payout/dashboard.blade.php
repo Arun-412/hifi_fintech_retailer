@@ -175,12 +175,7 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3 form-inputs">
-                                            <div class="col-md-6 col-xs-12">
-                                                <label for="exampleFormControlInput1" class="form-label">Amount</label>
-                                                <input type="text" name="Amount" autofocus required minlength="3"
-                                                    placeholder="Amount" class="form-control"
-                                                    id="exampleFormControlInput1" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
-                                            </div>
+                                            
                                             <div style="margin-top:10px;" class="col-md-6 col-xs-12">
                                                 <div>
                                                     <label for="exampleFormControlInput1" class="form-label">Payment
@@ -196,6 +191,12 @@
                                                         name="inlineRadioOptions" id="inlineRadio2" value="option2">
                                                     <label class="form-check-label" for="inlineRadio2">NEFT</label>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12">
+                                                <label for="exampleFormControlInput1" class="form-label">Amount</label>
+                                                <input type="text" name="Amount" autofocus required minlength="3"
+                                                    placeholder="Amount" class="form-control"
+                                                    id="exampleFormControlInput1" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
                                             </div>
                                         </div>
 
@@ -226,18 +227,19 @@
                                             <label for="exampleFormControlInput1" class="form-label text-center">Are you sure make
                                                 payment of ₹10000 (Ten Thousand Ruppess) to HIFI FINTECH</label>
                                         </div>
-                                        <div class="mb-3 form-inputs">
-                                        <label>Enter transaction password to complete the transaction</label>
-                                        <input style="width:100%;" type="password" name="Enter Password" id="" placeholder="Enter Transaction Password">
+                                        <div style="text-align: center;" class="mb-3 form-inputs">
+                                        <label style="margin-top:10px;">Enter transaction password to complete the transaction</label>
+                                        <input style="width:100%;max-width: 204px;font-size: 14px;margin-top: 10px;" type="password" name="Enter Password" id="" placeholder="Enter Transaction Password">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" style="width:100%;" class="btn btn-secondary"
-                                        data-bs-toggle="modal" data-bs-target="#transaction_details_model"
-                                        data-bs-dismiss="modal" aria-label="Close">Yes! Proceed</button>
+                                <div style="align-items: baseline;" class="modal-footer ">
+                                    
                                     <button type="button" class="btn btn-secondary cancel-btn" data-bs-dismiss="modal"
                                         aria-label="Close">Cancel</button>
+                                        <button type="button" class="btn btn-secondary"
+                                        data-bs-toggle="modal" data-bs-target="#transaction_details_model"
+                                        data-bs-dismiss="modal" aria-label="Close">Yes! Proceed</button>
                                 </div>
                             </div>
                         </div>
@@ -247,9 +249,12 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content transaction-modal">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Transaction Detail</h5>
+                                    <h5 class="modal-title success-title field-title" id="exampleModalLabel">Transaction Detail</h5>
+                                    <div>
+                                    <a title="Print" class="print-icon" href="{{route('print_transaction')}}"><i class="bi bi-printer-fill"></i></a>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
+                                    </div>
                                 </div>
                                 <div class="modal-body">
 
@@ -316,17 +321,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3 form-inputs">
+                                        <!-- <div class="mb-3 form-inputs">
                                             need to show success, failed, pending status with icons/image
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                  <a href="{{route('print_transaction')}}"><button type="button" style="width:100%;" class="btn btn-secondary"><i class="bi bi-printer-fill"></i> Print</button></a>
-                                    <button style="width: -webkit-fill-available;margin-top: 15px;" type="button"
+                                  
+                                    <!-- <button style="width: -webkit-fill-available;margin-top: 15px;" type="button"
                                         class="btn btn-secondary" data-bs-dismiss="modal"
-                                        aria-label="Close"><i class="bi bi-x"></i> Close</button>
+                                        aria-label="Close"><i class="bi bi-x"></i> Close</button> -->
                                 </div>
                             </div>
                         </div>
