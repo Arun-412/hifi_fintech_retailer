@@ -129,7 +129,7 @@
                                 <td><button class="btn-reject" type="button"><i
                                             class="bi bi-trash3-fill"></i>Delete</button>
                                     <button class="btn-pay" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        type="button"><i class="bi bi-cash-stack"></i>Pay</button>
+                                        type="button" id="payout_pay"><i class="bi bi-cash-stack"></i>Pay</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -152,25 +152,25 @@
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Bank Name</p>
-                                                    <p>HDFC BANK</p>
+                                                    <p id="selected_payment_bank"></p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-xs-12">
+                                            <!-- <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>IFSC Code</p>
                                                     <p>HDFC00041331</p>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Account Number</p>
-                                                    <p>21212121212</p>
+                                                    <p id="selected_payment_account"></p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-xs-6">
+                                            <div class="col-md-12 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Account Holder Name</p>
-                                                    <p>HIFI FINTECH</p>
+                                                    <p id="selected_payment_name"></p>
                                                 </div>
                                             </div>
                                         </div>
