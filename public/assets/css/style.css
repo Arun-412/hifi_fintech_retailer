@@ -1070,7 +1070,8 @@ img.profile-icon.me-2.dropdown-toggle {
 #account_number_check,
 #payout_bank_list_check,
 #payout_ifsc_code_check,
-#name_check
+#name_check,
+#payout_amount_check
 {
     color:red;
     font-size: 13px;

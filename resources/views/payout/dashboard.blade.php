@@ -187,29 +187,29 @@
                                                 </div>
                                                 <div class="form-check form-check-inline" id="payout_imps">
                                                     <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" id="payout_imps_check" value="option1">
+                                                        name="inlineRadioOptions" id="payout_imps_check" value="imps">
                                                     <label class="form-check-label" for="inlineRadio1">IMPS</label>
                                                 </div>
                                                 <div class="form-check form-check-inline" id="payout_neft">
                                                     <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" id="payout_neft_check" value="option2">
+                                                        name="inlineRadioOptions" id="payout_neft_check" value="neft">
                                                     <label class="form-check-label" for="inlineRadio2">NEFT</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <label for="exampleFormControlInput1" class="form-label">Amount</label>
-                                                <input type="text" name="Amount" autofocus required minlength="3"
+                                                <input type="text" name="payout_amount" autofocus required minlength="3"
                                                     placeholder="Amount" class="form-control"
-                                                    id="exampleFormControlInput1" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');">
-                                            </div>
+                                                    id="payout_amount" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6" readonly onfocus="this.removeAttribute('readonly');">
+                                                    <p id="payout_amount_check"></p>
+                                                </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button style="width: -webkit-fill-available;" type="button" class="btn btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#transaction_confirm_model"
-                                        data-bs-dismiss="modal" aria-label="Close">
+                                        id="payout_transaction_amount_pay">
                                         Pay
                                     </button>
                                 </div>
@@ -229,8 +229,8 @@
                                     <div style="margin-top:25px;">
                                        @if(Auth::user()->transaction_password != '')
                                        <div class="mb-3 form-inputs">
-                                            <label for="exampleFormControlInput1" class="form-label text-center">Are you sure make
-                                                payment of ₹10000 (Ten Thousand Ruppess) to HIFI FINTECH</label>
+                                           <center><label for="exampleFormControlInput1" class="form-label text-center">Are you sure make
+                                                payment of <span id="confirm_payment"></span></label></center>
                                         </div>
                                        <div style="text-align: center;" class="mb-3 form-inputs">
                                         <label style="margin-top:10px;">Enter transaction password to complete the transaction</label>
@@ -282,12 +282,7 @@
                                                     <p>2001001202</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-xs-12">
-                                                <div class="profile-bar">
-                                                    <p>Mobile number</p>
-                                                    <p>6383224535</p>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Bank Name</p>
@@ -300,12 +295,7 @@
                                                     <p>1212112121212</p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-xs-12">
-                                                <div class="profile-bar">
-                                                    <p>IFSC Code</p>
-                                                    <p>HDFC0002123</p>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Account Holder Name</p>
