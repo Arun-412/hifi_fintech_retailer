@@ -148,4 +148,58 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect()->intended('/');
     }
+
+    public function transaction_password (Request $request) {
+        try{
+            $validate = Validator::make($request->all(), [
+                'transaction_password'=>'required|string|min:4|confirmed|max:40',
+            ],);
+            if($validate->fails()){
+                return back()->withInput()->withErrors($validate);
+            }
+            else{
+                if(Auth::user()->transaction_password != ''){
+                    return back()->with("failed","Need old password to set transaction password");
+                }
+                else{
+                    Auth::user()->transaction_password = hash('sha256',Auth::user()->id.$request->transaction_password);
+                    Auth::user()->save();
+                    if(Auth::user()->save()){
+                        return back()->with("success","Transaction password updated successfully");
+                    }
+                    else{
+                        return back()->with("failed","something went wrong from transaction password");
+                    }
+                }
+            }
+        }
+        catch(\Throwable $e){
+            return back()->withInput()->with("failed",$e->getmessage());
+        }  
+    }
+
+    public function change_transaction_password (Request $request) {
+        try{
+            $validate = Validator::make($request->all(), [
+                'old_transaction_password'=>'required|string|min:4|max:40',
+                'transaction_password'=>'required|string|min:4|confirmed|max:40',
+            ],);
+            if($validate->fails()){
+                return back()->withInput()->withErrors($validate);
+            }
+            else{
+                if(Auth::user()->transaction_password == hash('sha256',Auth::user()->id.$request->old_transaction_password)) {
+                    Auth::user()->transaction_password = hash('sha256',Auth::user()->id.$request->old_transaction_password);
+                    Auth::user()->save();
+                    return back()->with("success","Transaction password updated successfully");
+                }
+                else{
+                    return back()->with("failed","Old password mismatch");
+                }
+            }
+        }
+        catch(\Throwable $e){
+            return back()->withInput()->with("failed",$e->getmessage());
+        }  
+    }
 }

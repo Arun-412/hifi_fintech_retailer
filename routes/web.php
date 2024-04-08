@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', function () { return view('profile'); })->name('profile');
     Route::get('/settings', function () { return view('settings'); })->name('settings');
     Route::get('/support', function () { return view('support'); })->name('support');
+    Route::post('/transaction_password',[UserController::class, 'transaction_password'])->name('transaction_password');
+    Route::post('/change_transaction_password',[UserController::class, 'change_transaction_password'])->name('change_transaction_password');
 
     Route::group(['prefix' => 'payout'], function () {
         Route::get('/', function () { return view('payout.login'); })->name('payout_login');

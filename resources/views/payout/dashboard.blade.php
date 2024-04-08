@@ -227,14 +227,20 @@
                                 </div>
                                 <div class="modal-body">
                                     <div style="margin-top:25px;">
-                                        <div class="mb-3 form-inputs">
+                                       @if(Auth::user()->transaction_password != '')
+                                       <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label text-center">Are you sure make
                                                 payment of ₹10000 (Ten Thousand Ruppess) to HIFI FINTECH</label>
                                         </div>
-                                        <div style="text-align: center;" class="mb-3 form-inputs">
+                                       <div style="text-align: center;" class="mb-3 form-inputs">
                                         <label style="margin-top:10px;">Enter transaction password to complete the transaction</label>
                                         <input style="width:100%;max-width: 204px;font-size: 14px;margin-top: 10px;" type="password" name="Enter Password" id="" placeholder="Enter Transaction Password">
                                         </div>
+                                       @else
+                                       <div style="text-align: center;" class="mb-3 form-inputs">
+                                        <label style="margin-top:10px;"><a href="{{route('settings')}}">Click here</a> to set transaction password for complete the transaction</label>
+                                        </div>
+                                       @endif
                                     </div>
                                 </div>
                                 <div style="align-items: baseline;" class="modal-footer ">

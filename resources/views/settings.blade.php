@@ -3,6 +3,12 @@
 <section style="margin-top: 110px;margin-bottom: 40px;padding: 0px 30px;">
     <div class="container-fluid">
         <div class="row payout-box kyc-info settings">
+        @if(session('failed'))
+                        <div class="alert alert-danger"> {{ session('failed') }}</div>
+					@endif
+                    @if(session('success'))
+                    <div class="alert alert-success"> {{ session('success') }}</div>
+                    @endif
             <h4 style="margin-bottom:25px;">Settings</h4>
             <div class="col-sm-12 col-md-6 col-xs-12">
                 <div class="payout-box contact">
@@ -59,17 +65,29 @@
                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                         <label class="form-check-label" for="inlineCheckbox2">Charges Report</label>
                     </div>
-                    <button class="btn" type="button">View Reports</button>
+                    <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">View Reports</button>
                 </div>
             </div>
             <div class="col-sm-12 col-md-7 col-xs-12 mt-5">
+                @if(Auth::user()->transaction_password != '')
+                <form action="{{route('change_transaction_password')}}" method="POST">
+                @else
+                <form action="{{route('transaction_password')}}" method="POST">
+                @endif
+                @csrf
                 <div class="payout-box contact">
                     <h5>Change Transaction Password</h5>
-                    <input type="password" name="old_password" placeholder="Old Transaction Password" id="">
-                    <input type="password" name="new_password" placeholder="New Transaction Password" id="">
-                    <input type="password" name="confirm_password" placeholder="Confirm Transaction Password" id="">
-                    <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Change Transaction
+                    @if(Auth::user()->transaction_password != '')
+                    <input type="password" name="old_transaction_password" placeholder="Old Transaction Password" id="">
+                    @endif
+                    <input type="password" name="transaction_password" placeholder="New Transaction Password" id="">
+                    @error('transaction_password')
+    <span class="text-danger">{{$message}}</span>
+    @enderror
+                    <input type="password" name="transaction_password_confirmation" placeholder="Confirm Transaction Password" id="">
+                    <button class="btn" type="submit">Change Transaction
                         Password</button>
+                </form>
                 </div>
             </div>
             <div class="col-sm-12 col-md-5 col-xs-12 mt-5">
