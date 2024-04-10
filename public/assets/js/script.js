@@ -661,6 +661,47 @@ function payout_amount(){
 	}
 }
 
+transaction_password_check = '';
+function transaction_password(){
+	if($('#transaction_password').val().length > 3 ){
+		$('#transaction_password').removeClass('validation');
+		$('#transaction_password_check').hide();
+		transaction_password_check = true;
+	}else if($('#transaction_password').val().length == 0 ){
+		$('#transaction_password').addClass('validation');
+		$('#transaction_password_check').show();
+		$('#transaction_password_check').html("Transaction Password is required*");
+		transaction_password_check = false;
+		$('#transaction_password').focus();
+	}else{
+		$('#transaction_password').addClass('validation');
+		$('#transaction_password_check').show();
+		$('#transaction_password_check').html("Transactions password must be atleast 4 characters");
+		transaction_password_check = false;
+		$('#transaction_password').focus();
+	}
+}
+
+$("#transaction_password").on("keyup change", function(e) {
+    if($('#transaction_password').val().length > 3 ){
+		$('#transaction_password').removeClass('validation');
+		$('#transaction_password_check').hide();
+		transaction_password_check = true;
+	}else if($('#transaction_password').val().length == 0 ){
+		$('#transaction_password').addClass('validation');
+		$('#transaction_password_check').show();
+		$('#transaction_password_check').html("Transaction Password is required*");
+		transaction_password_check = false;
+		$('#transaction_password').focus();
+	}else{
+		$('#transaction_password').addClass('validation');
+		$('#transaction_password_check').show();
+		$('#transaction_password_check').html("Transactions password must be atleast 4 characters");
+		transaction_password_check = false;
+		$('#transaction_password').focus();
+	}
+});
+
 $("#payout_amount").on("keyup change", function(e) {
     if($('#payout_amount').val() >= 100 ){
 		$('#payout_amount').removeClass('validation');
@@ -696,6 +737,48 @@ $('#payout_transaction_amount_pay').click(function () {
         $('#confirm_payment').text('₹'+payout_amount+' to '+name);
         $('#payout_transaction_model').modal('hide');
         $('#transaction_confirm_model').modal('show');
+    }
+    else{
+        return false;
+    }
+});
+
+$('#transaction_pin_proceed').click( function () {
+    transaction_password();
+    if(transaction_password_check == true) {
+        $.ajax({
+            url: "transaction",
+            method:"POST",
+            data: { 
+                "transaction_password": $('#transaction_password').val(),
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                console.log(data);
+                if(data['status'] == true){
+                    $('#transaction_confirm_model').modal('hide');
+                    $('#t_success_body').text(data['message']);
+                    $('#t_success').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                }else{
+                    $('#transaction_confirm_model').modal('hide');
+                    $('#t_failed_body').text(data['message']);
+                    $('#t_failed').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                }
+            },
+            error: function (xhr, status, error) {
+                var message = xhr['responseText'];
+                message = JSON.parse(message);
+                message= message['message'];
+                $('#t_failed_body').text(message);
+                $('#t_failed').toast('show');
+                $('#transaction_confirm_model').modal('hide');
+                $('.loader-section').fadeOut('slow');
+            }
+        });
     }
     else{
         return false;

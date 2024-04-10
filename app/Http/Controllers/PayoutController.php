@@ -272,4 +272,30 @@ class PayoutController extends Controller
     public function add_account(Request $request) {
         return $request->all();
     }
+
+    public function transaction(Request $request) {
+        try{
+            $validate = Validator::make($request->all(), [
+                'transaction_password'=>'required|string|min:4|max:40',
+            ],);
+            if($validate->fails()){
+                return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            }
+            else{
+                if(Auth::user()->transaction_password){
+                    if(Auth::user()->transaction_password == hash('sha256',Auth::user()->id.$request->transaction_password)){
+                        return response()->json(['status'=>true,'message'=>"Transaction Success"]);
+                    }
+                    else{
+                        return response()->json(['status'=>false,'message'=>"Invalid Transaction Password"]);
+                    }
+                }
+                else{
+                    return response()->json(['status'=>false,'message'=>"Authentication needed for complete the transaction"]);
+                }
+            }
+        }catch(\Throwable $e){
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
+        }
+    }
 }

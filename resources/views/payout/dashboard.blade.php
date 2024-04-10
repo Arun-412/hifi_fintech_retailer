@@ -234,8 +234,9 @@
                                         </div>
                                        <div style="text-align: center;" class="mb-3 form-inputs">
                                         <label style="margin-top:10px;">Enter transaction password to complete the transaction</label>
-                                        <input style="width:100%;max-width: 204px;font-size: 14px;margin-top: 10px;" type="password" name="Enter Password" id="" placeholder="Enter Transaction Password">
-                                        </div>
+                                        <input minlength="4" maxlength="40" style="width:100%;max-width: 204px;font-size: 14px;margin-top: 10px;" type="password" name="Enter Password" id="transaction_password" placeholder="Enter Transaction Password">
+                                        <p id="transaction_password_check"></p>    
+                                    </div>
                                        @else
                                        <div style="text-align: center;" class="mb-3 form-inputs">
                                         <label style="margin-top:10px;"><a href="{{route('settings')}}">Click here</a> to set transaction password for complete the transaction</label>
@@ -248,8 +249,7 @@
                                     <button type="button" class="btn btn-secondary cancel-btn" data-bs-dismiss="modal"
                                         aria-label="Close">Cancel</button>
                                         <button type="button" class="btn btn-secondary"
-                                        data-bs-toggle="modal" data-bs-target="#transaction_details_model"
-                                        data-bs-dismiss="modal" aria-label="Close">Yes! Proceed</button>
+                                        id="transaction_pin_proceed">Yes! Proceed</button>
                                 </div>
                             </div>
                         </div>

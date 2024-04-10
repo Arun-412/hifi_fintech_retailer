@@ -1071,7 +1071,8 @@ img.profile-icon.me-2.dropdown-toggle {
 #payout_bank_list_check,
 #payout_ifsc_code_check,
 #name_check,
-#payout_amount_check
+#payout_amount_check,
+#transaction_password_check
 {
     color:red;
     font-size: 13px;
