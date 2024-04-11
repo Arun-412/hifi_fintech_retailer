@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add_verified_account', [PayoutController::class, 'add_verified_account'])->name('add_verified_account');
         Route::get('/bank_list', [PayoutController::class, 'bank_list'])->name('bank_list');
         Route::post('/get_bank',[PayoutController::class, 'get_bank'])->name('get_bank');
-        Route::get('/transaction',[PayoutController::class, 'transaction'])->name('transaction');
+        Route::post('/transaction',[PayoutController::class, 'transaction'])->name('transaction');
         Route::get('/login', [TransactionalUserController::class, 'user_login'])->name('transaction_user_login');
     });
 

@@ -739,6 +739,7 @@ $('#payout_transaction_amount_pay').click(function () {
 $('#transaction_pin_proceed').click( function () {
     transaction_password();
     if(transaction_password_check == true) {
+        $('.loader-section').fadeIn('slow');
         let payment_mode = '';
         if($("#payout_imps_check").prop("checked")){
             payment_mode = 5;
@@ -763,12 +764,14 @@ $('#transaction_pin_proceed').click( function () {
                 if(data['status'] == true){
                     $('#transaction_confirm_model').modal('hide');
                     $('#t_success_body').text(data['message']);
+                    $('input').val('');
                     $('#t_success').toast('show');
                     $('.loader-section').fadeOut('slow');
                 }else{
                     $('#transaction_confirm_model').modal('hide');
                     $('#t_failed_body').text(data['message']);
                     $('#t_failed').toast('show');
+                    $('input').val('');
                     $('.loader-section').fadeOut('slow');
                 }
             },
@@ -778,6 +781,7 @@ $('#transaction_pin_proceed').click( function () {
                 message= message['message'];
                 $('#t_failed_body').text(message);
                 $('#t_failed').toast('show');
+                $('input').val('');
                 $('#transaction_confirm_model').modal('hide');
                 $('.loader-section').fadeOut('slow');
             }
@@ -789,65 +793,13 @@ $('#transaction_pin_proceed').click( function () {
 });
 
 $('#payout_pay').click(function () {
-    $('#payout_transaction_model').modal('hide');
-    $('.loader-section').fadeIn('slow');
     var table = new DataTable('#payout_accounts_list'); 
     $('#payout_accounts_list tbody').on('click', 'tr', function () {
-        $('#payout_transaction_model').modal('hide');
-        $('.loader-section').fadeIn('slow');
         var selectedRow = table.row(this).data();
         $("#selected_payment_code").text(selectedRow[1]);
         $("#selected_payment_bank").text(selectedRow[3]);
         $("#selected_payment_account").text(selectedRow[4]);
-        $("#selected_payment_name").text(selectedRow[2]);
-        $.ajax({
-            url: "get_bank",
-            method:"POST",
-            data: { 
-                "bank_code":selectedRow[0],
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function (data) {
-                console.log(data);
-                if(data['status'] == true){
-                    if(data['message']['data']['available_channels'] == 1) {
-                        $('#payout_imps').hide();
-                        $('#payout_neft_check').prop('checked',true);
-                        $('#payout_imps_check').prop('checked',false);
-                        $('#payout_neft').show();
-                    }
-                    else if(data['message']['data']['available_channels'] == 2) {
-                        $('#payout_neft_check').prop('checked',false);
-                        $('#payout_imps_check').prop('checked',true);
-                        $('#payout_imps').show();
-                        $('#payout_neft').hide();
-                    }
-                    else{
-                        $('#payout_imps_check').prop('checked',true);
-                        $('#payout_neft_check').prop('checked',false);
-                        $('#payout_imps').show();
-                        $('#payout_neft').show();
-                    }
-                    $('#payout_transaction_model').modal('show');
-                    $('.loader-section').fadeOut('slow');
-                }else{
-                    $('#payout_transaction_model').modal('hide');
-                    $('#t_failed_body').text(data['message']);
-                    $('#t_failed').toast('show');
-                    $('.loader-section').fadeOut('slow');
-                }
-            },
-            error: function (xhr, status, error) {
-                var message = xhr['responseText'];
-                message = JSON.parse(message);
-                message= message['message'];
-                $('#t_failed_body').text(message);
-                $('#t_failed').toast('show');
-                $('#payout_transaction_model').modal('show');
-                $('.loader-section').fadeOut('slow');
-            }
-        });
+        $("#selected_payment_name").text(selectedRow[2]);           
+        $('#payout_transaction_model').modal('show');
     });
 });

@@ -275,29 +275,19 @@ class PayoutController extends Controller
 
     public function transaction(Request $request) {
         try{
-            // $validate = Validator::make($request->all(), [
-            //     'transaction_password'=>'required|string|min:4|max:40',
-            //     'account_id'=>'required|string|min:8|max:40',
-            //     'tranaction_mode'=>'required|digits:1|numeric',
-            //     'transaction_amount'=>'required|numeric|min:2|max:6'
-            // ],);
-            // if($validate->fails()){
-            //     return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
-            // }
-            // else{
-            //     if(Auth::user()->transaction_password){
-            //         if(Auth::user()->transaction_password == hash('sha256',Auth::user()->id.$request->transaction_password)){
-            //             if(stoneseeds::where(['account_code'=>$request->account_id])->exists()){
-                            // $data = array(
-                            //     "url"=>'payout/transaction',
-                            //     "data"=>
-                            //         '&account_id='.$request->account_id.
-                            //         '&tranaction_mode='.$request->tranaction_mode.
-                            //         '&transaction_amount='.$request->transaction_amount. 
-                            //         '&token='.$this->Access_Key.
-                            //         '&user='.Auth::user()->door_code,
-                            //         '&send_by'.Auth::user()->shop_name
-                            // );
+            $validate = Validator::make($request->all(), [
+                'transaction_password'=>'required|string|min:4|max:40',
+                'account_id'=>'required|string|min:8|max:40',
+                'tranaction_mode'=>'required|digits:1|numeric',
+                'transaction_amount'=>'required|numeric|min:10|max:200000'
+            ],);
+            if($validate->fails()){
+                return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            }
+            else{
+                if(Auth::user()->transaction_password){
+                    if(Auth::user()->transaction_password == hash('sha256',Auth::user()->id.$request->transaction_password)){
+                        if(stoneseeds::where(['account_code'=>$request->account_id])->exists()){
                             if(empty($this->Access_Key)){
                                 Artisan::call('config:clear');
                                 return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
@@ -305,16 +295,14 @@ class PayoutController extends Controller
                                 $data = array(
                                     "url"=>'payout/transaction',
                                     "data"=>
-                                        '&account_id=001'.
-                                        '&tranaction_mode=5'.
-                                        '&transaction_amount=10'.
+                                        '&account_id='.$request->account_id.
+                                        '&tranaction_mode='.$request->tranaction_mode.
+                                        '&transaction_amount='.$request->transaction_amount. 
                                         '&token='.$this->Access_Key.
                                         '&user='.Auth::user()->door_code.
                                         '&send_by='.Auth::user()->shop_name
                                 );
-                                // return $data;
                                 $transaction = $this->curl_post($data);
-                                return $transaction;
                                 if($transaction->status == 'success'){
                                     return response()->json(['status'=>true,'message'=>$transaction->message]);
                                 }
@@ -322,20 +310,19 @@ class PayoutController extends Controller
                                     return response()->json(['status'=>false,'message'=>$transaction->message]);
                                 }
                             }
-            //             }
-            //             else{
-            //                 return response()->json(['status'=>false,'message'=>"Invalid account details"]);  
-            //             }
-            //             return response()->json(['status'=>true,'message'=>"Transaction Success"]);
-            //         }
-            //         else{
-            //             return response()->json(['status'=>false,'message'=>"Invalid Transaction Password"]);
-            //         }
-            //     }
-            //     else{
-            //         return response()->json(['status'=>false,'message'=>"Authentication needed for complete the transaction"]);
-            //     }
-            // }
+                        }
+                        else{
+                            return response()->json(['status'=>false,'message'=>"Invalid account details"]);  
+                        }
+                    }
+                    else{
+                        return response()->json(['status'=>false,'message'=>"Invalid Transaction Password"]);
+                    }
+                }
+                else{
+                    return response()->json(['status'=>false,'message'=>"Authentication needed for complete the transaction"]);
+                }
+            }
         }catch(\Throwable $e){
             return response()->json(['status'=>false,'message'=>$e->getmessage()]);
         }

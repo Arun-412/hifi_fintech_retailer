@@ -187,7 +187,7 @@
                                                 </div>
                                                 <div class="form-check form-check-inline" id="payout_imps">
                                                     <input class="form-check-input" type="radio"
-                                                        name="inlineRadioOptions" id="payout_imps_check" value="imps">
+                                                        name="inlineRadioOptions" checked id="payout_imps_check" value="imps">
                                                     <label class="form-check-label" for="inlineRadio1">IMPS</label>
                                                 </div>
                                                 <div class="form-check form-check-inline" id="payout_neft">
