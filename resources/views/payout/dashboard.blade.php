@@ -121,7 +121,7 @@
                             @foreach(session('success')['accounts'] as $key=>$value)
                             <tr>
                                 <td hidden>{{$value['ifsc_code']}}</td>
-                                <td hidden>{{$value['account_code']}}</td>
+                                <td id="account_id" hidden>{{$value['account_code']}}</td>
                                 <td>{{$value['account_holder_name']}}</td>
                                 <td>{{$value['bank_name']}}</td>
                                 <td>{{$value['account_number']}}</td>
@@ -198,7 +198,7 @@
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <label for="exampleFormControlInput1" class="form-label">Amount</label>
-                                                <input type="text" name="payout_amount" autofocus required minlength="3"
+                                                <input type="text" name="payout_amount" autofocus required minlength="2"
                                                     placeholder="Amount" class="form-control"
                                                     id="payout_amount" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="6" readonly onfocus="this.removeAttribute('readonly');">
                                                     <p id="payout_amount_check"></p>

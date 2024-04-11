@@ -642,7 +642,7 @@ $('#payout_mobile_number_login').click( function () {
 });
 payout_amount_check = '';
 function payout_amount(){
-	if($('#payout_amount').val() >= 100 ){
+	if($('#payout_amount').val() >= 10 ){
 		$('#payout_amount').removeClass('validation');
 		$('#payout_amount_check').hide();
 		payout_amount_check = true;
@@ -655,7 +655,7 @@ function payout_amount(){
 	}else{
 		$('#payout_amount').addClass('validation');
 		$('#payout_amount_check').show();
-		$('#payout_amount_check').html("Minimum transaction amount is ₹100");
+		$('#payout_amount_check').html("Minimum transaction amount is ₹10");
 		payout_amount_check = false;
 		$('#payout_amount').focus();
 	}
@@ -703,7 +703,7 @@ $("#transaction_password").on("keyup change", function(e) {
 });
 
 $("#payout_amount").on("keyup change", function(e) {
-    if($('#payout_amount').val() >= 100 ){
+    if($('#payout_amount').val() >= 10 ){
 		$('#payout_amount').removeClass('validation');
 		$('#payout_amount_check').hide();
 		payout_amount_check = true;
@@ -716,7 +716,7 @@ $("#payout_amount").on("keyup change", function(e) {
 	}else{
 		$('#payout_amount').addClass('validation');
 		$('#payout_amount_check').show();
-		$('#payout_amount_check').html("Minimum transaction amount is ₹100");
+		$('#payout_amount_check').html("Minimum transaction amount is ₹10");
 		payout_amount_check = false;
 		$('#payout_amount').focus();
 	}
@@ -726,13 +726,6 @@ $('#payout_transaction_amount_pay').click(function () {
     payout_amount();
     if(payout_amount_check == true){
         let payout_amount = $('#payout_amount').val();
-        let payment_mode = '';
-        if($("#payout_imps_check").prop("checked")){
-            payment_mode = $('#payout_imps_check:checked').val();
-        }
-        else{
-            payment_mode = $('#payout_neft_check:checked').val();
-        }
         let name = $('#selected_payment_name').text();
         $('#confirm_payment').text('₹'+payout_amount+' to '+name);
         $('#payout_transaction_model').modal('hide');
@@ -746,10 +739,20 @@ $('#payout_transaction_amount_pay').click(function () {
 $('#transaction_pin_proceed').click( function () {
     transaction_password();
     if(transaction_password_check == true) {
+        let payment_mode = '';
+        if($("#payout_imps_check").prop("checked")){
+            payment_mode = 5;
+        }
+        else{
+            payment_mode = 4;
+        }
         $.ajax({
             url: "transaction",
             method:"POST",
             data: { 
+                "transaction_amount":$('#payout_amount').val(),
+                "tranaction_mode":payment_mode,
+                "account_id":$("#selected_payment_code").text(),
                 "transaction_password": $('#transaction_password').val(),
             },
             headers: {
