@@ -10,7 +10,9 @@ use App\Models\User;
 use App\Models\stoneseeds;
 use App\Models\sandstone;
 use App\Models\bank_list;
+use App\Models\sand;
 use Artisan;
+use Carbon\Carbon;
 
 class PayoutController extends Controller
 {
@@ -304,7 +306,13 @@ class PayoutController extends Controller
                                 );
                                 $transaction = $this->curl_post($data);
                                 if($transaction->status == 'success'){
-                                    return response()->json(['status'=>true,'message'=>$transaction->message]);
+                                    if(isset($transaction->t_id) && sand::where(['sandt_id'=>$transaction->t_id])->exists()){
+                                        $receipt = sand::where(['sandt_id'=>$transaction->t_id])->first();
+                                        return response()->json(['status'=>true,'message'=>$transaction->message,'receipt'=>$receipt]);
+                                    }
+                                    else{
+                                        return response()->json(['status'=>true,'message'=>$transaction->message]);
+                                    }
                                 }
                                 else{
                                     return response()->json(['status'=>false,'message'=>$transaction->message]);

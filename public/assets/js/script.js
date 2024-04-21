@@ -765,6 +765,15 @@ $('#transaction_pin_proceed').click( function () {
                     $('#transaction_confirm_model').modal('hide');
                     $('#t_success_body').text(data['message']);
                     $('input').val('');
+                    $('#transaction_time').text(data['receipt']['date_time']);
+                    $('#transaction_id').text(data['receipt']['sandt_id']);
+                    $('#transaction_bank').text(data['receipt']['bank_name']);
+                    $('#transaction_mode').text(data['receipt']['sandt_mode']);
+                    $('#transaction_amount').text(data['receipt']['sand_amount']);
+                    $('#transaction_status').text(data['receipt']['sand_status']);
+                    $('#transaction_account').text(data['receipt']['sand_account']);
+                    $('#transaction_name').text(data['receipt']['sand_name']);
+                    $('#transaction_details_model').modal('show');
                     $('#t_success').toast('show');
                     $('.loader-section').fadeOut('slow');
                 }else{

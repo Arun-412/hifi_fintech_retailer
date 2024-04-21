@@ -273,51 +273,51 @@
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Date - Time </p>
-                                                    <p>12-12-2023 12:23:21 PM</p>
+                                                    <p id="transaction_time"></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Transaction ID </p>
-                                                    <p>2001001202</p>
+                                                    <p id="transaction_id"></p>
                                                 </div>
                                             </div>
                                             
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Bank Name</p>
-                                                    <p>HDFC Bank</p>
+                                                    <p id="transaction_bank"></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Account Number</p>
-                                                    <p>1212112121212</p>
+                                                    <p id="transaction_account"></p>
                                                 </div>
                                             </div>
                                             
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Account Holder Name</p>
-                                                    <p>Hifi FIntech</p>
+                                                    <p id="transaction_name"></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Amount</p>
-                                                    <p>₹10000</p>
+                                                    <p id="transaction_amount"></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Payment mode</p>
-                                                    <p>IMPS</p>
+                                                    <p id="transaction_mode"></p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
                                                     <p>Status</p>
-                                                    <p style="color: #009700;">Success</p>
+                                                    <p id="transaction_status" style="color: #009700;"></p>
                                                 </div>
                                             </div>
                                         </div>
