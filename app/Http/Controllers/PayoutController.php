@@ -302,7 +302,7 @@ class PayoutController extends Controller
                                         '&transaction_amount='.$request->transaction_amount. 
                                         '&token='.$this->Access_Key.
                                         '&user='.Auth::user()->door_code.
-                                        '&send_by='.Auth::user()->shop_name
+                                        '&send_by='.substr(Auth::user()->shop_name, 0, 10)
                                 );
                                 $transaction = $this->curl_post($data);
                                 if($transaction->status == 'success'){

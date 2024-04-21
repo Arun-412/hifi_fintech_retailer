@@ -259,11 +259,14 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content transaction-modal">
                                 <div class="modal-header">
-                                    <h5 class="modal-title success-title field-title" id="exampleModalLabel">Transaction Detail</h5>
+                                    <h5 class="modal-title success-title successs-title" id="exampleModalLabel">Transaction Detail</h5>
                                     <div>
-                                    <a title="Print" class="print-icon" href="{{route('print_transaction')}}"><i class="bi bi-printer-fill"></i></a>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
+                                        <form action="{{route('print_transaction')}}" method="post">
+                                            <input type="hidden" name="transaction_id_print" id="transaction_id_print" />
+                                            <button type="submit"><i class="bi bi-printer-fill"></i></button>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="modal-body">
@@ -272,7 +275,7 @@
                                         <div class="row">
                                             <div class="col-md-6 col-xs-12">
                                                 <div class="profile-bar">
-                                                    <p>Date - Time </p>
+                                                    <p>Date | Time </p>
                                                     <p id="transaction_time"></p>
                                                 </div>
                                             </div>

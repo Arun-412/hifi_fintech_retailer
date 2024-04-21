@@ -47,8 +47,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/search', [ReportController::class, 'search_report'])->name('search_report');
     });
 
-    Route::group(['prefix' => 'print'], function () {   
-        Route::get('/transaction', function () { return view('print.transaction'); })->name('print_transaction');
+    Route::group(['prefix' => 'print'], function () {  
+        Route::get('/', function () { return view('print.transaction'); })->name('print'); 
+        Route::post('/transaction', [ReportController::class, 'print'])->name('print_transaction'); 
     }); 
  
     Route::group(['prefix' => 'money_transfer'], function () {   
