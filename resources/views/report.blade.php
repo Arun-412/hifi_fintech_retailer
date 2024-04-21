@@ -42,7 +42,7 @@
                                 <td>{{$value->bank_name}}</td>
                                 <td>{{$value->sand_account}}</td>
                                 <td>₹{{$value->sand_amount}}</td>
-                                <td>{{$value->sand_status}}</td>
+                                <td style="color: #198754;">{{$value->sand_status}}</td>
                                 <td>
                                     <!-- <button class="print-btn" type="button"><a href="{{route('print_transaction')}}"></a></button> -->
                                     <!-- <button class="print-btn" type="button"><i

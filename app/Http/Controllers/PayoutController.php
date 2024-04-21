@@ -189,21 +189,22 @@ class PayoutController extends Controller
 
     public function verify_account(Request $request) {
         try{
-            // $validate = Validator::make($request->all(), [
-            //     'bank_name' => 'required|string|max:50',
-            //     'ifsc_code' => 'required|string|max:11|min:11',
-            //     'account_number' => 'required|min:8|numeric',
-            // ],);
-            // if($validate->fails()){
-            //     return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
-            // }
-            // else{
-                // if(stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->exists()){
-                //     $account = stoneseeds::where(['account_number'=>488384899898984,'bank_name'=>'cnrb','verification_status'=>"HFY"])->first();
-                //     return response()->json(['status'=>true,'message'=>$account->account_holder_name]);
-                // }
-                // else{8870778821
-                    // return response()->json(['status'=>false,'message'=>"Verify account not available"]);
+            $validate = Validator::make($request->all(), [
+                'name' => 'required|string|max:50',
+                'code' => 'required|string|max:11',
+                'number' => 'required|min:8|string|max:20',
+                'id' => 'required|min:10|max:10|string',
+                'token'=>'required|max:15|string'
+            ],);
+            if($validate->fails()){
+                return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
+            }
+            else{
+                if(stoneseeds::where(['account_number'=>$request->number,'bank_name'=>$request->name,'verification_status'=>"HFY"])->exists()){
+                    $account = stoneseeds::where(['account_number'=>$request->number,'bank_name'=>$request->name,'verification_status'=>"HFY"])->first();
+                    return response()->json(['status'=>true,'name'=>$account->account_holder_name,'code'=>$account->account_code]);
+                }
+                else{
                     if(empty($this->Access_Key)){
                         Artisan::call('config:clear');
                         return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
@@ -227,9 +228,8 @@ class PayoutController extends Controller
                             return response()->json(['status'=>false,'message'=>$verified_account->message]);
                         }
                     }
-                    // return response()->json(['status'=>false,'message'=>$verified_account]);
-                // }
-            // }
+                }
+            }
         }catch(\Throwable $e){
             return response()->json(['status'=>false,'message'=>$e->getmessage()]);
         }
@@ -281,7 +281,8 @@ class PayoutController extends Controller
                 'transaction_password'=>'required|string|min:4|max:40',
                 'account_id'=>'required|string|min:8|max:40',
                 'tranaction_mode'=>'required|digits:1|numeric',
-                'transaction_amount'=>'required|numeric|min:10|max:200000'
+                'transaction_amount'=>'required|numeric|min:10|max:200000',
+                'id'=>'required|string|min:10|max:10'
             ],);
             if($validate->fails()){
                 return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
@@ -297,6 +298,7 @@ class PayoutController extends Controller
                                 $data = array(
                                     "url"=>'payout/transaction',
                                     "data"=>
+                                        '&transaction_user='.$request->id.
                                         '&account_id='.$request->account_id.
                                         '&tranaction_mode='.$request->tranaction_mode.
                                         '&transaction_amount='.$request->transaction_amount. 

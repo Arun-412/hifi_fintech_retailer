@@ -458,10 +458,11 @@ $('.add_or_verify_submit_btn').click(function(){
                 url: "add_account",
                 method:"POST",
                 data: { 
-                    "bank_name":$('#payout_bank_list').find(":selected").text(),
-                    "ifsc_code":$('#payout_bank_list').find(":selected").data('set'),
-                    "account_number":$('#payout_account_number').val(),
-                    "account_name":$('#payout_account_holder_name').val()
+                    "name":$('#payout_bank_list').find(":selected").text(),
+                    "code":$('#payout_bank_list').find(":selected").data('set'),
+                    "number":$('#payout_account_number').val(),
+                    "customer_name":$('#payout_account_holder_name').val(),
+                    "id":$('#mobile_id').val()
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -528,6 +529,13 @@ $("#add_account").click(function(){
 });
 
 $("#payout_bank_list").change(function () {
+    $('#payout_ifsc_code').val($('#payout_bank_list').find(":selected").val());
+    if($('#payout_ifsc_code').val() != ''){
+        $('#payout_ifsc_code').hide();
+    }
+    else{
+        $('#payout_ifsc_code').show();
+    }
     $('.loader-section').fadeIn('slow');
     $.ajax({
         url: "get_bank",
@@ -756,6 +764,7 @@ $('#transaction_pin_proceed').click( function () {
                 "tranaction_mode":payment_mode,
                 "account_id":$("#selected_payment_code").text(),
                 "transaction_password": $('#transaction_password').val(),
+                "id":$('#mobile_id').val()
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -771,7 +780,7 @@ $('#transaction_pin_proceed').click( function () {
                     $('#transaction_id_print').val(data['receipt']['sandt_id']);
                     $('#transaction_bank').text(data['receipt']['bank_name']);
                     $('#transaction_mode').text(data['receipt']['sandt_mode']);
-                    $('#transaction_amount').text(data['receipt']['sand_amount']);
+                    $('#transaction_amount').text("₹"+data['receipt']['sand_amount']);
                     $('#transaction_status').text(data['receipt']['sand_status']);
                     $('#transaction_account').text(data['receipt']['sand_account']);
                     $('#transaction_name').text(data['receipt']['sand_name']);
