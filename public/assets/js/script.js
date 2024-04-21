@@ -55,6 +55,7 @@ $(document).ready(function(){
         fixedHeader: {
             header: true
         }, 
+        order: [[0, 'desc']],
         initComplete: function() {
             $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
             $('.buttons-copy').html('<i class="bi bi-clipboard-check-fill"></i> Copy  ')

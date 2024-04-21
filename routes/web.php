@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::group(['prefix' => 'report'], function () {
-        Route::get('/', function () { return view('report'); })->name('report'); 
+        Route::get('/', [ReportController::class, "report"])->name('report');
         Route::get('/search', [ReportController::class, 'search_report'])->name('search_report');
     });
 

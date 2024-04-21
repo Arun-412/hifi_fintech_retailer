@@ -32,20 +32,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if($data)
+                            @foreach($data as $value)
                             <tr>
-                                <td>01-Dec-2023 - 12:24:32 PM</td>
-                                <td>HFPTXaLie000012</td>
-                                <td>6383224535</td>
-                                <td>Hifi Money</td>
-                                <td>HDFC Bank</td>
-                                <td>2003020001020</td>
-                                <td>₹12500</td>
-                                <td>Success</td>
-                                <td><button class="print-btn" type="button"><a href="{{route('print_transaction')}}"><i class="bi bi-printer-fill"></i></a></button>
-                                    <button class="print-btn" type="button"><i
-                                            class="bi bi-arrow-clockwise"></i></button>
+                                <td>{{$value->date_time}}</td>
+                                <td>{{$value->sandt_id}}</td>
+                                <td>{{$value->sandt_user}}</td>
+                                <td>{{$value->sand_name}}</td>
+                                <td>{{$value->bank_name}}</td>
+                                <td>{{$value->sand_account}}</td>
+                                <td>₹{{$value->sand_amount}}</td>
+                                <td>{{$value->sand_status}}</td>
+                                <td>
+                                    <!-- <button class="print-btn" type="button"><a href="{{route('print_transaction')}}"></a></button> -->
+                                    <!-- <button class="print-btn" type="button"><i
+                                            class="bi bi-arrow-clockwise"></i></button> -->
+                                            <form action="{{route('print_transaction')}}" method="post">
+                                            <input type="hidden" name="transaction_id_print" value="{{$value->sandt_id}}" />
+                                            <button type="submit"><i class="bi bi-printer-fill"></i></button>
+                                        </form>
                                 </td>
                             </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

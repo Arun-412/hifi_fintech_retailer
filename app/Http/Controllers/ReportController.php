@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\sand;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,6 +18,16 @@ class ReportController extends Controller
         $s = $m->sortByDesc('created_at');
         $r = $s->take(5);
         return $r;
+    }
+
+    public function report (Request $request) {
+        try{
+            $reports = sand::where(['created_by'=>Auth::user()->door_code])->orderBy('created_at','ASC')->get();
+            return view('report')->with("data",$reports);
+        }
+        catch(\Throwable $e){
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
+        }
     }
 
     public function print(Request $request) {

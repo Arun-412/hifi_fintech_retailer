@@ -16,6 +16,7 @@ class sand extends Model
         'sand_account',
         'sand_fees',
         'created_by',
+        'date_time',
         'sand_response',
         'created_at',
         'updated_at'
