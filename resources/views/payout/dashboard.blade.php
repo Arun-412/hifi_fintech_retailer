@@ -29,7 +29,7 @@
                                                 Code</label>
                                             <input type="text" name="bank_ifsc" value="" autofocus required
                                                 minlength="11" maxlength="11" placeholder="IFSC Code" class="form-control bank_ifsc"
-                                                id="payout_ifsc_code" autocomplete="off">
+                                                id="payout_ifsc_code" autocomplete="off" style="text-transform:uppercase">
                                                 <p id="payout_ifsc_code_check"></p>
                                         </div>
                                         <div class="mb-3 form-inputs">

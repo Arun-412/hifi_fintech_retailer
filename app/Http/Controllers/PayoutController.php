@@ -190,6 +190,7 @@ class PayoutController extends Controller
     public function verify_account(Request $request) {
         try{
             $validate = Validator::make($request->all(), [
+                'ifsc' => 'required|string|min:11|max:11',
                 'name' => 'required|string|max:50',
                 'code' => 'required|string|max:11',
                 'number' => 'required|min:8|string|max:20',
@@ -205,28 +206,37 @@ class PayoutController extends Controller
                     return response()->json(['status'=>true,'name'=>$account->account_holder_name,'code'=>$account->account_code]);
                 }
                 else{
-                    if(empty($this->Access_Key)){
-                        Artisan::call('config:clear');
-                        return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
-                    }else{
-                        $data = array(
-                            "url"=>'bank_account_verify',
-                            "data"=>
-                                '&bank_name='.$request->name.
-                                '&bank_code='.$request->code.
-                                '&account_number='.$request->number. 
-                                '&token='.$this->Access_Key.
-                                '&customer='.$request->token.
-                                '&customer_id='.$request->id.
-                                '&user='.Auth::user()->door_code
-                        );
-                        $verified_account = $this->curl_post($data);
-                        if($verified_account->status == 'success'){
-                            return response()->json(['status'=>true,'code'=>$verified_account->code,'name'=>$verified_account->name]);
+                    if(bank_list::where(['bank_code'=>$request->code])->exists()){
+                        $bank_ifsc = bank_list::where(['bank_code'=>$request->code])->first();
+                        $bank_ifsc->ifsc_code = $request->ifsc;
+                        $bank_ifsc->save();
+                        if(empty($this->Access_Key)){
+                            Artisan::call('config:clear');
+                            return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
+                        }else{
+                            $data = array(
+                                "url"=>'bank_account_verify',
+                                "data"=>
+                                    '&ifsc='.$request->ifsc.
+                                    '&bank_name='.$request->name.
+                                    '&bank_code='.$request->code.
+                                    '&account_number='.$request->number. 
+                                    '&token='.$this->Access_Key.
+                                    '&customer='.$request->token.
+                                    '&customer_id='.$request->id.
+                                    '&user='.Auth::user()->door_code
+                            );
+                            $verified_account = $this->curl_post($data);
+                            if($verified_account->status == 'success'){
+                                return response()->json(['status'=>true,'code'=>$verified_account->code,'name'=>$verified_account->name]);
+                            }
+                            else{
+                                return response()->json(['status'=>false,'message'=>$verified_account->message]);
+                            }
                         }
-                        else{
-                            return response()->json(['status'=>false,'message'=>$verified_account->message]);
-                        }
+                    }
+                    else{
+                        return response()->json(['status'=>false,'message'=>'Unable to add ifsc code']);
                     }
                 }
             }

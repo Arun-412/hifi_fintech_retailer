@@ -4,7 +4,7 @@ $(document).ready(function(){
     })
     $('.loader-section').fadeOut('slow');
     $('.account_holder_name').hide();
-    $('.bank_ifsc').hide();
+    // $('.bank_ifsc').hide();
     $('#show_password').hide();
     $('#c_show_password').hide();
     $('#hide_password').click(function(){
@@ -143,19 +143,19 @@ $(document).ready(function(){
 
 });
 
-let ifsc_status = false;
+// let ifsc_status = false;
 
 $('.verify_Account_checkbox').change(function(){
     if(this.checked){
         $('.account_holder_name').hide();
-        $('.bank_ifsc').hide();
+        // $('.bank_ifsc').hide();
         $('.add_or_verify_submit_btn').text('Verify Account');
-        if(ifsc_status == false){
-            $('.bank_ifsc').hide();
-        }
-        else{
-            $('.bank_ifsc').show();
-        }
+        // if(ifsc_status == false){
+        //     $('.bank_ifsc').hide();
+        // }
+        // else{
+        //     $('.bank_ifsc').show();
+        // }
     }
     else{
         $('.account_holder_name').show();
@@ -394,18 +394,19 @@ $('.add_or_verify_submit_btn').click(function(){
     if($(".verify_Account_checkbox").prop('checked') == true){
         account_number();
         bank_list();
-        if($('.bank_ifsc').prop('disabled') == false){
+        // if($('.bank_ifsc').prop('disabled') == false){
             ifsc_code();
-        }
-        else{
-            ifsc_code_check = true;
-        }
+        // }
+        // else{
+        //     ifsc_code_check = true;
+        // }
         if ( account_number_check == true && bank_list_check == true && ifsc_code_check == true) {
             $('.loader-section').fadeIn('slow');
             $.ajax({
                 url: "verify_account",
                 method:"POST",
-                data: { 
+                data: {
+                    "ifsc":$('#payout_ifsc_code').val().toUpperCase(),
                     "name":$('#payout_bank_list').find(":selected").text(),
                     "code":$('#payout_bank_list').find(":selected").data('set'),
                     "number":$('#payout_account_number').val(),
@@ -416,6 +417,7 @@ $('.add_or_verify_submit_btn').click(function(){
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (data) {
+                    // console.log(data);
                     if(data['status'] == true){
                         $('#payout_add_or_verify_Account').modal('hide');
                         $('#verified_name').text(data['name'].toUpperCase());
@@ -446,12 +448,12 @@ $('.add_or_verify_submit_btn').click(function(){
     else{
         account_number();
         bank_list();
-        if($('.bank_ifsc').prop('disabled') == false){
+        // if($('.bank_ifsc').prop('disabled') == false){
             ifsc_code();
-        }
-        else{
-            ifsc_code_check == true;
-        }
+        // }
+        // else{
+        //     ifsc_code_check == true;
+        // }
         account_name();
         if ( account_number_check == true && bank_list_check == true && name_check == true && ifsc_code_check == true) {
             $.ajax({
@@ -468,7 +470,7 @@ $('.add_or_verify_submit_btn').click(function(){
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (data) {
-                    console.log('res'+JSON.stringify(data));
+                    // console.log('res'+JSON.stringify(data));
                    return;
                    $('#payout_add_or_verify_Account').modal('hide');
                    $('#verified_account_name').modal('show');
@@ -503,8 +505,8 @@ $("#add_account").click(function(){
                 $.each(data['message'], function(key, value) {   
                     $('#payout_bank_list')
                         .append($("<option></option>")
-                            .attr("value", value['ifsc_code'])
-                            .attr("data-set", value['bank_code'])
+                            .attr("data-value", value['ifsc_code'] ? value['ifsc_code'].trim() : "")
+                            .attr("data-set", value['bank_code'].trim())
                             .text(value['bank_name'])
                         ); 
                 });
@@ -529,13 +531,18 @@ $("#add_account").click(function(){
 });
 
 $("#payout_bank_list").change(function () {
-    $('#payout_ifsc_code').val($('#payout_bank_list').find(":selected").val());
-    if($('#payout_ifsc_code').val() != ''){
-        $('#payout_ifsc_code').hide();
-    }
-    else{
-        $('#payout_ifsc_code').show();
-    }
+    $('#payout_ifsc_code').val($('#payout_bank_list').find(":selected").data('value'));
+    // alert($('#payout_ifsc_code').val());
+    // if($('#payout_ifsc_code').val() != '' || $('#payout_ifsc_code').val() != ' '){
+        // $('.bank_ifsc').hide();
+        // $('.bank_ifsc').prop('disabled',true);
+        // ifsc_status = false;
+    // }
+    // else{
+        // $('.bank_ifsc').prop('disabled',false);
+        // ifsc_status = true;
+    //     $('.bank_ifsc').show();
+    // }
     $('.loader-section').fadeIn('slow');
     $.ajax({
         url: "get_bank",
@@ -562,16 +569,16 @@ $("#payout_bank_list").change(function () {
                     $('#account_verify_error').text('Verify account holder name(₹4 / FREE for eligible accounts)');
                     $('#account_verify_error').css('color','#000');
                 }
-                if(data['message']['data']['ifsc_status'] == 2 || data['message']['data']['ifsc_status'] == 4){
-                    $('.bank_ifsc').prop('disabled',false);
-                    ifsc_status = true;
-                    $('.bank_ifsc').show();
-                }
-                else{
-                    $('.bank_ifsc').prop('disabled',true);
-                    ifsc_status = false;
-                    $('.bank_ifsc').hide();
-                }
+                // if(data['message']['data']['ifsc_status'] == 2 || data['message']['data']['ifsc_status'] == 4){
+                //     $('.bank_ifsc').prop('disabled',false);
+                //     ifsc_status = true;
+                //     $('.bank_ifsc').show();
+                // }
+                // else{
+                //     $('.bank_ifsc').prop('disabled',true);
+                //     ifsc_status = false;
+                //     $('.bank_ifsc').hide();
+                // }
                 $('.loader-section').fadeOut('slow');
             }else{
                 $('#t_failed_body').text(data['message']);
@@ -770,7 +777,7 @@ $('#transaction_pin_proceed').click( function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 if(data['status'] == true){
                     $('#transaction_confirm_model').modal('hide');
                     $('#t_success_body').text(data['message']);
