@@ -305,29 +305,46 @@ class PayoutController extends Controller
                                 Artisan::call('config:clear');
                                 return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
                             }else{
-                                $data = array(
-                                    "url"=>'payout/transaction',
-                                    "data"=>
-                                        '&transaction_user='.$request->id.
-                                        '&account_id='.$request->account_id.
-                                        '&tranaction_mode='.$request->tranaction_mode.
-                                        '&transaction_amount='.$request->transaction_amount. 
-                                        '&token='.$this->Access_Key.
-                                        '&user='.Auth::user()->door_code.
-                                        '&send_by='.substr(Auth::user()->shop_name, 0, 10)
-                                );
-                                $transaction = $this->curl_post($data);
-                                if($transaction->status == 'success'){
-                                    if(isset($transaction->t_id) && sand::where(['sandt_id'=>$transaction->t_id])->exists()){
-                                        $receipt = sand::where(['sandt_id'=>$transaction->t_id])->first();
-                                        return response()->json(['status'=>true,'message'=>$transaction->message,'receipt'=>$receipt]);
+                                $charge = $request->transaction_amount <= 1500 ? $request->transaction_amount + 7 : $request->transaction_amount + number_format($request->transaction_amount * (0.5/ 100), 2, '.', ',');
+                                if(Auth::user()->awards >= $charge){
+                                    $data = array(
+                                        "url"=>'payout/transaction',
+                                        "data"=>
+                                            '&transaction_charge='.$charge.
+                                            '&transaction_user='.$request->id.
+                                            '&account_id='.$request->account_id.
+                                            '&tranaction_mode='.$request->tranaction_mode.
+                                            '&transaction_amount='.$request->transaction_amount. 
+                                            '&token='.$this->Access_Key.
+                                            '&user='.Auth::user()->door_code.
+                                            '&send_by='.substr(Auth::user()->shop_name, 0, 10)
+                                    );
+                                    $transaction = $this->curl_post($data);
+                                    if($transaction->status == 'success'){
+                                        Auth::user()->awards = Auth::user()->awards - $charge;
+                                        Auth::user()->save();
+                                        if(Auth::user()->door_opened_by != "HFS"){
+                                            $distributer = User::where(['door_code'=>Auth::user()->door_opened_by])->first();
+                                            $distributer->awards = $request->transaction_amount <= 1500 ? $distributer->awards + 3.5 : $distributer->awards + number_format($request->transaction_amount * (0.25/ 100), 2, '.', ',');
+                                            $distributer->save();
+                                        }
+                                        $admin = User::where(['door_code'=>"HFAi7QtSqiFa"])->first();
+                                        $admin->awards = $request->transaction_amount <= 1500 ? $admin->awards + 3.5 : $admin->awards + number_format($request->transaction_amount * (0.25/ 100), 2, '.', ',');
+                                        $admin->save();
+                                        if(isset($transaction->t_id) && sand::where(['sandt_id'=>$transaction->t_id])->exists()){
+                                            $receipt = sand::where(['sandt_id'=>$transaction->t_id])->first();
+                                            return response()->json(['status'=>true,'message'=>$transaction->message,'receipt'=>$receipt]);
+                                        }
+                                        else{
+                                            return response()->json(['status'=>true,'message'=>$transaction->message]);
+                                        }
                                     }
                                     else{
-                                        return response()->json(['status'=>true,'message'=>$transaction->message]);
+                                        return response()->json(['status'=>false,'message'=>$transaction->message]);
                                     }
                                 }
                                 else{
-                                    return response()->json(['status'=>false,'message'=>$transaction->message]);
+                                    return response()->json(['status'=>false,'message'=>"Insufficient balance"]);
                                 }
                             }
                         }

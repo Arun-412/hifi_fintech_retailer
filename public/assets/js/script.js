@@ -777,7 +777,6 @@ $('#transaction_pin_proceed').click( function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
-                // console.log(data);
                 if(data['status'] == true){
                     $('#transaction_confirm_model').modal('hide');
                     $('#t_success_body').text(data['message']);
