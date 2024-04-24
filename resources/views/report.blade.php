@@ -27,6 +27,7 @@
                                 <th scope="col">Bank Name</th>
                                 <th scope="col">Account Number | Mode</th>
                                 <th scope="col">Amount</th>
+                                <th scope="col">Charge</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -42,6 +43,7 @@
                                 <td>{{$value->bank_name}}</td>
                                 <td>{{$value->sand_account}} | {{$value->sandt_mode}}</td>
                                 <td>₹{{$value->sand_amount}}</td>
+                                <td>₹{{$value->sandt_tcharge-$value->sand_amount < 0 ? 0 : $value->sandt_tcharge-$value->sand_amount}}</td>
                                 <td style="color: #198754;">{{$value->sand_status}}</td>
                                 <td>
                                     <!-- <button class="print-btn" type="button"><a href="{{route('print_transaction')}}"></a></button> -->
