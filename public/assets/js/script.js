@@ -826,6 +826,56 @@ $('#payout_pay').click(function () {
         $("#selected_payment_bank").text(selectedRow[3]);
         $("#selected_payment_account").text(selectedRow[4]);
         $("#selected_payment_name").text(selectedRow[2]);           
-        $('#payout_transaction_model').modal('show');
+    });
+    $('#payout_transaction_model').modal('show');
+});
+
+$("#delete_customer_account").click( function () {
+    var table = new DataTable('#payout_accounts_list'); 
+    $('#payout_accounts_list tbody').on('click', 'tr', function () {
+        var selectedRow = table.row(this).data();
+        $('#selected_account_code_to_delete').val(selectedRow[1]);
+        $('#selected_name_to_delete').text(selectedRow[2]);
+        $('#selected_bank_to_delete').text(selectedRow[3]);
+        $('#selected_account_to_delete').text(selectedRow[4]);
+    });
+});
+
+$("#selected_payout_account_delete").click( function () {
+    $('.loader-section').fadeIn('slow');
+    $.ajax({
+        url: "delete_payout_user_account",
+        method:"DELETE",
+        data: { 
+            "user":$('#customer_id').val(),
+            "account":$('#selected_account_code_to_delete').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            if(data['status'] == true){
+                $('#t_success_body').text(data['message']);
+                $('#payout_delete_account_model').modal('hide');
+                $('#t_success').toast('show');
+                $('.loader-section').fadeOut('slow');
+            }else{
+                $('#payout_delete_account_model').modal('hide');
+                $('#t_failed_body').text(data['message']);
+                $('#t_failed').toast('show');
+                $('input').val('');
+                $('.loader-section').fadeOut('slow');
+            }
+        },
+        error: function (xhr, status, error) {
+            var message = xhr['responseText'];
+            message = JSON.parse(message);
+            message= message['message'];
+            $('#t_failed_body').text(message);
+            $('#t_failed').toast('show');
+            $('input').val('');
+            $('#payout_delete_account_model').modal('hide');
+            $('.loader-section').fadeOut('slow');
+        }
     });
 });

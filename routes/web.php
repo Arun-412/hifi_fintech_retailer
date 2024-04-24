@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/get_bank',[PayoutController::class, 'get_bank'])->name('get_bank');
         Route::post('/transaction',[PayoutController::class, 'transaction'])->name('transaction');
         Route::get('/login', [TransactionalUserController::class, 'user_login'])->name('transaction_user_login');
+        Route::delete('/delete_payout_user_account',[TransactionalUserController::class, 'delete_user_bank_account'])->name('delete_user_bank_account');
     });
 
     Route::group(['prefix' => 'report'], function () {

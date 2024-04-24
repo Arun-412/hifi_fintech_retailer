@@ -93,6 +93,11 @@
                     </div>
                     <div style="margin-bottom: 25px;" class="d-flex align-items-center justify-content-between">
                         <h4 style="margin-bottom: 0px;">Account List</h4>
+                        @if(session('success'))
+                        <h4 style="margin-bottom: 0px;">{{isset(session('success')['mobile']) ? session('success')['mobile'] : ""}}</h4>
+                        @elseif(session('failed'))
+                        <h4 style="margin-bottom: 0px;">{{isset(session('failed')['mobile']) ? session('failed')['mobile'] : ""}}</h4>
+                        @endif
                         <button style="width:fit-content;" type="button" class="btn btn-primary" id="add_account"><i class="bi bi-person-fill-add"></i> Add/Verify Account
                         </button>
                     </div>
@@ -129,8 +134,8 @@
                                 <td style="color:green;"><i class="verify-icon bi bi-person-fill-check"></i>Verified</td>
                                 @else
                                 <td><button class="btn-pay" type="button">Verify Account</button></td>
-                                @endif 
-                                <td><button class="btn-reject" type="button"><i
+                                @endif
+                                <td><button class="btn-reject" type="button" id="delete_customer_account" data-bs-toggle="modal" data-bs-target="#payout_delete_account_model"><i
                                             class="bi bi-trash3-fill"></i>Delete</button>
                                     <button class="btn-pay" data-bs-toggle="modal" data-bs-target="#payout_transaction_model"
                                         type="button" id="payout_pay"><i class="bi bi-cash-stack"></i>Pay</button>
@@ -140,6 +145,39 @@
                             @endif
                         </tbody>
                     </table>
+                    <div class="modal fade payout-model" id="payout_delete_account_model" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content confirm-modal">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div style="margin-top:25px;">
+                                       
+                                       <div class="mb-3 form-inputs">
+                                           <center><label for="exampleFormControlInput1" class="form-label text-center">Are you sure to delete the account?</label></center>
+                                        </div>
+                                       <div style="text-align: center;" class="mb-3 form-inputs">
+                                       <input type="hidden" id="selected_account_code_to_delete" />
+                                        <p class="form-label text-center" id="selected_name_to_delete"></p> 
+                                        <p class="form-label text-center" id="selected_bank_to_delete"></p> 
+                                        <p class="form-label text-center" id="selected_account_to_delete"></p> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="align-items: baseline;" class="modal-footer ">
+                                    
+                                    <button type="button" class="btn btn-secondary cancel-btn" data-bs-dismiss="modal"
+                                        aria-label="Close">Cancel</button>
+                                        <button type="button" class="btn btn-secondary"
+                                        id="selected_payout_account_delete">Yes! Proceed</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="modal fade payout-model" id="payout_transaction_model" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
                         <div class="modal-dialog modal-dialog-centered">

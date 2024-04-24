@@ -63,6 +63,30 @@ class TransactionalUserController extends Controller
         }  
     }
 
+    public function delete_user_bank_account(Request $request){
+        try{
+            if(sandstone::where(['user_code'=>$request->user])->exists()){
+                if(sandstone::where(['account_code'=>$request->account])->exists()){
+                    $deleted_user = sandstone::where(['account_code'=>$request->account,'user_code'=>$request->user])->first();
+                    if($deleted_user->delete()){
+                        return response()->json(['status'=>true,'message'=>"Account deleted successfully"]); 
+                    }
+                    else{
+                        return response()->json(['status'=>false,'message'=>"Something went wrong on delete account"]); 
+                    }
+                }
+                else{
+                    return response()->json(['status'=>false,'message'=>"Account not found"]); 
+                }
+            }
+            else{
+                return response()->json(['status'=>false,'message'=>"User not found"]);
+            }
+        }catch(\Throwable $e){
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
+        }  
+    }
+
     public function user_login(Request $request){
         try{
             $validate = Validator::make($request->all(), [
