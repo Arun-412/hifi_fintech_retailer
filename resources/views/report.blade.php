@@ -20,14 +20,13 @@
                     <table id="report_data" class="table display nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">Date - Time</th>
+                                <th scope="col">Date | Time</th>
                                 <th scope="col">Transaction ID</th>
                                 <th scope="col">Mobile Number</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Bank Name</th>
                                 <th scope="col">Account Number | Mode</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Charge</th>
+                                <th scope="col">Amount | Charge</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -38,12 +37,11 @@
                             <tr>
                                 <td>{{$value->date_time}}</td>
                                 <td>{{$value->sandt_id}}</td>
-                                <td>{{$value->sandt_user}}</td>
-                                <td>{{$value->sand_name}}</td>
-                                <td>{{$value->bank_name}}</td>
+                                <td>{{substr($value->sandt_user,0,10)}}</td>
+                                <td>{{substr($value->sand_name,0,10)}}</td>
+                                <td>{{substr($value->bank_name,0,10)}}</td>
                                 <td>{{$value->sand_account}} | {{$value->sandt_mode}}</td>
-                                <td>₹{{$value->sand_amount}}</td>
-                                <td>₹{{$value->sandt_tcharge-$value->sand_amount < 0 ? 0 : $value->sandt_tcharge-$value->sand_amount}}</td>
+                                <td>₹{{$value->sand_amount}} | ₹{{$value->sandt_tcharge-$value->sand_amount < 0 ? 0 : number_format((float)$value->sandt_tcharge-$value->sand_amount, 2, '.', '')}}</td>
                                 <td style="color: #198754;">{{$value->sand_status}}</td>
                                 <td>
                                     <!-- <button class="print-btn" type="button"><a href="{{route('print_transaction')}}"></a></button> -->
