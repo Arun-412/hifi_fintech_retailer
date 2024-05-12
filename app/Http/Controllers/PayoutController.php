@@ -331,8 +331,8 @@ class PayoutController extends Controller
                                         $admin = User::where(['door_code'=>"HFAi7QtSqiFa"])->first();
                                         $admin->awards = $request->transaction_amount <= 1500 ? $admin->awards + 3.5 : $admin->awards + number_format($request->transaction_amount * (0.25/ 100), 2, '.', ',');
                                         $admin->save();
-                                        if(isset($transaction->t_id) && sand::where(['sandt_id'=>$transaction->t_id])->exists()){
-                                            $receipt = sand::where(['sandt_id'=>$transaction->t_id])->first();
+                                        if(isset($transaction->t_id) && sand::where(['sandt_Hid'=>$transaction->t_id])->exists()){
+                                            $receipt = sand::where(['sandt_Hid'=>$transaction->t_id])->first();
                                             return response()->json(['status'=>true,'message'=>$transaction->message,'receipt'=>$receipt]);
                                         }
                                         else{

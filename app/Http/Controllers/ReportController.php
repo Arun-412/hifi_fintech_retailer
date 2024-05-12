@@ -22,7 +22,7 @@ class ReportController extends Controller
 
     public function report (Request $request) {
         try{
-            $reports = sand::where(['created_by'=>Auth::user()->door_code])->orderBy('created_at','ASC')->get();
+            $reports = sand::where(['created_by'=>Auth::user()->door_code])->whereDate('created_at', date('Y-m-d'))->orderBy('created_at','DESC')->get();
             return view('report')->with("data",$reports);
         }
         catch(\Throwable $e){
@@ -39,8 +39,8 @@ class ReportController extends Controller
                 return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
             }
             else{
-                if(sand::where(['sandt_id'=>$request->transaction_id_print])->exists()){
-                    $print = sand::where(['sandt_id'=>$request->transaction_id_print])->first();
+                if(sand::where(['sandt_Hid'=>$request->transaction_id_print])->exists()){
+                    $print = sand::where(['sandt_Hid'=>$request->transaction_id_print])->first();
                     return redirect('print')->with("success",$print);
                 }
                 else{

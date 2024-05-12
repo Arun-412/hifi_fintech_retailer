@@ -783,7 +783,7 @@ $('#transaction_pin_proceed').click( function () {
                     $('input').val('');
                     $('#transaction_time').text(data['receipt']['date_time']);
                     $('#transaction_id').text(data['receipt']['sandt_id']);
-                    $('#transaction_id_print').val(data['receipt']['sandt_id']);
+                    $('#transaction_id_print').val(data['receipt']['sandt_Hid']);
                     $('#transaction_bank').text(data['receipt']['bank_name']);
                     $('#transaction_mode').text(data['receipt']['sandt_mode']);
                     $('#transaction_amount').text("₹"+data['receipt']['sand_amount']);

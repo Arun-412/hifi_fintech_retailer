@@ -48,7 +48,7 @@
                                     <!-- <button class="print-btn" type="button"><i
                                             class="bi bi-arrow-clockwise"></i></button> -->
                                             <form action="{{route('print_transaction')}}" method="post">
-                                            <input type="hidden" name="transaction_id_print" value="{{$value->sandt_id}}" />
+                                            <input type="hidden" name="transaction_id_print" value="{{$value->sandt_Hid}}" />
                                             <button type="submit"><i class="bi bi-printer-fill"></i></button>
                                         </form>
                                 </td>
