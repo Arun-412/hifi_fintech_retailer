@@ -20,7 +20,7 @@
                                     <div style="margin-top:25px;">
                                         <label for="exampleFormControlInput1" class="form-label">Bank Name</label>
                                         <!-- Search select -->
-                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+                                        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
                                         </script>
                                         <script
                                             src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
@@ -56,12 +56,12 @@
                                             });
                                         });
                                         </script>
-                                    <!-- End Search select -->
+                                    End Search select -->
                                     
-                                        <!-- <select style="margin-bottom:15px" class="form-select"
+                                        <select style="margin-bottom:15px" class="form-select"
                                             aria-label="Default select example" id="payout_bank_list">
                                             <option selected disabled>Select Bank Name</option>
-                                        </select> -->
+                                        </select>
                                         <p id="payout_bank_list_check"></p>
                                         <div class="mb-3 form-inputs">
                                             <label for="exampleFormControlInput1" class="form-label bank_ifsc">IFSC

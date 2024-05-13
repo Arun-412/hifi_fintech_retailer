@@ -53,9 +53,9 @@
         </div>
     </div>
     <!-- OTP trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrops">
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrops">
         Launch static backdrop modal
-    </button>
+    </button> -->
 
     <!-- OTP Modal -->
     <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
