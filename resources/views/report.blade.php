@@ -45,6 +45,7 @@
                                 <td style="color: #198754;">{{$value->sand_status}}</td>
                                 <td>
                                     <!-- <button class="print-btn" type="button"><a href="{{route('print_transaction')}}"></a></button> -->
+                                    <div style="display:flex;">
                                     <form action="{{route('transaction_status')}}" method="post">@csrf
                                     <input type="hidden" name="transaction_id" value="{{$value->sandt_Hid}}" />
                                     <button class="print-btn" type="submit"><i
@@ -53,7 +54,7 @@
                                             <form action="{{route('print_transaction')}}" method="post">@csrf
                                             <input type="hidden" name="transaction_id_print" value="{{$value->sandt_Hid}}" />
                                             <button type="submit"><i class="bi bi-printer-fill"></i></button>
-                                        </form>
+                                        </form></div>
                                 </td>
                             </tr>
                             @endforeach
