@@ -285,6 +285,22 @@ class PayoutController extends Controller
         return $request->all();
     }
 
+    public function transaction_status(Request $request) {
+        if(empty($this->Access_Key)){
+            Artisan::call('config:clear');
+            return response()->json(['status'=>false,'message'=>"Try Again".$this->Access_Key]);
+        }else{
+            $data = array(
+                "url"=>'payout/transaction_enquiry',
+                "data"=>
+                    '&transaction_id='.$request->transaction_id.
+                    '&token='.$this->Access_Key
+            );
+            $transaction = $this->curl_post($data);
+            return redirect('/report');
+        }
+    }
+
     public function transaction(Request $request) {
         try{
             $validate = Validator::make($request->all(), [

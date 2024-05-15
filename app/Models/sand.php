@@ -24,7 +24,6 @@ class sand extends Model
         'updated_at'
     ];
     protected $hidden = [
-        'sand_id',
         'sand_response',
         'updated_at'
     ];
