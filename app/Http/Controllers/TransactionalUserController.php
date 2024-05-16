@@ -120,31 +120,38 @@ class TransactionalUserController extends Controller
                     );
                     $customer = $this->curl_post($data);
                     if($customer->status == true){
-                        $user_access = transactional_user::create([
-                            'user_code' => "HFT".Str::random(4)."U".Str::random(4),
-                            'mobile_number' => $request->mobile_number,
-                            'created_by' => Auth::user()->door_code,
-                            'status' => "HFY",
-                        ]);
-                        if($user_access){
-                            $accounts_list = $this->user_accounts($user_code = $user_access->user_code);
-                            $data = array(
-                                "mobile"=>$request->mobile_number,
-                                "user"=>$user_access->user_code
-                            );
-                            if($accounts_list){
-                                $data['accounts'] = $accounts_list;
-                                return redirect('payout/dashboard')->with("success",$data);
-                            }   
-                            else{
-                                return redirect('payout/dashboard')->with("failed",$data);
+                        if($customer->message == "Wallet opened successfully."){
+                            $user_access = transactional_user::create([
+                                'user_code' => "HFT".Str::random(4)."U".Str::random(4),
+                                'mobile_number' => $request->mobile_number,
+                                'created_by' => Auth::user()->door_code,
+                                'status' => "HFY",
+                            ]);
+                            if($user_access){
+                                $accounts_list = $this->user_accounts($user_code = $user_access->user_code);
+                                $data = array(
+                                    "mobile"=>$request->mobile_number,
+                                    "user"=>$user_access->user_code
+                                );
+                                if($accounts_list){
+                                    $data['accounts'] = $accounts_list;
+                                    return redirect('payout/dashboard')->with("success",$data);
+                                }   
+                                else{
+                                    return redirect('payout/dashboard')->with("failed",$data);
+                                }
+                            }else{
+                                return back()->with("failed","Unable to Register");
                             }
+                        }
+                        else if($customer->message == "OTP Sent"){
+                            return back()->with("success","OTP Sent to ".$customer->mobile);
                         }else{
-                            return back()->with("failed","Unable to Register");
+                            return back()->with("failed","Unable to Create Customer");
                         }
                     }
                     else{
-                        return response()->json(['status'=>false,'message'=>$customer->message]);
+                        return back()->with("failed",$customer->message);
                     }
                 }
             }
