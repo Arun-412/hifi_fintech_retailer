@@ -48,7 +48,7 @@
                                     <div style="display:flex;">
                                     <form action="{{route('transaction_status')}}" method="post">@csrf
                                     <input type="hidden" name="transaction_id" value="{{$value->sandt_Hid}}" />
-                                    <button class="print-btn" type="submit"><i
+                                    <button class="print-btn" id="t_reload" type="submit"><i
                                             class="bi bi-arrow-clockwise"></i></button>
                                     </form>
                                             <form action="{{route('print_transaction')}}" method="post">@csrf

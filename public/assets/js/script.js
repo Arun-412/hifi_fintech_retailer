@@ -752,6 +752,11 @@ $('#payout_transaction_amount_pay').click(function () {
     }
 });
 
+$('#t_reload').click( function () {
+    $('.loader-section').fadeIn('slow');
+    $('#t_reload').hide();
+})
+
 $('#transaction_pin_proceed').click( function () {
     transaction_password();
     if(transaction_password_check == true) {
