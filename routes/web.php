@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'report'], function () {
         Route::get('/', [ReportController::class, "report"])->name('report');
-        Route::get('/search', [ReportController::class, 'search_report'])->name('search_report');
+        Route::post('/search', [ReportController::class, 'search_report'])->name('search_report');
     });
 
     Route::group(['prefix' => 'print'], function () {  

@@ -6,16 +6,16 @@
             <div class="col-sm-12 col-md-12 col-xs-12">
                 <div class="payout-box">
                     <h4 style="float:left;">Report</h4>
-                    <form class="report-form">
+                    <form class="report-form" action="{{route('search_report')}}" method="POST">
                         @csrf
                         <input type="date" name="from date" id="" value="<?= date('Y-m-d') ?>" placeholder="From Date">
                         <input type="date" name="to date" id="" value="<?= date('Y-m-d') ?>" placeholder="To Date">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select Service</option>
-                            <option value="1">Account Statement</option>
-                            <option value="2">Payout</option>
+                        <select name="report_type" class="form-select" aria-label="Default select example">
+                            <!-- <option selected>Select Service</option> -->
+                            <!-- <option value="ASR">Account Statement</option> -->
+                            <option value="PTR">Payout Report</option>
                         </select>
-                        <button class="btn" type="button" value="search_report">Search Report</button>
+                        <button class="btn" type="submit" value="search_report">Search Report</button>
                     </form>
                     <table id="report_data" class="table display nowrap" style="width:100%">
                         <thead>

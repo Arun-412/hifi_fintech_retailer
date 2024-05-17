@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Validator;
 class ReportController extends Controller
 {
     public function search_report(Request $request){
-        $d = DB::table('doors')->orderBy('created_at','DESC')->get();
-        $c = DB::table('eko_payout_charges')->orderBy('created_at','DESC')->get();
-        $m = $c->merge($d);
-        $s = $m->sortByDesc('created_at');
-        $r = $s->take(5);
-        return $r;
+        // return $request->all();
+        // return $request->from_date."00:00:00 - ".$request->to_date."23:59:59";
+        // $d = DB::table('doors')->orderBy('created_at','DESC')->get();
+        // $c = DB::table('sands')->where(['created_by'=>Auth::user()->door_code])->orderBy('created_at','DESC')->get();
+        // $m = $c->merge($d);
+        // $s = $m->sortByDesc('created_at');
+        // $r = $s->take(5);
+        // return $c;
+        $reports = sand::where(['created_by'=>Auth::user()->door_code])->whereBetween('created_at', [$request->from_date." 00:00:00",$request->to_date." 23:59:59"])->orderBy('created_at','DESC')->get();
+        return view('report')->with("data",$reports);
+        // return $reports;
     }
 
     public function report (Request $request) {
