@@ -25,8 +25,9 @@
                                 <th scope="col">Mobile Number</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Bank Name</th>
-                                <th scope="col">Account Number | Mode</th>
-                                <th scope="col">Amount | Charge</th>
+                                <th scope="col">Account Number</th>
+                                <th scope="col">₹Amount</th>
+                                <th scope="col">₹Charge</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -40,8 +41,9 @@
                                 <td>{{substr($value->sandt_user,0,10)}}</td>
                                 <td>{{substr($value->sand_name,0,10)}}</td>
                                 <td>{{substr($value->bank_name,0,10)}}</td>
-                                <td>{{$value->sand_account}} | {{$value->sandt_mode}}</td>
-                                <td>₹{{$value->sand_amount}} | ₹{{$value->sandt_tcharge-$value->sand_amount < 0 ? 0 : number_format((float)$value->sandt_tcharge-$value->sand_amount, 2, '.', '')}}</td>
+                                <td>{{$value->sand_account}}</td>
+                                <td>{{$value->sand_amount}}</td>
+                                <td>{{$value->sandt_tcharge-$value->sand_amount < 0 ? 0 : number_format((float)$value->sandt_tcharge-$value->sand_amount, 2, '.', '')}}</td>
                                 <td style="color: #198754;">{{$value->sand_status}}</td>
                                 <td>
                                     <!-- <button class="print-btn" type="button"><a href="{{route('print_transaction')}}"></a></button> -->
