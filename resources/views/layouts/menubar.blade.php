@@ -51,7 +51,15 @@ $current_path = dynamicActiveLink(Request::path());
                         <a class="nav-link {{$current_path == 'payout' ? 'active' : ''}}">
                             <span class="lan-7"><i class="bi bi-credit-card-2-front-fill"></i>Payout</span></a>
                         <ul class="submenu">
-                            <li><a href="{{route('payout_login')}}">EKO</a></li>
+                            <li><a href="{{route('payout_login')}}">E Pay</a></li>
+                            <li><a href="{{route('coming_soon')}}">G Pay</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item hoverd">
+                        <a class="nav-link {{$current_path == 'payout' ? 'active' : ''}}">
+                            <span class="lan-7"><i class="bi bi-phone-flip"></i>UPI</span></a>
+                        <ul class="submenu">
+                            <li><a href="{{route('coming_soon')}}">G Pay</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -59,7 +67,7 @@ $current_path = dynamicActiveLink(Request::path());
                     </li>
                     <li class="nav-item hoverd">
                         <a class="nav-link {{$current_path == 'bill_payments_bbps' ? 'active' : ($current_path == 'bill_payments_cms' ? 'active' : '')}}">
-                            <span class="lan-7"><i class="bi bi-receipt"></i>Bill Payments</span></a>
+                            <span class="lan-7"><i class="bi bi-receipt"></i>Utilities</span></a>
                         <ul class="submenu">
                             <li><a href="{{route('bill_payments_bbps')}}">BBPS Bill</a>
                             <ul class="second-submenu">
