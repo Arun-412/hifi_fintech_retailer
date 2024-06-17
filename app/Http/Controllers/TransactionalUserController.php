@@ -87,29 +87,52 @@ class TransactionalUserController extends Controller
         }  
     }
 
+    // public function transactional_user_records () {
+    //     $user_access = transactional_user::create([
+    //         'user_code' => "HFT".Str::random(4)."U".Str::random(4),
+    //         'mobile_number' => $request->mobile_number,
+    //         'created_by' => Auth::user()->door_code,
+    //         'status' => "HFY",
+    //     ]);
+    //     if($user_access){
+    //         $accounts_list = $this->user_accounts($user_code = $user_access->user_code);
+    //         $data = array(
+    //             "mobile"=>$request->mobile_number,
+    //             "user"=>$user_access->user_code
+    //         );
+    //         if($accounts_list){
+    //             $data['accounts'] = $accounts_list;
+    //             return redirect('payout/dashboard')->with("success",$data);
+    //         }   
+    //         else{
+    //             return redirect('payout/dashboard')->with("failed",$data);
+    //         }
+    //         $user = transactional_user::select('user_code')->where(['mobile_number'=>$request->mobile_number])->first();
+    //                 $accounts_list = $this->user_accounts($user_code = $user->user_code);
+    //                 $data = array(
+    //                     "user"=>$user->user_code,
+    //                     "mobile"=>$request->mobile_number
+    //                 );
+    //                 if($accounts_list){
+    //                     $data["accounts"]=$accounts_list;
+    //                     return redirect('payout/dashboard')->with("success",$data);
+    //                 }   
+    //                 else{
+    //                     return redirect('payout/dashboard')->with("failed",$data);
+    //                 }
+    // }
+
     public function user_login(Request $request){
         try{
             $validate = Validator::make($request->all(), [
                 'mobile_number' => 'required|digits:10|numeric',
             ],);
             if($validate->fails()){
-                return back()->withInput()->withErrors($validate);
+                return response()->json(['status'=>false,'message'=>$validate->errors()->toArray()[array_keys($validate->errors()->toArray())[0]][0]]);
             }
             else{
                 if(transactional_user::where(['mobile_number'=>$request->mobile_number])->exists()){
-                    $user = transactional_user::select('user_code')->where(['mobile_number'=>$request->mobile_number])->first();
-                    $accounts_list = $this->user_accounts($user_code = $user->user_code);
-                    $data = array(
-                        "user"=>$user->user_code,
-                        "mobile"=>$request->mobile_number
-                    );
-                    if($accounts_list){
-                        $data["accounts"]=$accounts_list;
-                        return redirect('payout/dashboard')->with("success",$data);
-                    }   
-                    else{
-                        return redirect('payout/dashboard')->with("failed",$data);
-                    }
+                    return response()->json(['status'=>true,'message'=>"Registeration Completed",'login'=>true]);
                 }
                 else{
                     $data = array(
@@ -128,35 +151,23 @@ class TransactionalUserController extends Controller
                                 'status' => "HFY",
                             ]);
                             if($user_access){
-                                $accounts_list = $this->user_accounts($user_code = $user_access->user_code);
-                                $data = array(
-                                    "mobile"=>$request->mobile_number,
-                                    "user"=>$user_access->user_code
-                                );
-                                if($accounts_list){
-                                    $data['accounts'] = $accounts_list;
-                                    return redirect('payout/dashboard')->with("success",$data);
-                                }   
-                                else{
-                                    return redirect('payout/dashboard')->with("failed",$data);
-                                }
-                            }else{
-                                return back()->with("failed","Unable to Register");
+                                return response()->json(['status'=>true,'message'=>"Registeration Completed",'login'=>true]);
                             }
-                        }
-                        else if($customer->message == "OTP Sent"){
-                            return back()->with("success","OTP Sent to ".$customer->mobile);
+                            else{
+                                return response()->json(['status'=>false,'message'=>"Registeration Incomplete"]);   
+                            }
+                        }else if($customer->message == "OTP Sent"){
+                            return response()->json(['status'=>true,'verify'=>true,'message'=>"OTP has been Sent to ****".substr($customer->mobile, -4)]);
                         }else{
-                            return back()->with("failed","Unable to Create Customer");
+                            return response()->json(['status'=>false,'message'=>$customer->message]);
                         }
-                    }
-                    else{
-                        return back()->with("failed",$customer->message);
+                    }else{
+                        return response()->json(['status'=>false,'message'=>"Unable to Register"]);
                     }
                 }
             }
         }catch(\Throwable $e){
-            return back()->with("failed",$e->getmessage());
+            return response()->json(['status'=>false,'message'=>$e->getmessage()]);
         }
     }
 

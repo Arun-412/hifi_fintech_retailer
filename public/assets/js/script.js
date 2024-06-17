@@ -648,10 +648,124 @@ function mobile(){
 	}
 }
 
+$('#resend_otp').click( function () {
+    mobile();
+	if ( mobile_check == true ) {
+        $('#resend_otp').hide();
+        $('#payout_otp_modal').modal('hide');
+        $('.loader-section').fadeIn('slow');
+        $.ajax({
+            url: "payout/login",
+            method:"POST",
+            data: { 
+                "mobile_number":$('#payout_mobile_number').val()
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                if(data['login'] == true){
+                    window.location = "payout/dashboard";
+                }
+                else if(data['verify'] == true){
+                    $('#t_success_body').text(data['message']);
+                    $('#otp_message_value').text(data['message']);
+                    $('#t_success').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                    let x=60;
+                    let time = setInterval(function() {
+                        if(x<1){
+                            clearInterval(time);
+                            $('#counter').hide();
+                            $('#resend_otp').show();
+                        }
+                        else{
+                            $('#counter').show();
+                            $('#resend_otp').hide();
+                            x--;
+                        }
+                        $('#counter').html("Resent OTP in "+(x < 10 ? "00:0"+x:"00:"+x));
+                    }, 1000);
+                    $('#payout_otp_modal').modal('show');
+                }else if(data['status'] == true){
+                    $('#t_success_body').text(data['message']);
+                    $('#t_success').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                }else{
+                    $('#t_failed_body').text(data['message']);
+                    $('#t_failed').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                }
+            },
+            error: function (xhr, status, error) {
+                var message = xhr['responseText'];
+                message = JSON.parse(message);
+                message= message['message'];
+                $('#t_failed_body').text(message);
+                $('#t_failed').toast('show');
+                $('.loader-section').fadeOut('slow');
+            }
+        });
+    }else{
+        return false;
+    }
+});
+
 $('#payout_mobile_number_login').click( function () {
     mobile();
 	if ( mobile_check == true ) {
-        return true;
+        $('.loader-section').fadeIn('slow');
+        $.ajax({
+            url: "payout/login",
+            method:"POST",
+            data: { 
+                "mobile_number":$('#payout_mobile_number').val()
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                if(data['login'] == true){
+                    window.location = "payout/dashboard";
+                }
+                else if(data['verify'] == true){
+                    $('#t_success_body').text(data['message']);
+                    $('#otp_message_value').text(data['message']);
+                    $('#t_success').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                    let x=60;
+                    let time = setInterval(function() {
+                        if(x<1){
+                            clearInterval(time);
+                            $('#counter').hide();
+                            $('#resend_otp').show();
+                        }
+                        else{
+                            $('#resend_otp').hide();
+                            x--;
+                        }
+                        $('#counter').html("Resent OTP in "+(x < 10 ? "00:0"+x:"00:"+x));
+                    }, 1000);
+                    $('#payout_otp_modal').modal('show');
+                }else if(data['status'] == true){
+                    $('#t_success_body').text(data['message']);
+                    $('#t_success').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                }else{
+                    $('#t_failed_body').text(data['message']);
+                    $('#t_failed').toast('show');
+                    $('.loader-section').fadeOut('slow');
+                }
+            },
+            error: function (xhr, status, error) {
+                var message = xhr['responseText'];
+                message = JSON.parse(message);
+                message= message['message'];
+                $('#t_failed_body').text(message);
+                $('#t_failed').toast('show');
+                $('.loader-section').fadeOut('slow');
+            }
+        });
     }else{
         return false;
     }

@@ -46,7 +46,7 @@ $current_path = dynamicActiveLink(Request::path());
                         <a class="nav-link {{$current_path == 'home' ? 'active' : ''}}" aria-current="page" href="{{route('dashboard')}}"><i class="bi bi-house-fill"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{$current_path == 'money_transfer' ? 'active' : ''}}" href="{{route('money_transfer_login')}}"><i class="bi bi-wallet-fill"></i>Money Transfer</a>
+                        <a class="nav-link {{$current_path == 'money_transfer' ? 'active' : ''}}" href="{{route('money_transfer_login')}}"><i class="bi bi-wallet-fill"></i>DMT</a>
                     </li>
                     <li class="nav-item hoverd">
                         <a class="nav-link {{$current_path == 'payout' ? 'active' : ''}}">
@@ -101,7 +101,7 @@ $current_path = dynamicActiveLink(Request::path());
                             <img src="{{asset('assets/images/wallet-filled-money-tool.png')}}">
                         </div>
                         <div>
-                            <p>Wallet Balance</p>
+                            <p>Wallet</p>
                             <!-- <p>₹0.00</p> -->
                             <p>₹{{ Auth::user()->awards }}
                                 <?php 
