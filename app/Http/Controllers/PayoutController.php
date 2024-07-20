@@ -187,6 +187,11 @@ class PayoutController extends Controller
         }
     }
 
+    public function payout_dashboard(Request $request) {
+        $data = $request->all();
+        return view('payout/dashboard')->with("success",$data);
+    }
+
     public function verify_account(Request $request) {
         try{
             $validate = Validator::make($request->all(), [

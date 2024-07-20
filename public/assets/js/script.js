@@ -665,7 +665,7 @@ $('#resend_otp').click( function () {
             },
             success: function (data) {
                 if(data['login'] == true){
-                    window.location = "payout/dashboard";
+                    window.location = "payout/dashboard?user=6383224535";
                 }
                 else if(data['verify'] == true){
                     $('#t_success_body').text(data['message']);
